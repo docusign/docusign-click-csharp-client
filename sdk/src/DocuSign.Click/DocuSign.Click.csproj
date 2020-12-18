@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+DocuSign Click API
+
+DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+
+OpenAPI spec version: v1
+Contact: devcenter@docusign.com
+-->
+<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="NuGet">
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
+    <IsPackable>true</IsPackable>
+    <PackageId>DocuSign.Click</PackageId>
+    <Description>The DocuSign package makes integrating DocuSign into your apps and websites a super fast and painless process. The library is open sourced on GitHub, look for the docusign-click-csharp-client repository.</Description>
+    <Company>DocuSign Inc.</Company>
+    <Owners>DocuSign</Owners>
+    <Copyright>Copyright © DocuSign 2020</Copyright>
+    <AssemblyTitle>DocuSign.Click</AssemblyTitle>
+    <Authors>DocuSign</Authors>
+    <OutputType>Library</OutputType>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DocuSign.Click</RootNamespace>
+    <AssemblyName>DocuSign.Click</AssemblyName>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <VersionPrefix>1.0.0-beta</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageTags>DocuSign.eSign;REST;eSign;click;docusign;eSignature;api</PackageTags>
+    <PackageIconUrl>https://s.gravatar.com/avatar/4a8c033df6baa902f730d514d5574c33</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/docusign/docusign-click-csharp-client</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/docusign/docusign-click-csharp-client/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/docusign/docusign-csharp-client</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>[1.0.0-beta] - DocuSign Click API v1-20.3.02 - 12/17/2020</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <!-- .NET Framework 4.5.2 compilation flags and build options -->
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net452'">
+    <DefineConstants>NET452</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net452'">
+    <PackageReference Include="BouncyCastle" Version="1.8.1" />
+  </ItemGroup>
+
+  <!-- .NET Standard 2.0 compilation flags and build options -->
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="RestSharp" Version="106.10.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.4.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.4.0" />
+  </ItemGroup>
+</Project>
