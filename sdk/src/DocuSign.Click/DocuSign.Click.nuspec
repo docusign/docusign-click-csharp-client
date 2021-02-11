@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id></id>
-    <version>1.0.0-beta</version>
+    <id>DocuSign.Click</id>
+    <version>1.0.0</version>
     <title>DocuSign.Click</title>
     <authors>DocuSign</authors>
     <owners>DocuSign</owners>
@@ -10,9 +10,9 @@
     <developmentDependency>false</developmentDependency>
     <description>The DocuSign package makes integrating DocuSign into your apps and websites a super fast and painless process. The library is open sourced on GitHub, look for the docusign-click-csharp-client repository.</description>
     <iconUrl>https://s.gravatar.com/avatar/4a8c033df6baa902f730d514d5574c33</iconUrl>
-    <projectUrl>https://github.com/docusign/docusign-csharp-client</projectUrl>
-    <license>https://github.com/docusign/docusign-csharp-client/blob/master/LICENSE</license>
-    <copyright>Copyright © DocuSign 2020</copyright>
+    <projectUrl>https://github.com/docusign/docusign-click-csharp-client</projectUrl>
+    <license>https://github.com/docusign/docusign-click-csharp-client/blob/master/LICENSE</license>
+    <copyright>Copyright © DocuSign 2021</copyright>
     <tags>DocuSign.Click;REST;eSign;click;docusign;eSignature;api</tags>
     <dependencies>
       <group targetFramework="net452">

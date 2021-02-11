@@ -3332,12 +3332,6 @@ namespace DocuSign.Click.Api
             // verify the required parameter 'clickwrapId' is set
             if (clickwrapId == null)
                 throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapAgreements");
-            // verify the required parameter 'clientUserId' is set
-            if (options.clientUserId == null)
-                throw new ApiException(400, "Missing required parameter 'clientUserId' when calling AccountsApi->GetClickwrapAgreements");
-            // verify the required parameter 'status' is set
-            if (options.status == null)
-                throw new ApiException(400, "Missing required parameter 'status' when calling AccountsApi->GetClickwrapAgreements");
 
             var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/users";
             var localVarPathParams = new Dictionary<String, String>();
@@ -3440,12 +3434,6 @@ namespace DocuSign.Click.Api
             // verify the required parameter 'clickwrapId' is set
             if (clickwrapId == null)
                 throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapAgreements");
-            // verify the required parameter 'clientUserId' is set
-            if (options == null || options.clientUserId == null)
-                throw new ApiException(400, "Missing required parameter 'clientUserId' when calling AccountsApi->GetClickwrapAgreements");
-            // verify the required parameter 'status' is set
-            if (options == null || options.status == null)
-                throw new ApiException(400, "Missing required parameter 'status' when calling AccountsApi->GetClickwrapAgreements");
 
             var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/users";
             var localVarPathParams = new Dictionary<String, String>();
@@ -3751,9 +3739,6 @@ namespace DocuSign.Click.Api
             // verify the required parameter 'versionId' is set
             if (versionId == null)
                 throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->GetClickwrapVersionAgreements");
-            // verify the required parameter 'clientUserId' is set
-            if (options == null || options.clientUserId == null)
-                throw new ApiException(400, "Missing required parameter 'clientUserId' when calling AccountsApi->GetClickwrapVersionAgreements");
 
             var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}/users";
             var localVarPathParams = new Dictionary<String, String>();
@@ -3860,9 +3845,6 @@ namespace DocuSign.Click.Api
             // verify the required parameter 'versionId' is set
             if (versionId == null)
                 throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->GetClickwrapVersionAgreements");
-            // verify the required parameter 'clientUserId' is set
-            if (options == null || options.clientUserId == null)
-                throw new ApiException(400, "Missing required parameter 'clientUserId' when calling AccountsApi->GetClickwrapVersionAgreements");
 
             var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}/users";
             var localVarPathParams = new Dictionary<String, String>();
@@ -3979,9 +3961,6 @@ namespace DocuSign.Click.Api
             // verify the required parameter 'versionNumber' is set
             if (versionNumber == null)
                 throw new ApiException(400, "Missing required parameter 'versionNumber' when calling AccountsApi->GetClickwrapVersionAgreementsByNumber");
-            // verify the required parameter 'clientUserId' is set
-            if (options == null || options.clientUserId == null)
-                throw new ApiException(400, "Missing required parameter 'clientUserId' when calling AccountsApi->GetClickwrapVersionAgreementsByNumber");
 
             var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionNumber}/users";
             var localVarPathParams = new Dictionary<String, String>();
@@ -4088,9 +4067,6 @@ namespace DocuSign.Click.Api
             // verify the required parameter 'versionNumber' is set
             if (versionNumber == null)
                 throw new ApiException(400, "Missing required parameter 'versionNumber' when calling AccountsApi->GetClickwrapVersionAgreementsByNumber");
-            // verify the required parameter 'clientUserId' is set
-            if (options == null || options.clientUserId == null)
-                throw new ApiException(400, "Missing required parameter 'clientUserId' when calling AccountsApi->GetClickwrapVersionAgreementsByNumber");
 
             var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionNumber}/users";
             var localVarPathParams = new Dictionary<String, String>();
@@ -4541,6 +4517,8 @@ namespace DocuSign.Click.Api
             /// 
             public string pageNumber {get; set;}
             /// 
+            public string shared {get; set;}
+            /// 
             public string status {get; set;}
             /// 
             public string toDate {get; set;}
@@ -4605,6 +4583,7 @@ namespace DocuSign.Click.Api
                 if (options.fromDate != null) localVarQueryParams.Add("from_date", this.ApiClient.ParameterToString(options.fromDate)); // query parameter
                 if (options.ownerUserId != null) localVarQueryParams.Add("ownerUserId", this.ApiClient.ParameterToString(options.ownerUserId)); // query parameter
                 if (options.pageNumber != null) localVarQueryParams.Add("page_number", this.ApiClient.ParameterToString(options.pageNumber)); // query parameter
+                if (options.shared != null) localVarQueryParams.Add("shared", this.ApiClient.ParameterToString(options.shared)); // query parameter
                 if (options.status != null) localVarQueryParams.Add("status", this.ApiClient.ParameterToString(options.status)); // query parameter
                 if (options.toDate != null) localVarQueryParams.Add("to_date", this.ApiClient.ParameterToString(options.toDate)); // query parameter
             }
@@ -4703,6 +4682,7 @@ namespace DocuSign.Click.Api
                 if (options.fromDate != null) localVarQueryParams.Add("from_date", this.ApiClient.ParameterToString(options.fromDate)); // query parameter
                 if (options.ownerUserId != null) localVarQueryParams.Add("ownerUserId", this.ApiClient.ParameterToString(options.ownerUserId)); // query parameter
                 if (options.pageNumber != null) localVarQueryParams.Add("page_number", this.ApiClient.ParameterToString(options.pageNumber)); // query parameter
+                if (options.shared != null) localVarQueryParams.Add("shared", this.ApiClient.ParameterToString(options.shared)); // query parameter
                 if (options.status != null) localVarQueryParams.Add("status", this.ApiClient.ParameterToString(options.status)); // query parameter
                 if (options.toDate != null) localVarQueryParams.Add("to_date", this.ApiClient.ParameterToString(options.toDate)); // query parameter
             }
