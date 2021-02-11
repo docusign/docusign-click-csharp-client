@@ -42,7 +42,8 @@ namespace DocuSign.Click.Model
         /// <param name="DisplaySettings">DisplaySettings.</param>
         /// <param name="Documents">Documents.</param>
         /// <param name="FieldsToNull">FieldsToNull.</param>
-        /// <param name="IsMajorversion">IsMajorversion.</param>
+        /// <param name="IsMajorVersion">IsMajorVersion.</param>
+        /// <param name="IsShared">IsShared.</param>
         /// <param name="Name">Name.</param>
         /// <param name="RequireReacceptance">RequireReacceptance.</param>
         /// <param name="ScheduledDate">ScheduledDate.</param>
@@ -50,13 +51,14 @@ namespace DocuSign.Click.Model
         /// <param name="Status">Status.</param>
         /// <param name="TransferFromUserId">TransferFromUserId.</param>
         /// <param name="TransferToUserId">TransferToUserId.</param>
-        public ClickwrapRequest(string ClickwrapName = default(string), DisplaySettings DisplaySettings = default(DisplaySettings), List<Document> Documents = default(List<Document>), string FieldsToNull = default(string), bool? IsMajorversion = default(bool?), string Name = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), Object Status = default(Object), string TransferFromUserId = default(string), string TransferToUserId = default(string))
+        public ClickwrapRequest(string ClickwrapName = default(string), DisplaySettings DisplaySettings = default(DisplaySettings), List<Document> Documents = default(List<Document>), string FieldsToNull = default(string), bool? IsMajorVersion = default(bool?), bool? IsShared = default(bool?), string Name = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), Object Status = default(Object), string TransferFromUserId = default(string), string TransferToUserId = default(string))
         {
             this.ClickwrapName = ClickwrapName;
             this.DisplaySettings = DisplaySettings;
             this.Documents = Documents;
             this.FieldsToNull = FieldsToNull;
-            this.IsMajorversion = IsMajorversion;
+            this.IsMajorVersion = IsMajorVersion;
+            this.IsShared = IsShared;
             this.Name = Name;
             this.RequireReacceptance = RequireReacceptance;
             this.ScheduledDate = ScheduledDate;
@@ -87,10 +89,15 @@ namespace DocuSign.Click.Model
         [DataMember(Name="fieldsToNull", EmitDefaultValue=false)]
         public string FieldsToNull { get; set; }
         /// <summary>
-        /// Gets or Sets IsMajorversion
+        /// Gets or Sets IsMajorVersion
         /// </summary>
-        [DataMember(Name="isMajorversion", EmitDefaultValue=false)]
-        public bool? IsMajorversion { get; set; }
+        [DataMember(Name="isMajorVersion", EmitDefaultValue=false)]
+        public bool? IsMajorVersion { get; set; }
+        /// <summary>
+        /// Gets or Sets IsShared
+        /// </summary>
+        [DataMember(Name="isShared", EmitDefaultValue=false)]
+        public bool? IsShared { get; set; }
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
@@ -138,7 +145,8 @@ namespace DocuSign.Click.Model
             sb.Append("  DisplaySettings: ").Append(DisplaySettings).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  FieldsToNull: ").Append(FieldsToNull).Append("\n");
-            sb.Append("  IsMajorversion: ").Append(IsMajorversion).Append("\n");
+            sb.Append("  IsMajorVersion: ").Append(IsMajorVersion).Append("\n");
+            sb.Append("  IsShared: ").Append(IsShared).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  RequireReacceptance: ").Append(RequireReacceptance).Append("\n");
             sb.Append("  ScheduledDate: ").Append(ScheduledDate).Append("\n");
@@ -203,9 +211,14 @@ namespace DocuSign.Click.Model
                     this.FieldsToNull.Equals(other.FieldsToNull)
                 ) && 
                 (
-                    this.IsMajorversion == other.IsMajorversion ||
-                    this.IsMajorversion != null &&
-                    this.IsMajorversion.Equals(other.IsMajorversion)
+                    this.IsMajorVersion == other.IsMajorVersion ||
+                    this.IsMajorVersion != null &&
+                    this.IsMajorVersion.Equals(other.IsMajorVersion)
+                ) && 
+                (
+                    this.IsShared == other.IsShared ||
+                    this.IsShared != null &&
+                    this.IsShared.Equals(other.IsShared)
                 ) && 
                 (
                     this.Name == other.Name ||
@@ -263,8 +276,10 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.Documents.GetHashCode();
                 if (this.FieldsToNull != null)
                     hash = hash * 59 + this.FieldsToNull.GetHashCode();
-                if (this.IsMajorversion != null)
-                    hash = hash * 59 + this.IsMajorversion.GetHashCode();
+                if (this.IsMajorVersion != null)
+                    hash = hash * 59 + this.IsMajorVersion.GetHashCode();
+                if (this.IsShared != null)
+                    hash = hash * 59 + this.IsShared.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
                 if (this.RequireReacceptance != null)
