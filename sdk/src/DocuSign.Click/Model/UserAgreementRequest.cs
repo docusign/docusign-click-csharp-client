@@ -39,12 +39,12 @@ namespace DocuSign.Click.Model
         /// Initializes a new instance of the <see cref="UserAgreementRequest" /> class.
         /// </summary>
         /// <param name="ClientUserId">ClientUserId.</param>
-        /// <param name="HostOrigin">HostOrigin.</param>
+        /// <param name="DocumentData">DocumentData.</param>
         /// <param name="Metadata">Metadata.</param>
-        public UserAgreementRequest(string ClientUserId = default(string), string HostOrigin = default(string), string Metadata = default(string))
+        public UserAgreementRequest(string ClientUserId = default(string), DocumentData DocumentData = default(DocumentData), string Metadata = default(string))
         {
             this.ClientUserId = ClientUserId;
-            this.HostOrigin = HostOrigin;
+            this.DocumentData = DocumentData;
             this.Metadata = Metadata;
         }
         
@@ -54,10 +54,10 @@ namespace DocuSign.Click.Model
         [DataMember(Name="clientUserId", EmitDefaultValue=false)]
         public string ClientUserId { get; set; }
         /// <summary>
-        /// Gets or Sets HostOrigin
+        /// Gets or Sets DocumentData
         /// </summary>
-        [DataMember(Name="hostOrigin", EmitDefaultValue=false)]
-        public string HostOrigin { get; set; }
+        [DataMember(Name="documentData", EmitDefaultValue=false)]
+        public DocumentData DocumentData { get; set; }
         /// <summary>
         /// Gets or Sets Metadata
         /// </summary>
@@ -72,7 +72,7 @@ namespace DocuSign.Click.Model
             var sb = new StringBuilder();
             sb.Append("class UserAgreementRequest {\n");
             sb.Append("  ClientUserId: ").Append(ClientUserId).Append("\n");
-            sb.Append("  HostOrigin: ").Append(HostOrigin).Append("\n");
+            sb.Append("  DocumentData: ").Append(DocumentData).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -116,9 +116,9 @@ namespace DocuSign.Click.Model
                     this.ClientUserId.Equals(other.ClientUserId)
                 ) && 
                 (
-                    this.HostOrigin == other.HostOrigin ||
-                    this.HostOrigin != null &&
-                    this.HostOrigin.Equals(other.HostOrigin)
+                    this.DocumentData == other.DocumentData ||
+                    this.DocumentData != null &&
+                    this.DocumentData.Equals(other.DocumentData)
                 ) && 
                 (
                     this.Metadata == other.Metadata ||
@@ -140,8 +140,8 @@ namespace DocuSign.Click.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.ClientUserId != null)
                     hash = hash * 59 + this.ClientUserId.GetHashCode();
-                if (this.HostOrigin != null)
-                    hash = hash * 59 + this.HostOrigin.GetHashCode();
+                if (this.DocumentData != null)
+                    hash = hash * 59 + this.DocumentData.GetHashCode();
                 if (this.Metadata != null)
                     hash = hash * 59 + this.Metadata.GetHashCode();
                 return hash;

@@ -50,13 +50,12 @@ namespace DocuSign.Click.Model
         /// <param name="Downloadable">Downloadable.</param>
         /// <param name="Format">Format.</param>
         /// <param name="HasDeclineButton">HasDeclineButton.</param>
-        /// <param name="HostOrigin">HostOrigin.</param>
         /// <param name="MustRead">MustRead.</param>
         /// <param name="MustView">MustView.</param>
         /// <param name="RecordDeclineResponses">RecordDeclineResponses.</param>
         /// <param name="RequireAccept">RequireAccept.</param>
         /// <param name="SendToEmail">SendToEmail.</param>
-        public DisplaySettings(string ActionButtonAlignment = default(string), bool? AllowClientOnly = default(bool?), List<string> AllowedHosts = default(List<string>), string BrandId = default(string), string ConsentButtonText = default(string), string ConsentText = default(string), string DeclineButtonText = default(string), string DisplayName = default(string), string DocumentDisplay = default(string), bool? Downloadable = default(bool?), string Format = default(string), bool? HasDeclineButton = default(bool?), string HostOrigin = default(string), bool? MustRead = default(bool?), bool? MustView = default(bool?), bool? RecordDeclineResponses = default(bool?), bool? RequireAccept = default(bool?), bool? SendToEmail = default(bool?))
+        public DisplaySettings(string ActionButtonAlignment = default(string), bool? AllowClientOnly = default(bool?), List<string> AllowedHosts = default(List<string>), string BrandId = default(string), string ConsentButtonText = default(string), string ConsentText = default(string), string DeclineButtonText = default(string), string DisplayName = default(string), string DocumentDisplay = default(string), bool? Downloadable = default(bool?), string Format = default(string), bool? HasDeclineButton = default(bool?), bool? MustRead = default(bool?), bool? MustView = default(bool?), bool? RecordDeclineResponses = default(bool?), bool? RequireAccept = default(bool?), bool? SendToEmail = default(bool?))
         {
             this.ActionButtonAlignment = ActionButtonAlignment;
             this.AllowClientOnly = AllowClientOnly;
@@ -70,7 +69,6 @@ namespace DocuSign.Click.Model
             this.Downloadable = Downloadable;
             this.Format = Format;
             this.HasDeclineButton = HasDeclineButton;
-            this.HostOrigin = HostOrigin;
             this.MustRead = MustRead;
             this.MustView = MustView;
             this.RecordDeclineResponses = RecordDeclineResponses;
@@ -139,11 +137,6 @@ namespace DocuSign.Click.Model
         [DataMember(Name="hasDeclineButton", EmitDefaultValue=false)]
         public bool? HasDeclineButton { get; set; }
         /// <summary>
-        /// Gets or Sets HostOrigin
-        /// </summary>
-        [DataMember(Name="hostOrigin", EmitDefaultValue=false)]
-        public string HostOrigin { get; set; }
-        /// <summary>
         /// Gets or Sets MustRead
         /// </summary>
         [DataMember(Name="mustRead", EmitDefaultValue=false)]
@@ -188,7 +181,6 @@ namespace DocuSign.Click.Model
             sb.Append("  Downloadable: ").Append(Downloadable).Append("\n");
             sb.Append("  Format: ").Append(Format).Append("\n");
             sb.Append("  HasDeclineButton: ").Append(HasDeclineButton).Append("\n");
-            sb.Append("  HostOrigin: ").Append(HostOrigin).Append("\n");
             sb.Append("  MustRead: ").Append(MustRead).Append("\n");
             sb.Append("  MustView: ").Append(MustView).Append("\n");
             sb.Append("  RecordDeclineResponses: ").Append(RecordDeclineResponses).Append("\n");
@@ -291,11 +283,6 @@ namespace DocuSign.Click.Model
                     this.HasDeclineButton.Equals(other.HasDeclineButton)
                 ) && 
                 (
-                    this.HostOrigin == other.HostOrigin ||
-                    this.HostOrigin != null &&
-                    this.HostOrigin.Equals(other.HostOrigin)
-                ) && 
-                (
                     this.MustRead == other.MustRead ||
                     this.MustRead != null &&
                     this.MustRead.Equals(other.MustRead)
@@ -357,8 +344,6 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.Format.GetHashCode();
                 if (this.HasDeclineButton != null)
                     hash = hash * 59 + this.HasDeclineButton.GetHashCode();
-                if (this.HostOrigin != null)
-                    hash = hash * 59 + this.HostOrigin.GetHashCode();
                 if (this.MustRead != null)
                     hash = hash * 59 + this.MustRead.GetHashCode();
                 if (this.MustView != null)

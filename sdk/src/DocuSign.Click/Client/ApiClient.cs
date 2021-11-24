@@ -215,6 +215,7 @@ namespace DocuSign.Click.Client
 
                 if (postBody.GetType() == typeof(String) || postBody.GetType() == typeof(byte[]))
                 {
+                    request.AddHeader("Content-Disposition", "form-data;name=file;");
                     request.AddParameter(contentType, postBody, ParameterType.RequestBody);
                 }
             }
@@ -352,7 +353,6 @@ namespace DocuSign.Click.Client
         /// <returns>Object representation of the JSON string.</returns>
         public object Deserialize(IRestResponse response, Type type)
         {
-            IList<Parameter> headers = response.Headers;
             if (type == typeof(byte[])) // return byte array
             {
                 return response.RawBytes;
@@ -360,13 +360,13 @@ namespace DocuSign.Click.Client
 
             if (type == typeof(Stream))
             {
-                if (headers != null)
+                if (response.Headers != null)
                 {
                     var filePath = String.IsNullOrEmpty(Configuration.TempFolderPath)
                         ? Path.GetTempPath()
                         : Configuration.TempFolderPath;
                     var regex = new Regex(@"Content-Disposition=.*filename=['""]?([^'""\s]+)['""]?$");
-                    foreach (var header in headers)
+                    foreach (var header in response.Headers)
                     {
                         var match = regex.Match(header.ToString());
                         if (match.Success)
@@ -407,9 +407,8 @@ namespace DocuSign.Click.Client
         /// </summary>
         /// <param name="content">Byte Araay (e.g. PDF bytes).</param>
         /// <param name="type">Object type.</param>
-        /// <param name="headers"></param>
         /// <returns>Object representation of the JSON string.</returns>
-        public object Deserialize(byte[] content, Type type, IList<Parameter> headers = null)
+        public object Deserialize(byte[] content, Type type)
         {
             if (type == typeof(Stream))
             {
@@ -757,7 +756,7 @@ namespace DocuSign.Click.Client
         public void SetBasePath(string basePath)
         {
             this.basePath = basePath;
-            if(Configuration != null)
+            if (Configuration != null)
             {
                 Configuration.BasePath = this.basePath;
             }
@@ -869,8 +868,9 @@ namespace DocuSign.Click.Client
             else
             {
                 throw new ApiException((int)response.StatusCode,
-                  "Error while requesting server, received a non successful HTTP code "
-                  + response.ResponseStatus + " with response Body: " + response.Content, response.Content);
+                  "Error while requesting server, received a non successful HTTP code with response Body: " + response.Content,
+                   response.Content,
+                   response);
             }
         }
 
@@ -909,8 +909,9 @@ namespace DocuSign.Click.Client
             else
             {
                 throw new ApiException((int)response.StatusCode,
-                      "Error while requesting server, received a non successful HTTP code "
-                      + response.ResponseStatus + " with response Body: " + response.Content, response.Content);
+                      "Error while requesting server, received a non successful HTTP code with response Body: " + response.Content,
+                       response.Content,
+                       response);
             }
         }
 
@@ -1083,8 +1084,9 @@ namespace DocuSign.Click.Client
             else
             {
                 throw new ApiException((int)response.StatusCode,
-                      "Error while requesting server, received a non successful HTTP code "
-                      + response.ResponseStatus + " with response Body: " + response.Content, response.Content);
+                      "Error while requesting server, received a non successful HTTP code with response Body: " + response.Content,
+                       response.Content,
+                       response);
             }
         }
 
@@ -1180,8 +1182,9 @@ namespace DocuSign.Click.Client
             else
             {
                 throw new ApiException((int)response.StatusCode,
-                      "Error while requesting server, received a non successful HTTP code "
-                      + response.ResponseStatus + " with response Body: " + response.Content, response.Content);
+                      "Error while requesting server, received a non successful HTTP code with response Body: " + response.Content,
+                       response.Content,
+                       response);
             }
         }
     }
