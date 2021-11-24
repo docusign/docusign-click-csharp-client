@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 DocuSign Click API
 
@@ -24,7 +24,7 @@ Contact: devcenter@docusign.com
     <RootNamespace>DocuSign.Click</RootNamespace>
     <AssemblyName>DocuSign.Click</AssemblyName>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.1.0-rc</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -34,7 +34,9 @@ Contact: devcenter@docusign.com
     <PackageLicenseUrl>https://github.com/docusign/docusign-click-csharp-client/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/docusign/docusign-csharp-client</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>[1.0.0] - DocuSign Click API v1-20.4.02 - 02/11/2021</PackageReleaseNotes>
+    <PackageReleaseNotes>[1.1.0-rc] - DocuSign Click API v1-21.4.00 - 11/19/2021</PackageReleaseNotes>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>DocuSignClient.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <!-- .NET Framework 4.5.2 compilation flags and build options -->
@@ -42,7 +44,7 @@ Contact: devcenter@docusign.com
     <DefineConstants>NET452</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452'">
-    <PackageReference Include="BouncyCastle" Version="1.8.1" />
+    <PackageReference Include="BouncyCastle" Version="1.8.9" />
   </ItemGroup>
 
   <!-- .NET Standard 2.0 compilation flags and build options -->
@@ -50,15 +52,19 @@ Contact: devcenter@docusign.com
     <DefineConstants>NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Portable.BouncyCastle" Version="1.8.2" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.10" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="RestSharp" Version="106.10.1" />
+    <PackageReference Include="RestSharp" Version="106.12.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.4.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.4.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="DocuSignClient.snk" />
   </ItemGroup>
 </Project>
