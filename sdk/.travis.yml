@@ -4,6 +4,6 @@
 language: csharp
 mono:
   - latest
-solution: ./sdk/DocuSign.Click.sln
+solution: DocuSign.Click.sln
 script:
-  - /bin/sh ./sdk/mono_nunit_test.sh
+  - /bin/sh ./mono_nunit_test.sh
