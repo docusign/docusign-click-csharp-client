@@ -1,6 +1,7 @@
 *.[Oo]bj
 *.user
 *.suo
+*.snk
 [Bb]in
 [Oo]bj
 [Dd]ebug
