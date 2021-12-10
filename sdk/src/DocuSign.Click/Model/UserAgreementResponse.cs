@@ -47,7 +47,6 @@ namespace DocuSign.Click.Model
         /// <param name="ConsumerDisclosureHtml">ConsumerDisclosureHtml.</param>
         /// <param name="CreatedOn">CreatedOn.</param>
         /// <param name="DeclinedOn">DeclinedOn.</param>
-        /// <param name="DocumentData">DocumentData.</param>
         /// <param name="Documents">Documents.</param>
         /// <param name="Metadata">Metadata.</param>
         /// <param name="Settings">Settings.</param>
@@ -55,7 +54,7 @@ namespace DocuSign.Click.Model
         /// <param name="Version">Version.</param>
         /// <param name="VersionId">VersionId.</param>
         /// <param name="VersionNumber">VersionNumber.</param>
-        public UserAgreementResponse(string AccountId = default(string), Object AgreedOn = default(Object), string AgreementId = default(string), string AgreementUrl = default(string), string ClickwrapId = default(string), string ClientUserId = default(string), string ConsumerDisclosureHtml = default(string), Object CreatedOn = default(Object), Object DeclinedOn = default(Object), DocumentData DocumentData = default(DocumentData), List<Document> Documents = default(List<Document>), string Metadata = default(string), DisplaySettings Settings = default(DisplaySettings), string Status = default(string), string Version = default(string), string VersionId = default(string), int? VersionNumber = default(int?))
+        public UserAgreementResponse(string AccountId = default(string), Object AgreedOn = default(Object), string AgreementId = default(string), string AgreementUrl = default(string), string ClickwrapId = default(string), string ClientUserId = default(string), string ConsumerDisclosureHtml = default(string), Object CreatedOn = default(Object), Object DeclinedOn = default(Object), List<Document> Documents = default(List<Document>), string Metadata = default(string), DisplaySettings Settings = default(DisplaySettings), string Status = default(string), string Version = default(string), string VersionId = default(string), int? VersionNumber = default(int?))
         {
             this.AccountId = AccountId;
             this.AgreedOn = AgreedOn;
@@ -66,7 +65,6 @@ namespace DocuSign.Click.Model
             this.ConsumerDisclosureHtml = ConsumerDisclosureHtml;
             this.CreatedOn = CreatedOn;
             this.DeclinedOn = DeclinedOn;
-            this.DocumentData = DocumentData;
             this.Documents = Documents;
             this.Metadata = Metadata;
             this.Settings = Settings;
@@ -122,11 +120,6 @@ namespace DocuSign.Click.Model
         [DataMember(Name="declinedOn", EmitDefaultValue=false)]
         public Object DeclinedOn { get; set; }
         /// <summary>
-        /// Gets or Sets DocumentData
-        /// </summary>
-        [DataMember(Name="documentData", EmitDefaultValue=false)]
-        public DocumentData DocumentData { get; set; }
-        /// <summary>
         /// Gets or Sets Documents
         /// </summary>
         [DataMember(Name="documents", EmitDefaultValue=false)]
@@ -178,7 +171,6 @@ namespace DocuSign.Click.Model
             sb.Append("  ConsumerDisclosureHtml: ").Append(ConsumerDisclosureHtml).Append("\n");
             sb.Append("  CreatedOn: ").Append(CreatedOn).Append("\n");
             sb.Append("  DeclinedOn: ").Append(DeclinedOn).Append("\n");
-            sb.Append("  DocumentData: ").Append(DocumentData).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  Settings: ").Append(Settings).Append("\n");
@@ -268,11 +260,6 @@ namespace DocuSign.Click.Model
                     this.DeclinedOn.Equals(other.DeclinedOn)
                 ) && 
                 (
-                    this.DocumentData == other.DocumentData ||
-                    this.DocumentData != null &&
-                    this.DocumentData.Equals(other.DocumentData)
-                ) && 
-                (
                     this.Documents == other.Documents ||
                     this.Documents != null &&
                     this.Documents.SequenceEqual(other.Documents)
@@ -338,8 +325,6 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.CreatedOn.GetHashCode();
                 if (this.DeclinedOn != null)
                     hash = hash * 59 + this.DeclinedOn.GetHashCode();
-                if (this.DocumentData != null)
-                    hash = hash * 59 + this.DocumentData.GetHashCode();
                 if (this.Documents != null)
                     hash = hash * 59 + this.Documents.GetHashCode();
                 if (this.Metadata != null)

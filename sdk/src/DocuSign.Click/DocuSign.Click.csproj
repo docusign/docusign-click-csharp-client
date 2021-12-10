@@ -24,7 +24,7 @@ Contact: devcenter@docusign.com
     <RootNamespace>DocuSign.Click</RootNamespace>
     <AssemblyName>DocuSign.Click</AssemblyName>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>1.1.0-rc</VersionPrefix>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -34,7 +34,9 @@ Contact: devcenter@docusign.com
     <PackageLicenseUrl>https://github.com/docusign/docusign-click-csharp-client/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/docusign/docusign-csharp-client</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>[1.1.0-rc] - DocuSign Click API v1-21.4.00 - 11/19/2021</PackageReleaseNotes>
+    <PackageReleaseNotes>[1.1.0] - DocuSign Click API v1-21.4.01 - 12/09/2021</PackageReleaseNotes>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>DocuSignClient.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <!-- .NET Framework 4.5.2 compilation flags and build options -->
@@ -60,5 +62,9 @@ Contact: devcenter@docusign.com
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="5.4.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.4.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="DocuSignClient.snk" />
   </ItemGroup>
 </Project>
