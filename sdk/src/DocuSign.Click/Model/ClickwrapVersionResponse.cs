@@ -43,6 +43,7 @@ namespace DocuSign.Click.Model
         /// <param name="ClickwrapName">ClickwrapName.</param>
         /// <param name="ClickwrapVersionId">ClickwrapVersionId.</param>
         /// <param name="CreatedTime">CreatedTime.</param>
+        /// <param name="DataFields">DataFields.</param>
         /// <param name="DisplaySettings">DisplaySettings.</param>
         /// <param name="Documents">Documents.</param>
         /// <param name="LastModified">LastModified.</param>
@@ -54,13 +55,14 @@ namespace DocuSign.Click.Model
         /// <param name="Status">Status.</param>
         /// <param name="VersionId">VersionId.</param>
         /// <param name="VersionNumber">VersionNumber.</param>
-        public ClickwrapVersionResponse(string AccountId = default(string), string ClickwrapId = default(string), string ClickwrapName = default(string), string ClickwrapVersionId = default(string), Object CreatedTime = default(Object), DisplaySettings DisplaySettings = default(DisplaySettings), List<Document> Documents = default(List<Document>), Object LastModified = default(Object), string LastModifiedBy = default(string), string OwnerUserId = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), string Status = default(string), string VersionId = default(string), string VersionNumber = default(string))
+        public ClickwrapVersionResponse(string AccountId = default(string), string ClickwrapId = default(string), string ClickwrapName = default(string), string ClickwrapVersionId = default(string), Object CreatedTime = default(Object), List<DataField> DataFields = default(List<DataField>), DisplaySettings DisplaySettings = default(DisplaySettings), List<Document> Documents = default(List<Document>), Object LastModified = default(Object), string LastModifiedBy = default(string), string OwnerUserId = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), string Status = default(string), string VersionId = default(string), string VersionNumber = default(string))
         {
             this.AccountId = AccountId;
             this.ClickwrapId = ClickwrapId;
             this.ClickwrapName = ClickwrapName;
             this.ClickwrapVersionId = ClickwrapVersionId;
             this.CreatedTime = CreatedTime;
+            this.DataFields = DataFields;
             this.DisplaySettings = DisplaySettings;
             this.Documents = Documents;
             this.LastModified = LastModified;
@@ -99,6 +101,11 @@ namespace DocuSign.Click.Model
         /// </summary>
         [DataMember(Name="createdTime", EmitDefaultValue=false)]
         public Object CreatedTime { get; set; }
+        /// <summary>
+        /// Gets or Sets DataFields
+        /// </summary>
+        [DataMember(Name="dataFields", EmitDefaultValue=false)]
+        public List<DataField> DataFields { get; set; }
         /// <summary>
         /// Gets or Sets DisplaySettings
         /// </summary>
@@ -167,6 +174,7 @@ namespace DocuSign.Click.Model
             sb.Append("  ClickwrapName: ").Append(ClickwrapName).Append("\n");
             sb.Append("  ClickwrapVersionId: ").Append(ClickwrapVersionId).Append("\n");
             sb.Append("  CreatedTime: ").Append(CreatedTime).Append("\n");
+            sb.Append("  DataFields: ").Append(DataFields).Append("\n");
             sb.Append("  DisplaySettings: ").Append(DisplaySettings).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  LastModified: ").Append(LastModified).Append("\n");
@@ -238,6 +246,11 @@ namespace DocuSign.Click.Model
                     this.CreatedTime == other.CreatedTime ||
                     this.CreatedTime != null &&
                     this.CreatedTime.Equals(other.CreatedTime)
+                ) && 
+                (
+                    this.DataFields == other.DataFields ||
+                    this.DataFields != null &&
+                    this.DataFields.SequenceEqual(other.DataFields)
                 ) && 
                 (
                     this.DisplaySettings == other.DisplaySettings ||
@@ -317,6 +330,8 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.ClickwrapVersionId.GetHashCode();
                 if (this.CreatedTime != null)
                     hash = hash * 59 + this.CreatedTime.GetHashCode();
+                if (this.DataFields != null)
+                    hash = hash * 59 + this.DataFields.GetHashCode();
                 if (this.DisplaySettings != null)
                     hash = hash * 59 + this.DisplaySettings.GetHashCode();
                 if (this.Documents != null)

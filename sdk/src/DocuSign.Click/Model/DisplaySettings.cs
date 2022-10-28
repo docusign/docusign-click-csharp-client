@@ -55,7 +55,8 @@ namespace DocuSign.Click.Model
         /// <param name="RecordDeclineResponses">RecordDeclineResponses.</param>
         /// <param name="RequireAccept">RequireAccept.</param>
         /// <param name="SendToEmail">SendToEmail.</param>
-        public DisplaySettings(string ActionButtonAlignment = default(string), bool? AllowClientOnly = default(bool?), List<string> AllowedHosts = default(List<string>), string BrandId = default(string), string ConsentButtonText = default(string), string ConsentText = default(string), string DeclineButtonText = default(string), string DisplayName = default(string), string DocumentDisplay = default(string), bool? Downloadable = default(bool?), string Format = default(string), bool? HasDeclineButton = default(bool?), bool? MustRead = default(bool?), bool? MustView = default(bool?), bool? RecordDeclineResponses = default(bool?), bool? RequireAccept = default(bool?), bool? SendToEmail = default(bool?))
+        /// <param name="StatementAlignment">StatementAlignment.</param>
+        public DisplaySettings(string ActionButtonAlignment = default(string), bool? AllowClientOnly = default(bool?), List<string> AllowedHosts = default(List<string>), string BrandId = default(string), string ConsentButtonText = default(string), string ConsentText = default(string), string DeclineButtonText = default(string), string DisplayName = default(string), string DocumentDisplay = default(string), bool? Downloadable = default(bool?), string Format = default(string), bool? HasDeclineButton = default(bool?), bool? MustRead = default(bool?), bool? MustView = default(bool?), bool? RecordDeclineResponses = default(bool?), bool? RequireAccept = default(bool?), bool? SendToEmail = default(bool?), string StatementAlignment = default(string))
         {
             this.ActionButtonAlignment = ActionButtonAlignment;
             this.AllowClientOnly = AllowClientOnly;
@@ -74,6 +75,7 @@ namespace DocuSign.Click.Model
             this.RecordDeclineResponses = RecordDeclineResponses;
             this.RequireAccept = RequireAccept;
             this.SendToEmail = SendToEmail;
+            this.StatementAlignment = StatementAlignment;
         }
         
         /// <summary>
@@ -162,6 +164,11 @@ namespace DocuSign.Click.Model
         [DataMember(Name="sendToEmail", EmitDefaultValue=false)]
         public bool? SendToEmail { get; set; }
         /// <summary>
+        /// Gets or Sets StatementAlignment
+        /// </summary>
+        [DataMember(Name="statementAlignment", EmitDefaultValue=false)]
+        public string StatementAlignment { get; set; }
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -186,6 +193,7 @@ namespace DocuSign.Click.Model
             sb.Append("  RecordDeclineResponses: ").Append(RecordDeclineResponses).Append("\n");
             sb.Append("  RequireAccept: ").Append(RequireAccept).Append("\n");
             sb.Append("  SendToEmail: ").Append(SendToEmail).Append("\n");
+            sb.Append("  StatementAlignment: ").Append(StatementAlignment).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -306,6 +314,11 @@ namespace DocuSign.Click.Model
                     this.SendToEmail == other.SendToEmail ||
                     this.SendToEmail != null &&
                     this.SendToEmail.Equals(other.SendToEmail)
+                ) && 
+                (
+                    this.StatementAlignment == other.StatementAlignment ||
+                    this.StatementAlignment != null &&
+                    this.StatementAlignment.Equals(other.StatementAlignment)
                 );
         }
 
@@ -354,6 +367,8 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.RequireAccept.GetHashCode();
                 if (this.SendToEmail != null)
                     hash = hash * 59 + this.SendToEmail.GetHashCode();
+                if (this.StatementAlignment != null)
+                    hash = hash * 59 + this.StatementAlignment.GetHashCode();
                 return hash;
             }
         }

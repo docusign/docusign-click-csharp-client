@@ -39,16 +39,22 @@ namespace DocuSign.Click.Model
         /// Initializes a new instance of the <see cref="Document" /> class.
         /// </summary>
         /// <param name="DocumentBase64">DocumentBase64.</param>
+        /// <param name="DocumentDisplay">DocumentDisplay.</param>
         /// <param name="DocumentHtml">DocumentHtml.</param>
         /// <param name="DocumentName">DocumentName.</param>
         /// <param name="FileExtension">FileExtension.</param>
+        /// <param name="MustRead">MustRead.</param>
+        /// <param name="MustView">MustView.</param>
         /// <param name="Order">Order.</param>
-        public Document(string DocumentBase64 = default(string), string DocumentHtml = default(string), string DocumentName = default(string), string FileExtension = default(string), int? Order = default(int?))
+        public Document(string DocumentBase64 = default(string), string DocumentDisplay = default(string), string DocumentHtml = default(string), string DocumentName = default(string), string FileExtension = default(string), bool? MustRead = default(bool?), bool? MustView = default(bool?), int? Order = default(int?))
         {
             this.DocumentBase64 = DocumentBase64;
+            this.DocumentDisplay = DocumentDisplay;
             this.DocumentHtml = DocumentHtml;
             this.DocumentName = DocumentName;
             this.FileExtension = FileExtension;
+            this.MustRead = MustRead;
+            this.MustView = MustView;
             this.Order = Order;
         }
         
@@ -57,6 +63,11 @@ namespace DocuSign.Click.Model
         /// </summary>
         [DataMember(Name="documentBase64", EmitDefaultValue=false)]
         public string DocumentBase64 { get; set; }
+        /// <summary>
+        /// Gets or Sets DocumentDisplay
+        /// </summary>
+        [DataMember(Name="documentDisplay", EmitDefaultValue=false)]
+        public string DocumentDisplay { get; set; }
         /// <summary>
         /// Gets or Sets DocumentHtml
         /// </summary>
@@ -73,6 +84,16 @@ namespace DocuSign.Click.Model
         [DataMember(Name="fileExtension", EmitDefaultValue=false)]
         public string FileExtension { get; set; }
         /// <summary>
+        /// Gets or Sets MustRead
+        /// </summary>
+        [DataMember(Name="mustRead", EmitDefaultValue=false)]
+        public bool? MustRead { get; set; }
+        /// <summary>
+        /// Gets or Sets MustView
+        /// </summary>
+        [DataMember(Name="mustView", EmitDefaultValue=false)]
+        public bool? MustView { get; set; }
+        /// <summary>
         /// Gets or Sets Order
         /// </summary>
         [DataMember(Name="order", EmitDefaultValue=false)]
@@ -86,9 +107,12 @@ namespace DocuSign.Click.Model
             var sb = new StringBuilder();
             sb.Append("class Document {\n");
             sb.Append("  DocumentBase64: ").Append(DocumentBase64).Append("\n");
+            sb.Append("  DocumentDisplay: ").Append(DocumentDisplay).Append("\n");
             sb.Append("  DocumentHtml: ").Append(DocumentHtml).Append("\n");
             sb.Append("  DocumentName: ").Append(DocumentName).Append("\n");
             sb.Append("  FileExtension: ").Append(FileExtension).Append("\n");
+            sb.Append("  MustRead: ").Append(MustRead).Append("\n");
+            sb.Append("  MustView: ").Append(MustView).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -132,6 +156,11 @@ namespace DocuSign.Click.Model
                     this.DocumentBase64.Equals(other.DocumentBase64)
                 ) && 
                 (
+                    this.DocumentDisplay == other.DocumentDisplay ||
+                    this.DocumentDisplay != null &&
+                    this.DocumentDisplay.Equals(other.DocumentDisplay)
+                ) && 
+                (
                     this.DocumentHtml == other.DocumentHtml ||
                     this.DocumentHtml != null &&
                     this.DocumentHtml.Equals(other.DocumentHtml)
@@ -145,6 +174,16 @@ namespace DocuSign.Click.Model
                     this.FileExtension == other.FileExtension ||
                     this.FileExtension != null &&
                     this.FileExtension.Equals(other.FileExtension)
+                ) && 
+                (
+                    this.MustRead == other.MustRead ||
+                    this.MustRead != null &&
+                    this.MustRead.Equals(other.MustRead)
+                ) && 
+                (
+                    this.MustView == other.MustView ||
+                    this.MustView != null &&
+                    this.MustView.Equals(other.MustView)
                 ) && 
                 (
                     this.Order == other.Order ||
@@ -166,12 +205,18 @@ namespace DocuSign.Click.Model
                 // Suitable nullity checks etc, of course :)
                 if (this.DocumentBase64 != null)
                     hash = hash * 59 + this.DocumentBase64.GetHashCode();
+                if (this.DocumentDisplay != null)
+                    hash = hash * 59 + this.DocumentDisplay.GetHashCode();
                 if (this.DocumentHtml != null)
                     hash = hash * 59 + this.DocumentHtml.GetHashCode();
                 if (this.DocumentName != null)
                     hash = hash * 59 + this.DocumentName.GetHashCode();
                 if (this.FileExtension != null)
                     hash = hash * 59 + this.FileExtension.GetHashCode();
+                if (this.MustRead != null)
+                    hash = hash * 59 + this.MustRead.GetHashCode();
+                if (this.MustView != null)
+                    hash = hash * 59 + this.MustView.GetHashCode();
                 if (this.Order != null)
                     hash = hash * 59 + this.Order.GetHashCode();
                 return hash;

@@ -25,44 +25,44 @@ using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 namespace DocuSign.Click.Model
 {
     /// <summary>
-    /// UserAgreementRequest
+    /// DataField
     /// </summary>
     [DataContract]
-    public partial class UserAgreementRequest :  IEquatable<UserAgreementRequest>, IValidatableObject
+    public partial class DataField :  IEquatable<DataField>, IValidatableObject
     {
-        public UserAgreementRequest()
+        public DataField()
         {
             // Empty Constructor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserAgreementRequest" /> class.
+        /// Initializes a new instance of the <see cref="DataField" /> class.
         /// </summary>
-        /// <param name="ClientUserId">ClientUserId.</param>
-        /// <param name="DocumentData">DocumentData.</param>
-        /// <param name="Metadata">Metadata.</param>
-        public UserAgreementRequest(string ClientUserId = default(string), Dictionary<string, string> DocumentData = default(Dictionary<string, string>), string Metadata = default(string))
+        /// <param name="Label">Label.</param>
+        /// <param name="Name">Name.</param>
+        /// <param name="Type">Type.</param>
+        public DataField(string Label = default(string), string Name = default(string), string Type = default(string))
         {
-            this.ClientUserId = ClientUserId;
-            this.DocumentData = DocumentData;
-            this.Metadata = Metadata;
+            this.Label = Label;
+            this.Name = Name;
+            this.Type = Type;
         }
         
         /// <summary>
-        /// Gets or Sets ClientUserId
+        /// Gets or Sets Label
         /// </summary>
-        [DataMember(Name="clientUserId", EmitDefaultValue=false)]
-        public string ClientUserId { get; set; }
+        [DataMember(Name="label", EmitDefaultValue=false)]
+        public string Label { get; set; }
         /// <summary>
-        /// Gets or Sets DocumentData
+        /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="documentData", EmitDefaultValue=false)]
-        public Dictionary<string, string> DocumentData { get; set; }
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
         /// <summary>
-        /// Gets or Sets Metadata
+        /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name="metadata", EmitDefaultValue=false)]
-        public string Metadata { get; set; }
+        [DataMember(Name="type", EmitDefaultValue=false)]
+        public string Type { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -70,10 +70,10 @@ namespace DocuSign.Click.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class UserAgreementRequest {\n");
-            sb.Append("  ClientUserId: ").Append(ClientUserId).Append("\n");
-            sb.Append("  DocumentData: ").Append(DocumentData).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("class DataField {\n");
+            sb.Append("  Label: ").Append(Label).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -95,15 +95,15 @@ namespace DocuSign.Click.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as UserAgreementRequest);
+            return this.Equals(obj as DataField);
         }
 
         /// <summary>
-        /// Returns true if UserAgreementRequest instances are equal
+        /// Returns true if DataField instances are equal
         /// </summary>
-        /// <param name="other">Instance of UserAgreementRequest to be compared</param>
+        /// <param name="other">Instance of DataField to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UserAgreementRequest other)
+        public bool Equals(DataField other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -111,19 +111,19 @@ namespace DocuSign.Click.Model
 
             return 
                 (
-                    this.ClientUserId == other.ClientUserId ||
-                    this.ClientUserId != null &&
-                    this.ClientUserId.Equals(other.ClientUserId)
+                    this.Label == other.Label ||
+                    this.Label != null &&
+                    this.Label.Equals(other.Label)
                 ) && 
                 (
-                    this.DocumentData == other.DocumentData ||
-                    this.DocumentData != null &&
-                    this.DocumentData.SequenceEqual(other.DocumentData)
+                    this.Name == other.Name ||
+                    this.Name != null &&
+                    this.Name.Equals(other.Name)
                 ) && 
                 (
-                    this.Metadata == other.Metadata ||
-                    this.Metadata != null &&
-                    this.Metadata.Equals(other.Metadata)
+                    this.Type == other.Type ||
+                    this.Type != null &&
+                    this.Type.Equals(other.Type)
                 );
         }
 
@@ -138,12 +138,12 @@ namespace DocuSign.Click.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.ClientUserId != null)
-                    hash = hash * 59 + this.ClientUserId.GetHashCode();
-                if (this.DocumentData != null)
-                    hash = hash * 59 + this.DocumentData.GetHashCode();
-                if (this.Metadata != null)
-                    hash = hash * 59 + this.Metadata.GetHashCode();
+                if (this.Label != null)
+                    hash = hash * 59 + this.Label.GetHashCode();
+                if (this.Name != null)
+                    hash = hash * 59 + this.Name.GetHashCode();
+                if (this.Type != null)
+                    hash = hash * 59 + this.Type.GetHashCode();
                 return hash;
             }
         }
