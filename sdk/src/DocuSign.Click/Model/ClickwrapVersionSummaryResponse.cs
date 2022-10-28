@@ -43,6 +43,7 @@ namespace DocuSign.Click.Model
         /// <param name="ClickwrapName">ClickwrapName.</param>
         /// <param name="ClickwrapVersionId">ClickwrapVersionId.</param>
         /// <param name="CreatedTime">CreatedTime.</param>
+        /// <param name="DataFields">DataFields.</param>
         /// <param name="LastModified">LastModified.</param>
         /// <param name="LastModifiedBy">LastModifiedBy.</param>
         /// <param name="OwnerUserId">OwnerUserId.</param>
@@ -52,13 +53,14 @@ namespace DocuSign.Click.Model
         /// <param name="Status">Status.</param>
         /// <param name="VersionId">VersionId.</param>
         /// <param name="VersionNumber">VersionNumber.</param>
-        public ClickwrapVersionSummaryResponse(string AccountId = default(string), string ClickwrapId = default(string), string ClickwrapName = default(string), string ClickwrapVersionId = default(string), Object CreatedTime = default(Object), Object LastModified = default(Object), string LastModifiedBy = default(string), string OwnerUserId = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), string Status = default(string), string VersionId = default(string), string VersionNumber = default(string))
+        public ClickwrapVersionSummaryResponse(string AccountId = default(string), string ClickwrapId = default(string), string ClickwrapName = default(string), string ClickwrapVersionId = default(string), Object CreatedTime = default(Object), List<DataField> DataFields = default(List<DataField>), Object LastModified = default(Object), string LastModifiedBy = default(string), string OwnerUserId = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), string Status = default(string), string VersionId = default(string), string VersionNumber = default(string))
         {
             this.AccountId = AccountId;
             this.ClickwrapId = ClickwrapId;
             this.ClickwrapName = ClickwrapName;
             this.ClickwrapVersionId = ClickwrapVersionId;
             this.CreatedTime = CreatedTime;
+            this.DataFields = DataFields;
             this.LastModified = LastModified;
             this.LastModifiedBy = LastModifiedBy;
             this.OwnerUserId = OwnerUserId;
@@ -95,6 +97,11 @@ namespace DocuSign.Click.Model
         /// </summary>
         [DataMember(Name="createdTime", EmitDefaultValue=false)]
         public Object CreatedTime { get; set; }
+        /// <summary>
+        /// Gets or Sets DataFields
+        /// </summary>
+        [DataMember(Name="dataFields", EmitDefaultValue=false)]
+        public List<DataField> DataFields { get; set; }
         /// <summary>
         /// Gets or Sets LastModified
         /// </summary>
@@ -153,6 +160,7 @@ namespace DocuSign.Click.Model
             sb.Append("  ClickwrapName: ").Append(ClickwrapName).Append("\n");
             sb.Append("  ClickwrapVersionId: ").Append(ClickwrapVersionId).Append("\n");
             sb.Append("  CreatedTime: ").Append(CreatedTime).Append("\n");
+            sb.Append("  DataFields: ").Append(DataFields).Append("\n");
             sb.Append("  LastModified: ").Append(LastModified).Append("\n");
             sb.Append("  LastModifiedBy: ").Append(LastModifiedBy).Append("\n");
             sb.Append("  OwnerUserId: ").Append(OwnerUserId).Append("\n");
@@ -224,6 +232,11 @@ namespace DocuSign.Click.Model
                     this.CreatedTime.Equals(other.CreatedTime)
                 ) && 
                 (
+                    this.DataFields == other.DataFields ||
+                    this.DataFields != null &&
+                    this.DataFields.SequenceEqual(other.DataFields)
+                ) && 
+                (
                     this.LastModified == other.LastModified ||
                     this.LastModified != null &&
                     this.LastModified.Equals(other.LastModified)
@@ -291,6 +304,8 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.ClickwrapVersionId.GetHashCode();
                 if (this.CreatedTime != null)
                     hash = hash * 59 + this.CreatedTime.GetHashCode();
+                if (this.DataFields != null)
+                    hash = hash * 59 + this.DataFields.GetHashCode();
                 if (this.LastModified != null)
                     hash = hash * 59 + this.LastModified.GetHashCode();
                 if (this.LastModifiedBy != null)

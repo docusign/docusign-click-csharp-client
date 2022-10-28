@@ -44,17 +44,20 @@ namespace DocuSign.Click.Model
         /// <param name="AgreementUrl">AgreementUrl.</param>
         /// <param name="ClickwrapId">ClickwrapId.</param>
         /// <param name="ClientUserId">ClientUserId.</param>
+        /// <param name="ConsumerDisclosureEnabled">ConsumerDisclosureEnabled.</param>
         /// <param name="ConsumerDisclosureHtml">ConsumerDisclosureHtml.</param>
         /// <param name="CreatedOn">CreatedOn.</param>
         /// <param name="DeclinedOn">DeclinedOn.</param>
+        /// <param name="DocumentData">DocumentData.</param>
         /// <param name="Documents">Documents.</param>
         /// <param name="Metadata">Metadata.</param>
         /// <param name="Settings">Settings.</param>
         /// <param name="Status">Status.</param>
+        /// <param name="Style">Style.</param>
         /// <param name="Version">Version.</param>
         /// <param name="VersionId">VersionId.</param>
         /// <param name="VersionNumber">VersionNumber.</param>
-        public UserAgreementResponse(string AccountId = default(string), Object AgreedOn = default(Object), string AgreementId = default(string), string AgreementUrl = default(string), string ClickwrapId = default(string), string ClientUserId = default(string), string ConsumerDisclosureHtml = default(string), Object CreatedOn = default(Object), Object DeclinedOn = default(Object), List<Document> Documents = default(List<Document>), string Metadata = default(string), DisplaySettings Settings = default(DisplaySettings), string Status = default(string), string Version = default(string), string VersionId = default(string), int? VersionNumber = default(int?))
+        public UserAgreementResponse(string AccountId = default(string), Object AgreedOn = default(Object), string AgreementId = default(string), string AgreementUrl = default(string), string ClickwrapId = default(string), string ClientUserId = default(string), bool? ConsumerDisclosureEnabled = default(bool?), string ConsumerDisclosureHtml = default(string), Object CreatedOn = default(Object), Object DeclinedOn = default(Object), Dictionary<string, string> DocumentData = default(Dictionary<string, string>), List<Document> Documents = default(List<Document>), string Metadata = default(string), DisplaySettings Settings = default(DisplaySettings), string Status = default(string), Dictionary<string, string> Style = default(Dictionary<string, string>), string Version = default(string), string VersionId = default(string), int? VersionNumber = default(int?))
         {
             this.AccountId = AccountId;
             this.AgreedOn = AgreedOn;
@@ -62,13 +65,16 @@ namespace DocuSign.Click.Model
             this.AgreementUrl = AgreementUrl;
             this.ClickwrapId = ClickwrapId;
             this.ClientUserId = ClientUserId;
+            this.ConsumerDisclosureEnabled = ConsumerDisclosureEnabled;
             this.ConsumerDisclosureHtml = ConsumerDisclosureHtml;
             this.CreatedOn = CreatedOn;
             this.DeclinedOn = DeclinedOn;
+            this.DocumentData = DocumentData;
             this.Documents = Documents;
             this.Metadata = Metadata;
             this.Settings = Settings;
             this.Status = Status;
+            this.Style = Style;
             this.Version = Version;
             this.VersionId = VersionId;
             this.VersionNumber = VersionNumber;
@@ -105,6 +111,11 @@ namespace DocuSign.Click.Model
         [DataMember(Name="clientUserId", EmitDefaultValue=false)]
         public string ClientUserId { get; set; }
         /// <summary>
+        /// Gets or Sets ConsumerDisclosureEnabled
+        /// </summary>
+        [DataMember(Name="consumerDisclosureEnabled", EmitDefaultValue=false)]
+        public bool? ConsumerDisclosureEnabled { get; set; }
+        /// <summary>
         /// Gets or Sets ConsumerDisclosureHtml
         /// </summary>
         [DataMember(Name="consumerDisclosureHtml", EmitDefaultValue=false)]
@@ -119,6 +130,11 @@ namespace DocuSign.Click.Model
         /// </summary>
         [DataMember(Name="declinedOn", EmitDefaultValue=false)]
         public Object DeclinedOn { get; set; }
+        /// <summary>
+        /// Gets or Sets DocumentData
+        /// </summary>
+        [DataMember(Name="documentData", EmitDefaultValue=false)]
+        public Dictionary<string, string> DocumentData { get; set; }
         /// <summary>
         /// Gets or Sets Documents
         /// </summary>
@@ -139,6 +155,11 @@ namespace DocuSign.Click.Model
         /// </summary>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
+        /// <summary>
+        /// Gets or Sets Style
+        /// </summary>
+        [DataMember(Name="style", EmitDefaultValue=false)]
+        public Dictionary<string, string> Style { get; set; }
         /// <summary>
         /// Gets or Sets Version
         /// </summary>
@@ -168,13 +189,16 @@ namespace DocuSign.Click.Model
             sb.Append("  AgreementUrl: ").Append(AgreementUrl).Append("\n");
             sb.Append("  ClickwrapId: ").Append(ClickwrapId).Append("\n");
             sb.Append("  ClientUserId: ").Append(ClientUserId).Append("\n");
+            sb.Append("  ConsumerDisclosureEnabled: ").Append(ConsumerDisclosureEnabled).Append("\n");
             sb.Append("  ConsumerDisclosureHtml: ").Append(ConsumerDisclosureHtml).Append("\n");
             sb.Append("  CreatedOn: ").Append(CreatedOn).Append("\n");
             sb.Append("  DeclinedOn: ").Append(DeclinedOn).Append("\n");
+            sb.Append("  DocumentData: ").Append(DocumentData).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  Settings: ").Append(Settings).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Style: ").Append(Style).Append("\n");
             sb.Append("  Version: ").Append(Version).Append("\n");
             sb.Append("  VersionId: ").Append(VersionId).Append("\n");
             sb.Append("  VersionNumber: ").Append(VersionNumber).Append("\n");
@@ -245,6 +269,11 @@ namespace DocuSign.Click.Model
                     this.ClientUserId.Equals(other.ClientUserId)
                 ) && 
                 (
+                    this.ConsumerDisclosureEnabled == other.ConsumerDisclosureEnabled ||
+                    this.ConsumerDisclosureEnabled != null &&
+                    this.ConsumerDisclosureEnabled.Equals(other.ConsumerDisclosureEnabled)
+                ) && 
+                (
                     this.ConsumerDisclosureHtml == other.ConsumerDisclosureHtml ||
                     this.ConsumerDisclosureHtml != null &&
                     this.ConsumerDisclosureHtml.Equals(other.ConsumerDisclosureHtml)
@@ -258,6 +287,11 @@ namespace DocuSign.Click.Model
                     this.DeclinedOn == other.DeclinedOn ||
                     this.DeclinedOn != null &&
                     this.DeclinedOn.Equals(other.DeclinedOn)
+                ) && 
+                (
+                    this.DocumentData == other.DocumentData ||
+                    this.DocumentData != null &&
+                    this.DocumentData.SequenceEqual(other.DocumentData)
                 ) && 
                 (
                     this.Documents == other.Documents ||
@@ -278,6 +312,11 @@ namespace DocuSign.Click.Model
                     this.Status == other.Status ||
                     this.Status != null &&
                     this.Status.Equals(other.Status)
+                ) && 
+                (
+                    this.Style == other.Style ||
+                    this.Style != null &&
+                    this.Style.SequenceEqual(other.Style)
                 ) && 
                 (
                     this.Version == other.Version ||
@@ -319,12 +358,16 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.ClickwrapId.GetHashCode();
                 if (this.ClientUserId != null)
                     hash = hash * 59 + this.ClientUserId.GetHashCode();
+                if (this.ConsumerDisclosureEnabled != null)
+                    hash = hash * 59 + this.ConsumerDisclosureEnabled.GetHashCode();
                 if (this.ConsumerDisclosureHtml != null)
                     hash = hash * 59 + this.ConsumerDisclosureHtml.GetHashCode();
                 if (this.CreatedOn != null)
                     hash = hash * 59 + this.CreatedOn.GetHashCode();
                 if (this.DeclinedOn != null)
                     hash = hash * 59 + this.DeclinedOn.GetHashCode();
+                if (this.DocumentData != null)
+                    hash = hash * 59 + this.DocumentData.GetHashCode();
                 if (this.Documents != null)
                     hash = hash * 59 + this.Documents.GetHashCode();
                 if (this.Metadata != null)
@@ -333,6 +376,8 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.Settings.GetHashCode();
                 if (this.Status != null)
                     hash = hash * 59 + this.Status.GetHashCode();
+                if (this.Style != null)
+                    hash = hash * 59 + this.Style.GetHashCode();
                 if (this.Version != null)
                     hash = hash * 59 + this.Version.GetHashCode();
                 if (this.VersionId != null)

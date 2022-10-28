@@ -40,6 +40,7 @@ namespace DocuSign.Click.Model
         /// </summary>
         /// <param name="ClickwrapVersionId">ClickwrapVersionId.</param>
         /// <param name="CreatedTime">CreatedTime.</param>
+        /// <param name="DataFields">DataFields.</param>
         /// <param name="DeletionMessage">DeletionMessage.</param>
         /// <param name="DeletionSuccess">DeletionSuccess.</param>
         /// <param name="LastModified">LastModified.</param>
@@ -51,10 +52,11 @@ namespace DocuSign.Click.Model
         /// <param name="Status">Status.</param>
         /// <param name="VersionId">VersionId.</param>
         /// <param name="VersionNumber">VersionNumber.</param>
-        public ClickwrapVersionDeleteResponse(string ClickwrapVersionId = default(string), Object CreatedTime = default(Object), string DeletionMessage = default(string), bool? DeletionSuccess = default(bool?), Object LastModified = default(Object), string LastModifiedBy = default(string), string OwnerUserId = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), string Status = default(string), string VersionId = default(string), string VersionNumber = default(string))
+        public ClickwrapVersionDeleteResponse(string ClickwrapVersionId = default(string), Object CreatedTime = default(Object), List<DataField> DataFields = default(List<DataField>), string DeletionMessage = default(string), bool? DeletionSuccess = default(bool?), Object LastModified = default(Object), string LastModifiedBy = default(string), string OwnerUserId = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), string Status = default(string), string VersionId = default(string), string VersionNumber = default(string))
         {
             this.ClickwrapVersionId = ClickwrapVersionId;
             this.CreatedTime = CreatedTime;
+            this.DataFields = DataFields;
             this.DeletionMessage = DeletionMessage;
             this.DeletionSuccess = DeletionSuccess;
             this.LastModified = LastModified;
@@ -78,6 +80,11 @@ namespace DocuSign.Click.Model
         /// </summary>
         [DataMember(Name="createdTime", EmitDefaultValue=false)]
         public Object CreatedTime { get; set; }
+        /// <summary>
+        /// Gets or Sets DataFields
+        /// </summary>
+        [DataMember(Name="dataFields", EmitDefaultValue=false)]
+        public List<DataField> DataFields { get; set; }
         /// <summary>
         /// Gets or Sets DeletionMessage
         /// </summary>
@@ -143,6 +150,7 @@ namespace DocuSign.Click.Model
             sb.Append("class ClickwrapVersionDeleteResponse {\n");
             sb.Append("  ClickwrapVersionId: ").Append(ClickwrapVersionId).Append("\n");
             sb.Append("  CreatedTime: ").Append(CreatedTime).Append("\n");
+            sb.Append("  DataFields: ").Append(DataFields).Append("\n");
             sb.Append("  DeletionMessage: ").Append(DeletionMessage).Append("\n");
             sb.Append("  DeletionSuccess: ").Append(DeletionSuccess).Append("\n");
             sb.Append("  LastModified: ").Append(LastModified).Append("\n");
@@ -199,6 +207,11 @@ namespace DocuSign.Click.Model
                     this.CreatedTime == other.CreatedTime ||
                     this.CreatedTime != null &&
                     this.CreatedTime.Equals(other.CreatedTime)
+                ) && 
+                (
+                    this.DataFields == other.DataFields ||
+                    this.DataFields != null &&
+                    this.DataFields.SequenceEqual(other.DataFields)
                 ) && 
                 (
                     this.DeletionMessage == other.DeletionMessage ||
@@ -272,6 +285,8 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.ClickwrapVersionId.GetHashCode();
                 if (this.CreatedTime != null)
                     hash = hash * 59 + this.CreatedTime.GetHashCode();
+                if (this.DataFields != null)
+                    hash = hash * 59 + this.DataFields.GetHashCode();
                 if (this.DeletionMessage != null)
                     hash = hash * 59 + this.DeletionMessage.GetHashCode();
                 if (this.DeletionSuccess != null)
