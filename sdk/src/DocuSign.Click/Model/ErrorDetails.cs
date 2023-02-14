@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -25,7 +25,7 @@ using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 namespace DocuSign.Click.Model
 {
     /// <summary>
-    /// ErrorDetails
+    /// Error details.
     /// </summary>
     [DataContract]
     public partial class ErrorDetails :  IEquatable<ErrorDetails>, IValidatableObject
@@ -38,8 +38,8 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorDetails" /> class.
         /// </summary>
-        /// <param name="ErrorCode">ErrorCode.</param>
-        /// <param name="Message">Message.</param>
+        /// <param name="ErrorCode">The error code..</param>
+        /// <param name="Message">The error message..</param>
         public ErrorDetails(string ErrorCode = default(string), string Message = default(string))
         {
             this.ErrorCode = ErrorCode;
@@ -47,13 +47,15 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets ErrorCode
+        /// The error code.
         /// </summary>
+        /// <value>The error code.</value>
         [DataMember(Name="errorCode", EmitDefaultValue=false)]
         public string ErrorCode { get; set; }
         /// <summary>
-        /// Gets or Sets Message
+        /// The error message.
         /// </summary>
+        /// <value>The error message.</value>
         [DataMember(Name="message", EmitDefaultValue=false)]
         public string Message { get; set; }
         /// <summary>

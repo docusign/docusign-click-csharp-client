@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -25,7 +25,7 @@ using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 namespace DocuSign.Click.Model
 {
     /// <summary>
-    /// DisplaySettings
+    /// Information about how an agreement is displayed.
     /// </summary>
     [DataContract]
     public partial class DisplaySettings :  IEquatable<DisplaySettings>, IValidatableObject
@@ -38,24 +38,24 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DisplaySettings" /> class.
         /// </summary>
-        /// <param name="ActionButtonAlignment">ActionButtonAlignment.</param>
-        /// <param name="AllowClientOnly">AllowClientOnly.</param>
-        /// <param name="AllowedHosts">AllowedHosts.</param>
-        /// <param name="BrandId">BrandId.</param>
-        /// <param name="ConsentButtonText">ConsentButtonText.</param>
-        /// <param name="ConsentText">ConsentText.</param>
-        /// <param name="DeclineButtonText">DeclineButtonText.</param>
-        /// <param name="DisplayName">DisplayName.</param>
-        /// <param name="DocumentDisplay">DocumentDisplay.</param>
-        /// <param name="Downloadable">Downloadable.</param>
-        /// <param name="Format">Format.</param>
-        /// <param name="HasDeclineButton">HasDeclineButton.</param>
-        /// <param name="MustRead">MustRead.</param>
-        /// <param name="MustView">MustView.</param>
-        /// <param name="RecordDeclineResponses">RecordDeclineResponses.</param>
-        /// <param name="RequireAccept">RequireAccept.</param>
-        /// <param name="SendToEmail">SendToEmail.</param>
-        /// <param name="StatementAlignment">StatementAlignment.</param>
+        /// <param name="ActionButtonAlignment">Position of the Accept button in the agreement. One of   - &#x60;right&#x60; - &#x60;left&#x60; .</param>
+        /// <param name="AllowClientOnly">When **true,** this agreement can be be used in client-only integrations..</param>
+        /// <param name="AllowedHosts">Hosts that can host the clickwrap.  It is an error if the clickwrap didn&#39;t come from one of these hosts. .</param>
+        /// <param name="BrandId">The signing brand ID..</param>
+        /// <param name="ConsentButtonText">Text on the agree button..</param>
+        /// <param name="ConsentText">The statement prefixing the Electronic Record and Signature Disclosure agreement..</param>
+        /// <param name="DeclineButtonText">The text on the decline button..</param>
+        /// <param name="DisplayName">The display name of the user agreement..</param>
+        /// <param name="DocumentDisplay">Display type: link, document or pdf.</param>
+        /// <param name="Downloadable">**True** if the agreement is downloadable..</param>
+        /// <param name="Format">Display format: inline or modal..</param>
+        /// <param name="HasDeclineButton">**True** if the agreement has a decline button..</param>
+        /// <param name="MustRead">**True** if the user needs to scroll to the end of the document..</param>
+        /// <param name="MustView">**True** if the user must view the document..</param>
+        /// <param name="RecordDeclineResponses">When **true,** this agreement records decline actions..</param>
+        /// <param name="RequireAccept">**True** if a checkbox is required to accept..</param>
+        /// <param name="SendToEmail">**True** if send to email is applicable..</param>
+        /// <param name="StatementAlignment">Position of the agreement statement. One of   - &#x60;top&#x60; - &#x60;bottom&#x60; .</param>
         public DisplaySettings(string ActionButtonAlignment = default(string), bool? AllowClientOnly = default(bool?), List<string> AllowedHosts = default(List<string>), string BrandId = default(string), string ConsentButtonText = default(string), string ConsentText = default(string), string DeclineButtonText = default(string), string DisplayName = default(string), string DocumentDisplay = default(string), bool? Downloadable = default(bool?), string Format = default(string), bool? HasDeclineButton = default(bool?), bool? MustRead = default(bool?), bool? MustView = default(bool?), bool? RecordDeclineResponses = default(bool?), bool? RequireAccept = default(bool?), bool? SendToEmail = default(bool?), string StatementAlignment = default(string))
         {
             this.ActionButtonAlignment = ActionButtonAlignment;
@@ -79,93 +79,111 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets ActionButtonAlignment
+        /// Position of the Accept button in the agreement. One of   - &#x60;right&#x60; - &#x60;left&#x60; 
         /// </summary>
+        /// <value>Position of the Accept button in the agreement. One of   - &#x60;right&#x60; - &#x60;left&#x60; </value>
         [DataMember(Name="actionButtonAlignment", EmitDefaultValue=false)]
         public string ActionButtonAlignment { get; set; }
         /// <summary>
-        /// Gets or Sets AllowClientOnly
+        /// When **true,** this agreement can be be used in client-only integrations.
         /// </summary>
+        /// <value>When **true,** this agreement can be be used in client-only integrations.</value>
         [DataMember(Name="allowClientOnly", EmitDefaultValue=false)]
         public bool? AllowClientOnly { get; set; }
         /// <summary>
-        /// Gets or Sets AllowedHosts
+        /// Hosts that can host the clickwrap.  It is an error if the clickwrap didn&#39;t come from one of these hosts. 
         /// </summary>
+        /// <value>Hosts that can host the clickwrap.  It is an error if the clickwrap didn&#39;t come from one of these hosts. </value>
         [DataMember(Name="allowedHosts", EmitDefaultValue=false)]
         public List<string> AllowedHosts { get; set; }
         /// <summary>
-        /// Gets or Sets BrandId
+        /// The signing brand ID.
         /// </summary>
+        /// <value>The signing brand ID.</value>
         [DataMember(Name="brandId", EmitDefaultValue=false)]
         public string BrandId { get; set; }
         /// <summary>
-        /// Gets or Sets ConsentButtonText
+        /// Text on the agree button.
         /// </summary>
+        /// <value>Text on the agree button.</value>
         [DataMember(Name="consentButtonText", EmitDefaultValue=false)]
         public string ConsentButtonText { get; set; }
         /// <summary>
-        /// Gets or Sets ConsentText
+        /// The statement prefixing the Electronic Record and Signature Disclosure agreement.
         /// </summary>
+        /// <value>The statement prefixing the Electronic Record and Signature Disclosure agreement.</value>
         [DataMember(Name="consentText", EmitDefaultValue=false)]
         public string ConsentText { get; set; }
         /// <summary>
-        /// Gets or Sets DeclineButtonText
+        /// The text on the decline button.
         /// </summary>
+        /// <value>The text on the decline button.</value>
         [DataMember(Name="declineButtonText", EmitDefaultValue=false)]
         public string DeclineButtonText { get; set; }
         /// <summary>
-        /// Gets or Sets DisplayName
+        /// The display name of the user agreement.
         /// </summary>
+        /// <value>The display name of the user agreement.</value>
         [DataMember(Name="displayName", EmitDefaultValue=false)]
         public string DisplayName { get; set; }
         /// <summary>
-        /// Gets or Sets DocumentDisplay
+        /// Display type: link, document or pdf
         /// </summary>
+        /// <value>Display type: link, document or pdf</value>
         [DataMember(Name="documentDisplay", EmitDefaultValue=false)]
         public string DocumentDisplay { get; set; }
         /// <summary>
-        /// Gets or Sets Downloadable
+        /// **True** if the agreement is downloadable.
         /// </summary>
+        /// <value>**True** if the agreement is downloadable.</value>
         [DataMember(Name="downloadable", EmitDefaultValue=false)]
         public bool? Downloadable { get; set; }
         /// <summary>
-        /// Gets or Sets Format
+        /// Display format: inline or modal.
         /// </summary>
+        /// <value>Display format: inline or modal.</value>
         [DataMember(Name="format", EmitDefaultValue=false)]
         public string Format { get; set; }
         /// <summary>
-        /// Gets or Sets HasDeclineButton
+        /// **True** if the agreement has a decline button.
         /// </summary>
+        /// <value>**True** if the agreement has a decline button.</value>
         [DataMember(Name="hasDeclineButton", EmitDefaultValue=false)]
         public bool? HasDeclineButton { get; set; }
         /// <summary>
-        /// Gets or Sets MustRead
+        /// **True** if the user needs to scroll to the end of the document.
         /// </summary>
+        /// <value>**True** if the user needs to scroll to the end of the document.</value>
         [DataMember(Name="mustRead", EmitDefaultValue=false)]
         public bool? MustRead { get; set; }
         /// <summary>
-        /// Gets or Sets MustView
+        /// **True** if the user must view the document.
         /// </summary>
+        /// <value>**True** if the user must view the document.</value>
         [DataMember(Name="mustView", EmitDefaultValue=false)]
         public bool? MustView { get; set; }
         /// <summary>
-        /// Gets or Sets RecordDeclineResponses
+        /// When **true,** this agreement records decline actions.
         /// </summary>
+        /// <value>When **true,** this agreement records decline actions.</value>
         [DataMember(Name="recordDeclineResponses", EmitDefaultValue=false)]
         public bool? RecordDeclineResponses { get; set; }
         /// <summary>
-        /// Gets or Sets RequireAccept
+        /// **True** if a checkbox is required to accept.
         /// </summary>
+        /// <value>**True** if a checkbox is required to accept.</value>
         [DataMember(Name="requireAccept", EmitDefaultValue=false)]
         public bool? RequireAccept { get; set; }
         /// <summary>
-        /// Gets or Sets SendToEmail
+        /// **True** if send to email is applicable.
         /// </summary>
+        /// <value>**True** if send to email is applicable.</value>
         [DataMember(Name="sendToEmail", EmitDefaultValue=false)]
         public bool? SendToEmail { get; set; }
         /// <summary>
-        /// Gets or Sets StatementAlignment
+        /// Position of the agreement statement. One of   - &#x60;top&#x60; - &#x60;bottom&#x60; 
         /// </summary>
+        /// <value>Position of the agreement statement. One of   - &#x60;top&#x60; - &#x60;bottom&#x60; </value>
         [DataMember(Name="statementAlignment", EmitDefaultValue=false)]
         public string StatementAlignment { get; set; }
         /// <summary>

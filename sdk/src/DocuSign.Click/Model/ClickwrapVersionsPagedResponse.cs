@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -25,7 +25,7 @@ using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 namespace DocuSign.Click.Model
 {
     /// <summary>
-    /// ClickwrapVersionsPagedResponse
+    /// The results are paginated. Use the following properties to navigate the pages.  - &#x60;page&#x60;: The page number of the current results. - &#x60;pageSize&#x60;: The number of results in the current page. - &#x60;minimumPagesRemaining&#x60;: The number of pages that follow this one.  
     /// </summary>
     [DataContract]
     public partial class ClickwrapVersionsPagedResponse :  IEquatable<ClickwrapVersionsPagedResponse>, IValidatableObject
@@ -38,13 +38,13 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ClickwrapVersionsPagedResponse" /> class.
         /// </summary>
-        /// <param name="AccountId">AccountId.</param>
-        /// <param name="ClickwrapId">ClickwrapId.</param>
-        /// <param name="ClickwrapName">ClickwrapName.</param>
-        /// <param name="MinimumPagesRemaining">MinimumPagesRemaining.</param>
-        /// <param name="Page">Page.</param>
-        /// <param name="PageSize">PageSize.</param>
-        /// <param name="Versions">Versions.</param>
+        /// <param name="AccountId">The external account number (int) or account ID GUID..</param>
+        /// <param name="ClickwrapId">The ID of the clickwrap..</param>
+        /// <param name="ClickwrapName">The name of the clickwrap..</param>
+        /// <param name="MinimumPagesRemaining">An array of clickwrap versions..</param>
+        /// <param name="Page">The number of the current page..</param>
+        /// <param name="PageSize">The number of items per page..</param>
+        /// <param name="Versions">An array of clickwrap versions..</param>
         public ClickwrapVersionsPagedResponse(string AccountId = default(string), string ClickwrapId = default(string), string ClickwrapName = default(string), int? MinimumPagesRemaining = default(int?), int? Page = default(int?), int? PageSize = default(int?), List<ClickwrapVersion> Versions = default(List<ClickwrapVersion>))
         {
             this.AccountId = AccountId;
@@ -57,38 +57,45 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets AccountId
+        /// The external account number (int) or account ID GUID.
         /// </summary>
+        /// <value>The external account number (int) or account ID GUID.</value>
         [DataMember(Name="accountId", EmitDefaultValue=false)]
         public string AccountId { get; set; }
         /// <summary>
-        /// Gets or Sets ClickwrapId
+        /// The ID of the clickwrap.
         /// </summary>
+        /// <value>The ID of the clickwrap.</value>
         [DataMember(Name="clickwrapId", EmitDefaultValue=false)]
         public string ClickwrapId { get; set; }
         /// <summary>
-        /// Gets or Sets ClickwrapName
+        /// The name of the clickwrap.
         /// </summary>
+        /// <value>The name of the clickwrap.</value>
         [DataMember(Name="clickwrapName", EmitDefaultValue=false)]
         public string ClickwrapName { get; set; }
         /// <summary>
-        /// Gets or Sets MinimumPagesRemaining
+        /// An array of clickwrap versions.
         /// </summary>
+        /// <value>An array of clickwrap versions.</value>
         [DataMember(Name="minimumPagesRemaining", EmitDefaultValue=false)]
         public int? MinimumPagesRemaining { get; set; }
         /// <summary>
-        /// Gets or Sets Page
+        /// The number of the current page.
         /// </summary>
+        /// <value>The number of the current page.</value>
         [DataMember(Name="page", EmitDefaultValue=false)]
         public int? Page { get; set; }
         /// <summary>
-        /// Gets or Sets PageSize
+        /// The number of items per page.
         /// </summary>
+        /// <value>The number of items per page.</value>
         [DataMember(Name="pageSize", EmitDefaultValue=false)]
         public int? PageSize { get; set; }
         /// <summary>
-        /// Gets or Sets Versions
+        /// An array of clickwrap versions.
         /// </summary>
+        /// <value>An array of clickwrap versions.</value>
         [DataMember(Name="versions", EmitDefaultValue=false)]
         public List<ClickwrapVersion> Versions { get; set; }
         /// <summary>

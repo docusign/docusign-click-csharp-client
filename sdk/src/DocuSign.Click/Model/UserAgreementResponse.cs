@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -38,26 +38,28 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserAgreementResponse" /> class.
         /// </summary>
-        /// <param name="AccountId">AccountId.</param>
-        /// <param name="AgreedOn">AgreedOn.</param>
-        /// <param name="AgreementId">AgreementId.</param>
-        /// <param name="AgreementUrl">AgreementUrl.</param>
-        /// <param name="ClickwrapId">ClickwrapId.</param>
-        /// <param name="ClientUserId">ClientUserId.</param>
-        /// <param name="ConsumerDisclosureEnabled">ConsumerDisclosureEnabled.</param>
-        /// <param name="ConsumerDisclosureHtml">ConsumerDisclosureHtml.</param>
-        /// <param name="CreatedOn">CreatedOn.</param>
-        /// <param name="DeclinedOn">DeclinedOn.</param>
-        /// <param name="DocumentData">DocumentData.</param>
-        /// <param name="Documents">Documents.</param>
-        /// <param name="Metadata">Metadata.</param>
-        /// <param name="Settings">Settings.</param>
-        /// <param name="Status">Status.</param>
-        /// <param name="Style">Style.</param>
-        /// <param name="Version">Version.</param>
-        /// <param name="VersionId">VersionId.</param>
-        /// <param name="VersionNumber">VersionNumber.</param>
-        public UserAgreementResponse(string AccountId = default(string), Object AgreedOn = default(Object), string AgreementId = default(string), string AgreementUrl = default(string), string ClickwrapId = default(string), string ClientUserId = default(string), bool? ConsumerDisclosureEnabled = default(bool?), string ConsumerDisclosureHtml = default(string), Object CreatedOn = default(Object), Object DeclinedOn = default(Object), Dictionary<string, string> DocumentData = default(Dictionary<string, string>), List<Document> Documents = default(List<Document>), string Metadata = default(string), DisplaySettings Settings = default(DisplaySettings), string Status = default(string), Dictionary<string, string> Style = default(Dictionary<string, string>), string Version = default(string), string VersionId = default(string), int? VersionNumber = default(int?))
+        /// <param name="AccountId">The external account number (int) or account ID GUID..</param>
+        /// <param name="AgreedOn">Date that the client last completed the agreement.  This property is null if &#x60;agreementUrl&#x60; is not null and &#x60;status&#x60; is not  &#x60;agreed&#x60;..</param>
+        /// <param name="AgreementId">The agreement ID..</param>
+        /// <param name="AgreementUrl">When not null, an agreement is required for user specified by  &#x60;clientUserId&#x60;.  When missing the user specified by &#x60;clientUserId&#x60; has already agreed and does not require a new acceptance.  Use this URL to render the agreement in a web page.  &lt;!- - or redirected to when providing redirect_url as a query parameter. - -&gt; .</param>
+        /// <param name="ClickwrapId">The ID of the clickwrap..</param>
+        /// <param name="ClientUserId">A unique value that identifies a user.\\nYou can use anything that your system uses\\nto identify unique users, such as\\nemployee IDs, email addresses, and surrogate keys as the value of &#x60;clientUserId&#x60;.\\n\\nA clickwrap with a specific &#x60;clientUserId&#x60; will not appear again\\nonce it has been accepted.\\n\&quot;.</param>
+        /// <param name="ConsumerDisclosureEnabled">**True** if consumer disclosure was required by this agreement..</param>
+        /// <param name="ConsumerDisclosureHtml">The customer-branded HTML with the Electronic Record and Signature Disclosure information.</param>
+        /// <param name="CreatedOn">The date when the clickwrap was created. May be null..</param>
+        /// <param name="DataFields">The list of all the data fields available for the clickwrap (custom fields and standard fields)..</param>
+        /// <param name="DeclinedOn">The date when the user declined the most recent required agreement.  This property is valid only when &#x60;status&#x60; is &#x60;declined&#x60;. Otherwise it is null..</param>
+        /// <param name="DocumentData">This property specifies the data used to create a clickwrap with [dynamic content][].    [dynamic content]: /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content .</param>
+        /// <param name="Documents">An array of documents..</param>
+        /// <param name="Metadata">A customer-defined string you can use in requests. This string will appear in the corresponding response..</param>
+        /// <param name="ReturnUrl">The URL redirected to after the agreement was completed..</param>
+        /// <param name="Settings">The display settings for this agreement..</param>
+        /// <param name="Status">User agreement status. One of:  - &#x60;created&#x60; - &#x60;agreed&#x60; - &#x60;declined&#x60;.</param>
+        /// <param name="Style">This property specifies the custom style provided when the agreement was created by [customizing the template appearance][].    [customizing the template appearance]: /docs/click-api/click101/customize-elastic-template-appearance/ .</param>
+        /// <param name="Version">The human-readable semver version string..</param>
+        /// <param name="VersionId">The ID of the version..</param>
+        /// <param name="VersionNumber">Version of the clickwrap..</param>
+        public UserAgreementResponse(string AccountId = default(string), Object AgreedOn = default(Object), string AgreementId = default(string), string AgreementUrl = default(string), string ClickwrapId = default(string), string ClientUserId = default(string), bool? ConsumerDisclosureEnabled = default(bool?), string ConsumerDisclosureHtml = default(string), Object CreatedOn = default(Object), List<DataField> DataFields = default(List<DataField>), Object DeclinedOn = default(Object), Dictionary<string, string> DocumentData = default(Dictionary<string, string>), List<Document> Documents = default(List<Document>), string Metadata = default(string), string ReturnUrl = default(string), DisplaySettings Settings = default(DisplaySettings), string Status = default(string), Dictionary<string, string> Style = default(Dictionary<string, string>), string Version = default(string), string VersionId = default(string), int? VersionNumber = default(int?))
         {
             this.AccountId = AccountId;
             this.AgreedOn = AgreedOn;
@@ -68,10 +70,12 @@ namespace DocuSign.Click.Model
             this.ConsumerDisclosureEnabled = ConsumerDisclosureEnabled;
             this.ConsumerDisclosureHtml = ConsumerDisclosureHtml;
             this.CreatedOn = CreatedOn;
+            this.DataFields = DataFields;
             this.DeclinedOn = DeclinedOn;
             this.DocumentData = DocumentData;
             this.Documents = Documents;
             this.Metadata = Metadata;
+            this.ReturnUrl = ReturnUrl;
             this.Settings = Settings;
             this.Status = Status;
             this.Style = Style;
@@ -81,98 +85,129 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets AccountId
+        /// The external account number (int) or account ID GUID.
         /// </summary>
+        /// <value>The external account number (int) or account ID GUID.</value>
         [DataMember(Name="accountId", EmitDefaultValue=false)]
         public string AccountId { get; set; }
         /// <summary>
-        /// Gets or Sets AgreedOn
+        /// Date that the client last completed the agreement.  This property is null if &#x60;agreementUrl&#x60; is not null and &#x60;status&#x60; is not  &#x60;agreed&#x60;.
         /// </summary>
+        /// <value>Date that the client last completed the agreement.  This property is null if &#x60;agreementUrl&#x60; is not null and &#x60;status&#x60; is not  &#x60;agreed&#x60;.</value>
         [DataMember(Name="agreedOn", EmitDefaultValue=false)]
         public Object AgreedOn { get; set; }
         /// <summary>
-        /// Gets or Sets AgreementId
+        /// The agreement ID.
         /// </summary>
+        /// <value>The agreement ID.</value>
         [DataMember(Name="agreementId", EmitDefaultValue=false)]
         public string AgreementId { get; set; }
         /// <summary>
-        /// Gets or Sets AgreementUrl
+        /// When not null, an agreement is required for user specified by  &#x60;clientUserId&#x60;.  When missing the user specified by &#x60;clientUserId&#x60; has already agreed and does not require a new acceptance.  Use this URL to render the agreement in a web page.  &lt;!- - or redirected to when providing redirect_url as a query parameter. - -&gt; 
         /// </summary>
+        /// <value>When not null, an agreement is required for user specified by  &#x60;clientUserId&#x60;.  When missing the user specified by &#x60;clientUserId&#x60; has already agreed and does not require a new acceptance.  Use this URL to render the agreement in a web page.  &lt;!- - or redirected to when providing redirect_url as a query parameter. - -&gt; </value>
         [DataMember(Name="agreementUrl", EmitDefaultValue=false)]
         public string AgreementUrl { get; set; }
         /// <summary>
-        /// Gets or Sets ClickwrapId
+        /// The ID of the clickwrap.
         /// </summary>
+        /// <value>The ID of the clickwrap.</value>
         [DataMember(Name="clickwrapId", EmitDefaultValue=false)]
         public string ClickwrapId { get; set; }
         /// <summary>
-        /// Gets or Sets ClientUserId
+        /// A unique value that identifies a user.\\nYou can use anything that your system uses\\nto identify unique users, such as\\nemployee IDs, email addresses, and surrogate keys as the value of &#x60;clientUserId&#x60;.\\n\\nA clickwrap with a specific &#x60;clientUserId&#x60; will not appear again\\nonce it has been accepted.\\n\&quot;
         /// </summary>
+        /// <value>A unique value that identifies a user.\\nYou can use anything that your system uses\\nto identify unique users, such as\\nemployee IDs, email addresses, and surrogate keys as the value of &#x60;clientUserId&#x60;.\\n\\nA clickwrap with a specific &#x60;clientUserId&#x60; will not appear again\\nonce it has been accepted.\\n\&quot;</value>
         [DataMember(Name="clientUserId", EmitDefaultValue=false)]
         public string ClientUserId { get; set; }
         /// <summary>
-        /// Gets or Sets ConsumerDisclosureEnabled
+        /// **True** if consumer disclosure was required by this agreement.
         /// </summary>
+        /// <value>**True** if consumer disclosure was required by this agreement.</value>
         [DataMember(Name="consumerDisclosureEnabled", EmitDefaultValue=false)]
         public bool? ConsumerDisclosureEnabled { get; set; }
         /// <summary>
-        /// Gets or Sets ConsumerDisclosureHtml
+        /// The customer-branded HTML with the Electronic Record and Signature Disclosure information
         /// </summary>
+        /// <value>The customer-branded HTML with the Electronic Record and Signature Disclosure information</value>
         [DataMember(Name="consumerDisclosureHtml", EmitDefaultValue=false)]
         public string ConsumerDisclosureHtml { get; set; }
         /// <summary>
-        /// Gets or Sets CreatedOn
+        /// The date when the clickwrap was created. May be null.
         /// </summary>
+        /// <value>The date when the clickwrap was created. May be null.</value>
         [DataMember(Name="createdOn", EmitDefaultValue=false)]
         public Object CreatedOn { get; set; }
         /// <summary>
-        /// Gets or Sets DeclinedOn
+        /// The list of all the data fields available for the clickwrap (custom fields and standard fields).
         /// </summary>
+        /// <value>The list of all the data fields available for the clickwrap (custom fields and standard fields).</value>
+        [DataMember(Name="dataFields", EmitDefaultValue=false)]
+        public List<DataField> DataFields { get; set; }
+        /// <summary>
+        /// The date when the user declined the most recent required agreement.  This property is valid only when &#x60;status&#x60; is &#x60;declined&#x60;. Otherwise it is null.
+        /// </summary>
+        /// <value>The date when the user declined the most recent required agreement.  This property is valid only when &#x60;status&#x60; is &#x60;declined&#x60;. Otherwise it is null.</value>
         [DataMember(Name="declinedOn", EmitDefaultValue=false)]
         public Object DeclinedOn { get; set; }
         /// <summary>
-        /// Gets or Sets DocumentData
+        /// This property specifies the data used to create a clickwrap with [dynamic content][].    [dynamic content]: /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content 
         /// </summary>
+        /// <value>This property specifies the data used to create a clickwrap with [dynamic content][].    [dynamic content]: /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content </value>
         [DataMember(Name="documentData", EmitDefaultValue=false)]
         public Dictionary<string, string> DocumentData { get; set; }
         /// <summary>
-        /// Gets or Sets Documents
+        /// An array of documents.
         /// </summary>
+        /// <value>An array of documents.</value>
         [DataMember(Name="documents", EmitDefaultValue=false)]
         public List<Document> Documents { get; set; }
         /// <summary>
-        /// Gets or Sets Metadata
+        /// A customer-defined string you can use in requests. This string will appear in the corresponding response.
         /// </summary>
+        /// <value>A customer-defined string you can use in requests. This string will appear in the corresponding response.</value>
         [DataMember(Name="metadata", EmitDefaultValue=false)]
         public string Metadata { get; set; }
         /// <summary>
-        /// Gets or Sets Settings
+        /// The URL redirected to after the agreement was completed.
         /// </summary>
+        /// <value>The URL redirected to after the agreement was completed.</value>
+        [DataMember(Name="returnUrl", EmitDefaultValue=false)]
+        public string ReturnUrl { get; set; }
+        /// <summary>
+        /// The display settings for this agreement.
+        /// </summary>
+        /// <value>The display settings for this agreement.</value>
         [DataMember(Name="settings", EmitDefaultValue=false)]
         public DisplaySettings Settings { get; set; }
         /// <summary>
-        /// Gets or Sets Status
+        /// User agreement status. One of:  - &#x60;created&#x60; - &#x60;agreed&#x60; - &#x60;declined&#x60;
         /// </summary>
+        /// <value>User agreement status. One of:  - &#x60;created&#x60; - &#x60;agreed&#x60; - &#x60;declined&#x60;</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
         /// <summary>
-        /// Gets or Sets Style
+        /// This property specifies the custom style provided when the agreement was created by [customizing the template appearance][].    [customizing the template appearance]: /docs/click-api/click101/customize-elastic-template-appearance/ 
         /// </summary>
+        /// <value>This property specifies the custom style provided when the agreement was created by [customizing the template appearance][].    [customizing the template appearance]: /docs/click-api/click101/customize-elastic-template-appearance/ </value>
         [DataMember(Name="style", EmitDefaultValue=false)]
         public Dictionary<string, string> Style { get; set; }
         /// <summary>
-        /// Gets or Sets Version
+        /// The human-readable semver version string.
         /// </summary>
+        /// <value>The human-readable semver version string.</value>
         [DataMember(Name="version", EmitDefaultValue=false)]
         public string Version { get; set; }
         /// <summary>
-        /// Gets or Sets VersionId
+        /// The ID of the version.
         /// </summary>
+        /// <value>The ID of the version.</value>
         [DataMember(Name="versionId", EmitDefaultValue=false)]
         public string VersionId { get; set; }
         /// <summary>
-        /// Gets or Sets VersionNumber
+        /// Version of the clickwrap.
         /// </summary>
+        /// <value>Version of the clickwrap.</value>
         [DataMember(Name="versionNumber", EmitDefaultValue=false)]
         public int? VersionNumber { get; set; }
         /// <summary>
@@ -192,10 +227,12 @@ namespace DocuSign.Click.Model
             sb.Append("  ConsumerDisclosureEnabled: ").Append(ConsumerDisclosureEnabled).Append("\n");
             sb.Append("  ConsumerDisclosureHtml: ").Append(ConsumerDisclosureHtml).Append("\n");
             sb.Append("  CreatedOn: ").Append(CreatedOn).Append("\n");
+            sb.Append("  DataFields: ").Append(DataFields).Append("\n");
             sb.Append("  DeclinedOn: ").Append(DeclinedOn).Append("\n");
             sb.Append("  DocumentData: ").Append(DocumentData).Append("\n");
             sb.Append("  Documents: ").Append(Documents).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
             sb.Append("  Settings: ").Append(Settings).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Style: ").Append(Style).Append("\n");
@@ -284,6 +321,11 @@ namespace DocuSign.Click.Model
                     this.CreatedOn.Equals(other.CreatedOn)
                 ) && 
                 (
+                    this.DataFields == other.DataFields ||
+                    this.DataFields != null &&
+                    this.DataFields.SequenceEqual(other.DataFields)
+                ) && 
+                (
                     this.DeclinedOn == other.DeclinedOn ||
                     this.DeclinedOn != null &&
                     this.DeclinedOn.Equals(other.DeclinedOn)
@@ -302,6 +344,11 @@ namespace DocuSign.Click.Model
                     this.Metadata == other.Metadata ||
                     this.Metadata != null &&
                     this.Metadata.Equals(other.Metadata)
+                ) && 
+                (
+                    this.ReturnUrl == other.ReturnUrl ||
+                    this.ReturnUrl != null &&
+                    this.ReturnUrl.Equals(other.ReturnUrl)
                 ) && 
                 (
                     this.Settings == other.Settings ||
@@ -364,6 +411,8 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.ConsumerDisclosureHtml.GetHashCode();
                 if (this.CreatedOn != null)
                     hash = hash * 59 + this.CreatedOn.GetHashCode();
+                if (this.DataFields != null)
+                    hash = hash * 59 + this.DataFields.GetHashCode();
                 if (this.DeclinedOn != null)
                     hash = hash * 59 + this.DeclinedOn.GetHashCode();
                 if (this.DocumentData != null)
@@ -372,6 +421,8 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.Documents.GetHashCode();
                 if (this.Metadata != null)
                     hash = hash * 59 + this.Metadata.GetHashCode();
+                if (this.ReturnUrl != null)
+                    hash = hash * 59 + this.ReturnUrl.GetHashCode();
                 if (this.Settings != null)
                     hash = hash * 59 + this.Settings.GetHashCode();
                 if (this.Status != null)

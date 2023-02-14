@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -25,7 +25,7 @@ using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 namespace DocuSign.Click.Model
 {
     /// <summary>
-    /// ClickwrapRequest
+    /// Request body for working with clickwrap.
     /// </summary>
     [DataContract]
     public partial class ClickwrapRequest :  IEquatable<ClickwrapRequest>, IValidatableObject
@@ -38,20 +38,20 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ClickwrapRequest" /> class.
         /// </summary>
-        /// <param name="ClickwrapName">ClickwrapName.</param>
-        /// <param name="DataFields">DataFields.</param>
-        /// <param name="DisplaySettings">DisplaySettings.</param>
-        /// <param name="Documents">Documents.</param>
-        /// <param name="FieldsToNull">FieldsToNull.</param>
-        /// <param name="IsMajorVersion">IsMajorVersion.</param>
-        /// <param name="IsShared">IsShared.</param>
-        /// <param name="Name">Name.</param>
-        /// <param name="RequireReacceptance">RequireReacceptance.</param>
-        /// <param name="ScheduledDate">ScheduledDate.</param>
-        /// <param name="ScheduledReacceptance">ScheduledReacceptance.</param>
-        /// <param name="Status">Status.</param>
-        /// <param name="TransferFromUserId">TransferFromUserId.</param>
-        /// <param name="TransferToUserId">TransferToUserId.</param>
+        /// <param name="ClickwrapName">The name of the clickwrap. This field is required..</param>
+        /// <param name="DataFields">An array of data fields available to be inserted into the documents..</param>
+        /// <param name="DisplaySettings">Display settings for the clickwrap. This object is required..</param>
+        /// <param name="Documents">An array of documents. This object is required..</param>
+        /// <param name="FieldsToNull">Specifies whether &#x60;scheduledReacceptance&#x60; and &#x60;scheduledDate&#x60; should be cleared. May be one of:  - &#x60;\&quot;scheduledReacceptance\&quot;&#x60; - &#x60;\&quot;scheduledDate\&quot;&#x60; - &#x60;\&quot;scheduledReacceptance,scheduledDate\&quot;&#x60; .</param>
+        /// <param name="IsMajorVersion">Not used..</param>
+        /// <param name="IsShared">When **true,** indicates that the clickwrap is shared with one or more users in the account..</param>
+        /// <param name="Name">Not used..</param>
+        /// <param name="RequireReacceptance">When **true,** requires signers who have previously agreed to this clickwrap to sign again. The version number is incremented..</param>
+        /// <param name="ScheduledDate">The time and date when this clickwrap is activated..</param>
+        /// <param name="ScheduledReacceptance">Specifies the interval between reacceptances in days, weeks, months, or years..</param>
+        /// <param name="Status">Clickwrap status. This property is read-only. Possible values:  - &#x60;active&#x60; - &#x60;inactive&#x60; - &#x60;deleted&#x60;.</param>
+        /// <param name="TransferFromUserId">Not used. To update the user ID of a clickwrap, use the [updateClickwrap](/docs/click-api/reference/accounts/clickwraps/updateclickwrap/) endpoint..</param>
+        /// <param name="TransferToUserId">Not used. To update the user ID of a clickwrap, use the [updateClickwrap](/docs/click-api/reference/accounts/clickwraps/updateclickwrap/) endpoint..</param>
         public ClickwrapRequest(string ClickwrapName = default(string), List<DataField> DataFields = default(List<DataField>), DisplaySettings DisplaySettings = default(DisplaySettings), List<Document> Documents = default(List<Document>), string FieldsToNull = default(string), bool? IsMajorVersion = default(bool?), bool? IsShared = default(bool?), string Name = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), string Status = default(string), string TransferFromUserId = default(string), string TransferToUserId = default(string))
         {
             this.ClickwrapName = ClickwrapName;
@@ -71,73 +71,87 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets ClickwrapName
+        /// The name of the clickwrap. This field is required.
         /// </summary>
+        /// <value>The name of the clickwrap. This field is required.</value>
         [DataMember(Name="clickwrapName", EmitDefaultValue=false)]
         public string ClickwrapName { get; set; }
         /// <summary>
-        /// Gets or Sets DataFields
+        /// An array of data fields available to be inserted into the documents.
         /// </summary>
+        /// <value>An array of data fields available to be inserted into the documents.</value>
         [DataMember(Name="dataFields", EmitDefaultValue=false)]
         public List<DataField> DataFields { get; set; }
         /// <summary>
-        /// Gets or Sets DisplaySettings
+        /// Display settings for the clickwrap. This object is required.
         /// </summary>
+        /// <value>Display settings for the clickwrap. This object is required.</value>
         [DataMember(Name="displaySettings", EmitDefaultValue=false)]
         public DisplaySettings DisplaySettings { get; set; }
         /// <summary>
-        /// Gets or Sets Documents
+        /// An array of documents. This object is required.
         /// </summary>
+        /// <value>An array of documents. This object is required.</value>
         [DataMember(Name="documents", EmitDefaultValue=false)]
         public List<Document> Documents { get; set; }
         /// <summary>
-        /// Gets or Sets FieldsToNull
+        /// Specifies whether &#x60;scheduledReacceptance&#x60; and &#x60;scheduledDate&#x60; should be cleared. May be one of:  - &#x60;\&quot;scheduledReacceptance\&quot;&#x60; - &#x60;\&quot;scheduledDate\&quot;&#x60; - &#x60;\&quot;scheduledReacceptance,scheduledDate\&quot;&#x60; 
         /// </summary>
+        /// <value>Specifies whether &#x60;scheduledReacceptance&#x60; and &#x60;scheduledDate&#x60; should be cleared. May be one of:  - &#x60;\&quot;scheduledReacceptance\&quot;&#x60; - &#x60;\&quot;scheduledDate\&quot;&#x60; - &#x60;\&quot;scheduledReacceptance,scheduledDate\&quot;&#x60; </value>
         [DataMember(Name="fieldsToNull", EmitDefaultValue=false)]
         public string FieldsToNull { get; set; }
         /// <summary>
-        /// Gets or Sets IsMajorVersion
+        /// Not used.
         /// </summary>
+        /// <value>Not used.</value>
         [DataMember(Name="isMajorVersion", EmitDefaultValue=false)]
         public bool? IsMajorVersion { get; set; }
         /// <summary>
-        /// Gets or Sets IsShared
+        /// When **true,** indicates that the clickwrap is shared with one or more users in the account.
         /// </summary>
+        /// <value>When **true,** indicates that the clickwrap is shared with one or more users in the account.</value>
         [DataMember(Name="isShared", EmitDefaultValue=false)]
         public bool? IsShared { get; set; }
         /// <summary>
-        /// Gets or Sets Name
+        /// Not used.
         /// </summary>
+        /// <value>Not used.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// Gets or Sets RequireReacceptance
+        /// When **true,** requires signers who have previously agreed to this clickwrap to sign again. The version number is incremented.
         /// </summary>
+        /// <value>When **true,** requires signers who have previously agreed to this clickwrap to sign again. The version number is incremented.</value>
         [DataMember(Name="requireReacceptance", EmitDefaultValue=false)]
         public bool? RequireReacceptance { get; set; }
         /// <summary>
-        /// Gets or Sets ScheduledDate
+        /// The time and date when this clickwrap is activated.
         /// </summary>
+        /// <value>The time and date when this clickwrap is activated.</value>
         [DataMember(Name="scheduledDate", EmitDefaultValue=false)]
         public Object ScheduledDate { get; set; }
         /// <summary>
-        /// Gets or Sets ScheduledReacceptance
+        /// Specifies the interval between reacceptances in days, weeks, months, or years.
         /// </summary>
+        /// <value>Specifies the interval between reacceptances in days, weeks, months, or years.</value>
         [DataMember(Name="scheduledReacceptance", EmitDefaultValue=false)]
         public ClickwrapScheduledReacceptance ScheduledReacceptance { get; set; }
         /// <summary>
-        /// Gets or Sets Status
+        /// Clickwrap status. This property is read-only. Possible values:  - &#x60;active&#x60; - &#x60;inactive&#x60; - &#x60;deleted&#x60;
         /// </summary>
+        /// <value>Clickwrap status. This property is read-only. Possible values:  - &#x60;active&#x60; - &#x60;inactive&#x60; - &#x60;deleted&#x60;</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
         /// <summary>
-        /// Gets or Sets TransferFromUserId
+        /// Not used. To update the user ID of a clickwrap, use the [updateClickwrap](/docs/click-api/reference/accounts/clickwraps/updateclickwrap/) endpoint.
         /// </summary>
+        /// <value>Not used. To update the user ID of a clickwrap, use the [updateClickwrap](/docs/click-api/reference/accounts/clickwraps/updateclickwrap/) endpoint.</value>
         [DataMember(Name="transferFromUserId", EmitDefaultValue=false)]
         public string TransferFromUserId { get; set; }
         /// <summary>
-        /// Gets or Sets TransferToUserId
+        /// Not used. To update the user ID of a clickwrap, use the [updateClickwrap](/docs/click-api/reference/accounts/clickwraps/updateclickwrap/) endpoint.
         /// </summary>
+        /// <value>Not used. To update the user ID of a clickwrap, use the [updateClickwrap](/docs/click-api/reference/accounts/clickwraps/updateclickwrap/) endpoint.</value>
         [DataMember(Name="transferToUserId", EmitDefaultValue=false)]
         public string TransferToUserId { get; set; }
         /// <summary>

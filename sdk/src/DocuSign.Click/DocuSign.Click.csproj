@@ -7,7 +7,7 @@
     <Description>The DocuSign NuGet package makes integrating DocuSign into your apps and websites a super fast and painless process. The library is open sourced on GitHub, look for the docusign-Click-csharp-client repository.</Description>
     <Company>DocuSign Inc.</Company>
     <Owners>DocuSign</Owners>
-    <Copyright>Copyright © DocuSign 2022</Copyright>
+    <Copyright>Copyright © DocuSign 2023</Copyright>
     <AssemblyTitle>DocuSign.Click</AssemblyTitle>
     <Authors>DocuSign</Authors>
     <OutputType>Library</OutputType>
@@ -16,17 +16,17 @@
     <RootNamespace>DocuSign.Click</RootNamespace>
     <AssemblyName>DocuSign.Click</AssemblyName>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <VersionPrefix>1.2.2</VersionPrefix>
+    <VersionPrefix>1.3.0</VersionPrefix>
     <VersionSuffix/>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageTags>DocuSign.eSign;REST;eSign;docusign;eSignature;api</PackageTags>
+    <PackageTags/>
     <PackageIconUrl>https://s.gravatar.com/avatar/4a8c033df6baa902f730d514d5574c33</PackageIconUrl>
     <PackageProjectUrl>https://github.com/docusign/docusign-csharp-client</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/docusign/docusign-csharp-client/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/docusign/docusign-csharp-client</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>[v1.2.2] - Click API v1-22.3.01.00 - 10/28/2022</PackageReleaseNotes>
+    <PackageReleaseNotes>[v1.3.0] - Click API v1-22.4.01.00 - 2/13/2023</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net452'">
     <DefineConstants>NET452</DefineConstants>

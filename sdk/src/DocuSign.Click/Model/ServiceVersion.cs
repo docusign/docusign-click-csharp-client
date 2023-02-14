@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -38,8 +38,8 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceVersion" /> class.
         /// </summary>
-        /// <param name="Version">Version.</param>
-        /// <param name="VersionUrl">VersionUrl.</param>
+        /// <param name="Version">The human-readable semver version string..</param>
+        /// <param name="VersionUrl">The URL where this version of the API can be found..</param>
         public ServiceVersion(string Version = default(string), string VersionUrl = default(string))
         {
             this.Version = Version;
@@ -47,13 +47,15 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets Version
+        /// The human-readable semver version string.
         /// </summary>
+        /// <value>The human-readable semver version string.</value>
         [DataMember(Name="version", EmitDefaultValue=false)]
         public string Version { get; set; }
         /// <summary>
-        /// Gets or Sets VersionUrl
+        /// The URL where this version of the API can be found.
         /// </summary>
+        /// <value>The URL where this version of the API can be found.</value>
         [DataMember(Name="versionUrl", EmitDefaultValue=false)]
         public string VersionUrl { get; set; }
         /// <summary>

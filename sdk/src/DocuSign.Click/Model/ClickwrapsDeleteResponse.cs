@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -38,15 +38,16 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ClickwrapsDeleteResponse" /> class.
         /// </summary>
-        /// <param name="Clickwraps">Clickwraps.</param>
+        /// <param name="Clickwraps">An array of clickwrap deletion results..</param>
         public ClickwrapsDeleteResponse(List<ClickwrapDeleteResponse> Clickwraps = default(List<ClickwrapDeleteResponse>))
         {
             this.Clickwraps = Clickwraps;
         }
         
         /// <summary>
-        /// Gets or Sets Clickwraps
+        /// An array of clickwrap deletion results.
         /// </summary>
+        /// <value>An array of clickwrap deletion results.</value>
         [DataMember(Name="clickwraps", EmitDefaultValue=false)]
         public List<ClickwrapDeleteResponse> Clickwraps { get; set; }
         /// <summary>

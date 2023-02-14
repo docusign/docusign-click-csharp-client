@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -24,212 +24,237 @@ namespace DocuSign.Click.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Creates a Clickwrap for the specified accountId
+        /// Starts an export of clickwrap agreements for a specified date range.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Starts an asynchronus process to export clickwrap agreements for a specified date range. An email will be sent to the creator after it has been processed.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="bulkClickwrapRequest">Data used to start a bulk agreements export. (optional)</param>
+        /// <returns></returns>
+        void CreateBulkClickwrapAgreements(string accountId, string clickwrapId, BulkClickwrapRequest bulkClickwrapRequest = null);
+
+        /// <summary>
+        /// Starts an export of clickwrap agreements for a specified date range.
+        /// </summary>
+        /// <remarks>
+        /// Starts an asynchronus process to export clickwrap agreements for a specified date range. An email will be sent to the creator after it has been processed.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;
+        /// </remarks>
+        /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="bulkClickwrapRequest">Data used to start a bulk agreements export. (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> CreateBulkClickwrapAgreementsWithHttpInfo(string accountId, string clickwrapId, BulkClickwrapRequest bulkClickwrapRequest = null);
+        /// <summary>
+        /// Creates a clickwrap for an account.
+        /// </summary>
+        /// <remarks>
+        /// Creates a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
+        /// </remarks>
+        /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns></returns>
         ClickwrapVersionSummaryResponse CreateClickwrap(string accountId, ClickwrapRequest clickwrapRequest = null);
 
         /// <summary>
-        /// Creates a Clickwrap for the specified accountId
+        /// Creates a clickwrap for an account.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionSummaryResponse> CreateClickwrapWithHttpInfo(string accountId, ClickwrapRequest clickwrapRequest = null);
         /// <summary>
-        /// Creates the clickwrap version
+        /// Creates a new clickwrap version.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a new version of an existing clickwrap. In a new version, you can replace the uploaded documents, change the display settings, and change the name of the clickwrap. The version number is automatically incremented based on the last version of the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns></returns>
         ClickwrapVersionSummaryResponse CreateClickwrapVersion(string accountId, string clickwrapId, ClickwrapRequest clickwrapRequest = null);
 
         /// <summary>
-        /// Creates the clickwrap version
+        /// Creates a new clickwrap version.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a new version of an existing clickwrap. In a new version, you can replace the uploaded documents, change the display settings, and change the name of the clickwrap. The version number is automatically incremented based on the last version of the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionSummaryResponse> CreateClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, ClickwrapRequest clickwrapRequest = null);
         /// <summary>
-        /// Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement.
+        /// Creates a unique URL for the agreement that you can embed in your application.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a unique URL for the agreement that you can embed in your application.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; and &#x60;click.send&#x60;.  The request must include at least the &#x60;clientUserId&#x60;. This is a value that you generate to identify the unique recipient of the agreement.  If you are using a [dynamic content][] document, you can supply the values in the documentData property of the request, like this:  &#x60;&#x60;&#x60;json {   \&quot;clientUserId\&quot;: \&quot;cl-bc7f-48a9\&quot;,   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  A response will look like this. The &#x60;agreementUrl&#x60; is unique to the user identified by the &#x60;clientUserId&#x60;. Your user can open the URL to approve the agreement. The &#x60;documentData&#x60; property appears only if you provided it in the request.  &#x60;&#x60;&#x60;json {   \&quot;accountId\&quot;: \&quot;624e3e00-xxxx-xxxx-xxxx-43918c520dab\&quot;,   \&quot;clickwrapId\&quot;: \&quot;0e64e4a7-xxxx-xxxx-xxxx-ce5a93b162af\&quot;,   \&quot;clientUserId\&quot;: \&quot;tcl-bc7f-48a9j\&quot;,   \&quot;agreementId\&quot;: \&quot;1f346c7d-xxxx-xxxx-xxxx-a5c968666785\&quot;,   \&quot;documents\&quot;: [ . . .],   \&quot;consumerDisclosureEnabled\&quot;: true,   \&quot;agreementUrl\&quot;: \&quot;https://demo.docusign.net/clickapi/v1/redeem?agreementToken&#x3D;AcTZT8g ... cxEqrUsA1lQ8DPPy05dE0\&quot;,   \&quot;createdOn\&quot;: \&quot;2022-10-20T16:27:25.1287685Z\&quot;,   \&quot;status\&quot;: \&quot;created\&quot;,   \&quot;versionId\&quot;: \&quot;5957716d-xxxx-xxxx-xxxx-e1594f00ff12\&quot;,   \&quot;versionNumber\&quot;: 1,   \&quot;settings\&quot;: {     \&quot;displayName\&quot;: \&quot;Agree with me\&quot;,     \&quot;hasDeclineButton\&quot;: true,     .  . .     \&quot;statementAlignment\&quot;: \&quot;bottom\&quot;   },   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  This method returns the following result codes and response bodies depending on whether the user has agreed.   | Agreed | Response code | Response body          | | :- -- -- | :- -- -- -- -- -- - | :- -- -- -- -- -- -- -- -- -- -- | | No     | 201           | Full response as above | | Yes    | 200           | No response (empty)    |   ### Related topics  - [Add dynamic content to your clickwrap][dynamic content] - [How to embed a clickwrap][embed-howto]   [dynamic content]:  /docs/click-api/click101/customize-clickwrap-fields/#add-dynamic-content-to-your-clickwrap [embedding]:        /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content [embed-howto]:      /docs/click-api/how-to/embed-clickwraps/ 
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="userAgreementRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="userAgreementRequest">Data used to create the agreement. (optional)</param>
         /// <returns></returns>
         UserAgreementResponse CreateHasAgreed(string accountId, string clickwrapId, UserAgreementRequest userAgreementRequest = null);
 
         /// <summary>
-        /// Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement.
+        /// Creates a unique URL for the agreement that you can embed in your application.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a unique URL for the agreement that you can embed in your application.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; and &#x60;click.send&#x60;.  The request must include at least the &#x60;clientUserId&#x60;. This is a value that you generate to identify the unique recipient of the agreement.  If you are using a [dynamic content][] document, you can supply the values in the documentData property of the request, like this:  &#x60;&#x60;&#x60;json {   \&quot;clientUserId\&quot;: \&quot;cl-bc7f-48a9\&quot;,   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  A response will look like this. The &#x60;agreementUrl&#x60; is unique to the user identified by the &#x60;clientUserId&#x60;. Your user can open the URL to approve the agreement. The &#x60;documentData&#x60; property appears only if you provided it in the request.  &#x60;&#x60;&#x60;json {   \&quot;accountId\&quot;: \&quot;624e3e00-xxxx-xxxx-xxxx-43918c520dab\&quot;,   \&quot;clickwrapId\&quot;: \&quot;0e64e4a7-xxxx-xxxx-xxxx-ce5a93b162af\&quot;,   \&quot;clientUserId\&quot;: \&quot;tcl-bc7f-48a9j\&quot;,   \&quot;agreementId\&quot;: \&quot;1f346c7d-xxxx-xxxx-xxxx-a5c968666785\&quot;,   \&quot;documents\&quot;: [ . . .],   \&quot;consumerDisclosureEnabled\&quot;: true,   \&quot;agreementUrl\&quot;: \&quot;https://demo.docusign.net/clickapi/v1/redeem?agreementToken&#x3D;AcTZT8g ... cxEqrUsA1lQ8DPPy05dE0\&quot;,   \&quot;createdOn\&quot;: \&quot;2022-10-20T16:27:25.1287685Z\&quot;,   \&quot;status\&quot;: \&quot;created\&quot;,   \&quot;versionId\&quot;: \&quot;5957716d-xxxx-xxxx-xxxx-e1594f00ff12\&quot;,   \&quot;versionNumber\&quot;: 1,   \&quot;settings\&quot;: {     \&quot;displayName\&quot;: \&quot;Agree with me\&quot;,     \&quot;hasDeclineButton\&quot;: true,     .  . .     \&quot;statementAlignment\&quot;: \&quot;bottom\&quot;   },   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  This method returns the following result codes and response bodies depending on whether the user has agreed.   | Agreed | Response code | Response body          | | :- -- -- | :- -- -- -- -- -- - | :- -- -- -- -- -- -- -- -- -- -- | | No     | 201           | Full response as above | | Yes    | 200           | No response (empty)    |   ### Related topics  - [Add dynamic content to your clickwrap][dynamic content] - [How to embed a clickwrap][embed-howto]   [dynamic content]:  /docs/click-api/click101/customize-clickwrap-fields/#add-dynamic-content-to-your-clickwrap [embedding]:        /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content [embed-howto]:      /docs/click-api/how-to/embed-clickwraps/ 
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="userAgreementRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="userAgreementRequest">Data used to create the agreement. (optional)</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<UserAgreementResponse> CreateHasAgreedWithHttpInfo(string accountId, string clickwrapId, UserAgreementRequest userAgreementRequest = null);
         /// <summary>
-        /// Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted
+        /// Deletes a clickwrap and all of its versions.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns></returns>
         ClickwrapVersionsDeleteResponse DeleteClickwrap(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapOptions options = null);
 
         /// <summary>
-        /// Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted
+        /// Deletes a clickwrap and all of its versions.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionsDeleteResponse> DeleteClickwrapWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapOptions options = null);
         /// <summary>
-        /// Delete a Clickwrap version specified by versionId
+        /// Deletes a clickwrap version by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the clickwrap version specified by &#x60;versionId&#x60; of the clickwrap specified by &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns></returns>
         ClickwrapVersionDeleteResponse DeleteClickwrapVersion(string accountId, string clickwrapId, string versionId);
 
         /// <summary>
-        /// Delete a Clickwrap version specified by versionId
+        /// Deletes a clickwrap version by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the clickwrap version specified by &#x60;versionId&#x60; of the clickwrap specified by &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionDeleteResponse> DeleteClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, string versionId);
         /// <summary>
-        /// Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active.
+        /// Deletes the versions of a clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns></returns>
         ClickwrapVersionsDeleteResponse DeleteClickwrapVersions(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapVersionsOptions options = null);
 
         /// <summary>
-        /// Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active.
+        /// Deletes the versions of a clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionsDeleteResponse> DeleteClickwrapVersionsWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapVersionsOptions options = null);
         /// <summary>
-        /// Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps.
+        /// Deletes clickwraps for an account.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns></returns>
         ClickwrapsDeleteResponse DeleteClickwraps(string accountId, AccountsApi.DeleteClickwrapsOptions options = null);
 
         /// <summary>
-        /// Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps.
+        /// Deletes clickwraps for an account.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapsDeleteResponse> DeleteClickwrapsWithHttpInfo(string accountId, AccountsApi.DeleteClickwrapsOptions options = null);
         /// <summary>
-        /// Gets the agreement by a provided agreement ID
+        /// Gets a specific agreement for a specified clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the agreement specified by &#x60;agreementId&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <returns></returns>
         UserAgreementResponse GetAgreement(string accountId, string clickwrapId, string agreementId);
 
         /// <summary>
-        /// Gets the agreement by a provided agreement ID
+        /// Gets a specific agreement for a specified clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the agreement specified by &#x60;agreementId&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<UserAgreementResponse> GetAgreementWithHttpInfo(string accountId, string clickwrapId, string agreementId);
         /// <summary>
         /// Downloads a document at an order within the agreement.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Downloads a specific document from the agreement presented to the user.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.sign&#x60;
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="orderOrDisclosure"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="orderOrDisclosure">The order of the document or consumer_disclosure.</param>
         /// <returns></returns>
         Document GetAgreementDocument(string accountId, string clickwrapId, string versionId, string orderOrDisclosure);
 
@@ -237,468 +262,493 @@ namespace DocuSign.Click.Api
         /// Downloads a document at an order within the agreement.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Downloads a specific document from the agreement presented to the user.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.sign&#x60;
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="orderOrDisclosure"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="orderOrDisclosure">The order of the document or consumer_disclosure.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<Document> GetAgreementDocumentWithHttpInfo(string accountId, string clickwrapId, string versionId, string orderOrDisclosure);
         /// <summary>
-        /// Downloads the agreement PDF and optionally certificate of completion.
+        /// Gets the completed user agreement PDF.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns></returns>
         System.IO.Stream GetAgreementPdf(string accountId, string clickwrapId, string agreementId, AccountsApi.GetAgreementPdfOptions options = null);
 
         /// <summary>
-        /// Downloads the agreement PDF and optionally certificate of completion.
+        /// Gets the completed user agreement PDF.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<System.IO.Stream> GetAgreementPdfWithHttpInfo(string accountId, string clickwrapId, string agreementId, AccountsApi.GetAgreementPdfOptions options = null);
         /// <summary>
-        /// Gets the clickwrap for an account specified by clickwrapId
+        /// Gets a  single clickwrap object.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the definition of the specified clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns></returns>
         ClickwrapVersionResponse GetClickwrap(string accountId, string clickwrapId);
 
         /// <summary>
-        /// Gets the clickwrap for an account specified by clickwrapId
+        /// Gets a  single clickwrap object.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the definition of the specified clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionResponse> GetClickwrapWithHttpInfo(string accountId, string clickwrapId);
         /// <summary>
-        /// Gets the agreement responses for a clickwrap
+        /// Get user agreements
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns></returns>
         ClickwrapAgreementsResponse GetClickwrapAgreements(string accountId, string clickwrapId, AccountsApi.GetClickwrapAgreementsOptions options = null);
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap
+        /// Get user agreements
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapAgreementsResponse> GetClickwrapAgreementsWithHttpInfo(string accountId, string clickwrapId, AccountsApi.GetClickwrapAgreementsOptions options = null);
         /// <summary>
-        /// Gets the Clickwrap version by clickwrapId and versionId for an account
+        /// Gets a specific version of a clickwrap by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the version specified by &#x60;versionId&#x60;  from the clickwrap &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns></returns>
         ClickwrapVersionResponse GetClickwrapVersion(string accountId, string clickwrapId, string versionId);
 
         /// <summary>
-        /// Gets the Clickwrap version by clickwrapId and versionId for an account
+        /// Gets a specific version of a clickwrap by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the version specified by &#x60;versionId&#x60;  from the clickwrap &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionResponse> GetClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, string versionId);
         /// <summary>
-        /// Gets the agreement responses for a clickwrap version
+        /// Gets the agreement responses for a clickwrap version by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns></returns>
         ClickwrapAgreementsResponse GetClickwrapVersionAgreements(string accountId, string clickwrapId, string versionId, AccountsApi.GetClickwrapVersionAgreementsOptions options = null);
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap version
+        /// Gets the agreement responses for a clickwrap version by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapAgreementsResponse> GetClickwrapVersionAgreementsWithHttpInfo(string accountId, string clickwrapId, string versionId, AccountsApi.GetClickwrapVersionAgreementsOptions options = null);
         /// <summary>
-        /// Gets all the versions of a clickwrap for an account
+        /// Gets all the versions of a clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets all the versions of a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns></returns>
         ClickwrapVersionsPagedResponse GetClickwrapVersions(string accountId, string clickwrapId);
 
         /// <summary>
-        /// Gets all the versions of a clickwrap for an account
+        /// Gets all the versions of a clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets all the versions of a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionsPagedResponse> GetClickwrapVersionsWithHttpInfo(string accountId, string clickwrapId);
         /// <summary>
-        /// Gets the Clickwraps for an account
+        /// Gets all the clickwraps for a user.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns></returns>
         ClickwrapVersionsResponse GetClickwraps(string accountId, AccountsApi.GetClickwrapsOptions options = null);
 
         /// <summary>
-        /// Gets the Clickwraps for an account
+        /// Gets all the clickwraps for a user.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionsResponse> GetClickwrapsWithHttpInfo(string accountId, AccountsApi.GetClickwrapsOptions options = null);
         /// <summary>
-        /// Provides base service and version access information.
+        /// Gets the current version and other information about the Click API.
         /// </summary>
         /// <remarks>
-        /// 
+        /// The response includes information about the Click API, including the service version, build version, and linked sites.  This method does not require authentication.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns></returns>
         ServiceInformation GetServiceInformation();
 
         /// <summary>
-        /// Provides base service and version access information.
+        /// Gets the current version and other information about the Click API.
         /// </summary>
         /// <remarks>
-        /// 
+        /// The response includes information about the Click API, including the service version, build version, and linked sites.  This method does not require authentication.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ServiceInformation> GetServiceInformationWithHttpInfo();
         /// <summary>
-        /// Updates the clickwrap specified by clickwrapId
+        /// Update a clickwrap by ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a subset of properties on the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapTransferRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapTransferRequest">Data used to transfer a clickwrap from one user to another. (optional)</param>
         /// <returns></returns>
         ClickwrapVersionSummaryResponse UpdateClickwrap(string accountId, string clickwrapId, ClickwrapTransferRequest clickwrapTransferRequest = null);
 
         /// <summary>
-        /// Updates the clickwrap specified by clickwrapId
+        /// Update a clickwrap by ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a subset of properties on the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapTransferRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapTransferRequest">Data used to transfer a clickwrap from one user to another. (optional)</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionSummaryResponse> UpdateClickwrapWithHttpInfo(string accountId, string clickwrapId, ClickwrapTransferRequest clickwrapTransferRequest = null);
         /// <summary>
-        /// Updates the clickwrap version specified by versionId
+        /// Updates clickwrap version status and ownership.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates the clickwrap version status and ownership by transferring from previous user ID to new user ID.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns></returns>
         ClickwrapVersionSummaryResponse UpdateClickwrapVersion(string accountId, string clickwrapId, string versionId, ClickwrapRequest clickwrapRequest = null);
 
         /// <summary>
-        /// Updates the clickwrap version specified by versionId
+        /// Updates clickwrap version status and ownership.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates the clickwrap version status and ownership by transferring from previous user ID to new user ID.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>ApiResponse of </returns>
         ApiResponse<ClickwrapVersionSummaryResponse> UpdateClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, string versionId, ClickwrapRequest clickwrapRequest = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Creates a Clickwrap for the specified accountId
+        /// Starts an export of clickwrap agreements for a specified date range.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Starts an asynchronus process to export clickwrap agreements for a specified date range. An email will be sent to the creator after it has been processed.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="bulkClickwrapRequest">Data used to start a bulk agreements export. (optional)</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task CreateBulkClickwrapAgreementsAsync(string accountId, string clickwrapId, BulkClickwrapRequest bulkClickwrapRequest = null);
+
+        /// <summary>
+        /// Starts an export of clickwrap agreements for a specified date range.
+        /// </summary>
+        /// <remarks>
+        /// Starts an asynchronus process to export clickwrap agreements for a specified date range. An email will be sent to the creator after it has been processed.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;
+        /// </remarks>
+        /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="bulkClickwrapRequest">Data used to start a bulk agreements export. (optional)</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> CreateBulkClickwrapAgreementsAsyncWithHttpInfo(string accountId, string clickwrapId, BulkClickwrapRequest bulkClickwrapRequest = null);
+        /// <summary>
+        /// Creates a clickwrap for an account.
+        /// </summary>
+        /// <remarks>
+        /// Creates a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
+        /// </remarks>
+        /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ClickwrapVersionSummaryResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionSummaryResponse> CreateClickwrapAsync(string accountId, ClickwrapRequest clickwrapRequest = null);
 
         /// <summary>
-        /// Creates a Clickwrap for the specified accountId
+        /// Creates a clickwrap for an account.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionSummaryResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionSummaryResponse>> CreateClickwrapAsyncWithHttpInfo(string accountId, ClickwrapRequest clickwrapRequest = null);
         /// <summary>
-        /// Creates the clickwrap version
+        /// Creates a new clickwrap version.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a new version of an existing clickwrap. In a new version, you can replace the uploaded documents, change the display settings, and change the name of the clickwrap. The version number is automatically incremented based on the last version of the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ClickwrapVersionSummaryResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionSummaryResponse> CreateClickwrapVersionAsync(string accountId, string clickwrapId, ClickwrapRequest clickwrapRequest = null);
 
         /// <summary>
-        /// Creates the clickwrap version
+        /// Creates a new clickwrap version.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a new version of an existing clickwrap. In a new version, you can replace the uploaded documents, change the display settings, and change the name of the clickwrap. The version number is automatically incremented based on the last version of the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionSummaryResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionSummaryResponse>> CreateClickwrapVersionAsyncWithHttpInfo(string accountId, string clickwrapId, ClickwrapRequest clickwrapRequest = null);
         /// <summary>
-        /// Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement.
+        /// Creates a unique URL for the agreement that you can embed in your application.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a unique URL for the agreement that you can embed in your application.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; and &#x60;click.send&#x60;.  The request must include at least the &#x60;clientUserId&#x60;. This is a value that you generate to identify the unique recipient of the agreement.  If you are using a [dynamic content][] document, you can supply the values in the documentData property of the request, like this:  &#x60;&#x60;&#x60;json {   \&quot;clientUserId\&quot;: \&quot;cl-bc7f-48a9\&quot;,   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  A response will look like this. The &#x60;agreementUrl&#x60; is unique to the user identified by the &#x60;clientUserId&#x60;. Your user can open the URL to approve the agreement. The &#x60;documentData&#x60; property appears only if you provided it in the request.  &#x60;&#x60;&#x60;json {   \&quot;accountId\&quot;: \&quot;624e3e00-xxxx-xxxx-xxxx-43918c520dab\&quot;,   \&quot;clickwrapId\&quot;: \&quot;0e64e4a7-xxxx-xxxx-xxxx-ce5a93b162af\&quot;,   \&quot;clientUserId\&quot;: \&quot;tcl-bc7f-48a9j\&quot;,   \&quot;agreementId\&quot;: \&quot;1f346c7d-xxxx-xxxx-xxxx-a5c968666785\&quot;,   \&quot;documents\&quot;: [ . . .],   \&quot;consumerDisclosureEnabled\&quot;: true,   \&quot;agreementUrl\&quot;: \&quot;https://demo.docusign.net/clickapi/v1/redeem?agreementToken&#x3D;AcTZT8g ... cxEqrUsA1lQ8DPPy05dE0\&quot;,   \&quot;createdOn\&quot;: \&quot;2022-10-20T16:27:25.1287685Z\&quot;,   \&quot;status\&quot;: \&quot;created\&quot;,   \&quot;versionId\&quot;: \&quot;5957716d-xxxx-xxxx-xxxx-e1594f00ff12\&quot;,   \&quot;versionNumber\&quot;: 1,   \&quot;settings\&quot;: {     \&quot;displayName\&quot;: \&quot;Agree with me\&quot;,     \&quot;hasDeclineButton\&quot;: true,     .  . .     \&quot;statementAlignment\&quot;: \&quot;bottom\&quot;   },   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  This method returns the following result codes and response bodies depending on whether the user has agreed.   | Agreed | Response code | Response body          | | :- -- -- | :- -- -- -- -- -- - | :- -- -- -- -- -- -- -- -- -- -- | | No     | 201           | Full response as above | | Yes    | 200           | No response (empty)    |   ### Related topics  - [Add dynamic content to your clickwrap][dynamic content] - [How to embed a clickwrap][embed-howto]   [dynamic content]:  /docs/click-api/click101/customize-clickwrap-fields/#add-dynamic-content-to-your-clickwrap [embedding]:        /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content [embed-howto]:      /docs/click-api/how-to/embed-clickwraps/ 
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="userAgreementRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="userAgreementRequest">Data used to create the agreement. (optional)</param>
         /// <returns>Task of UserAgreementResponse</returns>
         System.Threading.Tasks.Task<UserAgreementResponse> CreateHasAgreedAsync(string accountId, string clickwrapId, UserAgreementRequest userAgreementRequest = null);
 
         /// <summary>
-        /// Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement.
+        /// Creates a unique URL for the agreement that you can embed in your application.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Creates a unique URL for the agreement that you can embed in your application.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; and &#x60;click.send&#x60;.  The request must include at least the &#x60;clientUserId&#x60;. This is a value that you generate to identify the unique recipient of the agreement.  If you are using a [dynamic content][] document, you can supply the values in the documentData property of the request, like this:  &#x60;&#x60;&#x60;json {   \&quot;clientUserId\&quot;: \&quot;cl-bc7f-48a9\&quot;,   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  A response will look like this. The &#x60;agreementUrl&#x60; is unique to the user identified by the &#x60;clientUserId&#x60;. Your user can open the URL to approve the agreement. The &#x60;documentData&#x60; property appears only if you provided it in the request.  &#x60;&#x60;&#x60;json {   \&quot;accountId\&quot;: \&quot;624e3e00-xxxx-xxxx-xxxx-43918c520dab\&quot;,   \&quot;clickwrapId\&quot;: \&quot;0e64e4a7-xxxx-xxxx-xxxx-ce5a93b162af\&quot;,   \&quot;clientUserId\&quot;: \&quot;tcl-bc7f-48a9j\&quot;,   \&quot;agreementId\&quot;: \&quot;1f346c7d-xxxx-xxxx-xxxx-a5c968666785\&quot;,   \&quot;documents\&quot;: [ . . .],   \&quot;consumerDisclosureEnabled\&quot;: true,   \&quot;agreementUrl\&quot;: \&quot;https://demo.docusign.net/clickapi/v1/redeem?agreementToken&#x3D;AcTZT8g ... cxEqrUsA1lQ8DPPy05dE0\&quot;,   \&quot;createdOn\&quot;: \&quot;2022-10-20T16:27:25.1287685Z\&quot;,   \&quot;status\&quot;: \&quot;created\&quot;,   \&quot;versionId\&quot;: \&quot;5957716d-xxxx-xxxx-xxxx-e1594f00ff12\&quot;,   \&quot;versionNumber\&quot;: 1,   \&quot;settings\&quot;: {     \&quot;displayName\&quot;: \&quot;Agree with me\&quot;,     \&quot;hasDeclineButton\&quot;: true,     .  . .     \&quot;statementAlignment\&quot;: \&quot;bottom\&quot;   },   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  This method returns the following result codes and response bodies depending on whether the user has agreed.   | Agreed | Response code | Response body          | | :- -- -- | :- -- -- -- -- -- - | :- -- -- -- -- -- -- -- -- -- -- | | No     | 201           | Full response as above | | Yes    | 200           | No response (empty)    |   ### Related topics  - [Add dynamic content to your clickwrap][dynamic content] - [How to embed a clickwrap][embed-howto]   [dynamic content]:  /docs/click-api/click101/customize-clickwrap-fields/#add-dynamic-content-to-your-clickwrap [embedding]:        /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content [embed-howto]:      /docs/click-api/how-to/embed-clickwraps/ 
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="userAgreementRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="userAgreementRequest">Data used to create the agreement. (optional)</param>
         /// <returns>Task of ApiResponse (UserAgreementResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserAgreementResponse>> CreateHasAgreedAsyncWithHttpInfo(string accountId, string clickwrapId, UserAgreementRequest userAgreementRequest = null);
         /// <summary>
-        /// Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted
+        /// Deletes a clickwrap and all of its versions.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapVersionsDeleteResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionsDeleteResponse> DeleteClickwrapAsync(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapOptions options = null);
 
         /// <summary>
-        /// Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted
+        /// Deletes a clickwrap and all of its versions.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionsDeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionsDeleteResponse>> DeleteClickwrapAsyncWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapOptions options = null);
         /// <summary>
-        /// Delete a Clickwrap version specified by versionId
+        /// Deletes a clickwrap version by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the clickwrap version specified by &#x60;versionId&#x60; of the clickwrap specified by &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>Task of ClickwrapVersionDeleteResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionDeleteResponse> DeleteClickwrapVersionAsync(string accountId, string clickwrapId, string versionId);
 
         /// <summary>
-        /// Delete a Clickwrap version specified by versionId
+        /// Deletes a clickwrap version by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes the clickwrap version specified by &#x60;versionId&#x60; of the clickwrap specified by &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionDeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionDeleteResponse>> DeleteClickwrapVersionAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId);
         /// <summary>
-        /// Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active.
+        /// Deletes the versions of a clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapVersionsDeleteResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionsDeleteResponse> DeleteClickwrapVersionsAsync(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapVersionsOptions options = null);
 
         /// <summary>
-        /// Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active.
+        /// Deletes the versions of a clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionsDeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionsDeleteResponse>> DeleteClickwrapVersionsAsyncWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapVersionsOptions options = null);
         /// <summary>
-        /// Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps.
+        /// Deletes clickwraps for an account.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapsDeleteResponse</returns>
         System.Threading.Tasks.Task<ClickwrapsDeleteResponse> DeleteClickwrapsAsync(string accountId, AccountsApi.DeleteClickwrapsOptions options = null);
 
         /// <summary>
-        /// Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps.
+        /// Deletes clickwraps for an account.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapsDeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapsDeleteResponse>> DeleteClickwrapsAsyncWithHttpInfo(string accountId, AccountsApi.DeleteClickwrapsOptions options = null);
         /// <summary>
-        /// Gets the agreement by a provided agreement ID
+        /// Gets a specific agreement for a specified clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the agreement specified by &#x60;agreementId&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <returns>Task of UserAgreementResponse</returns>
         System.Threading.Tasks.Task<UserAgreementResponse> GetAgreementAsync(string accountId, string clickwrapId, string agreementId);
 
         /// <summary>
-        /// Gets the agreement by a provided agreement ID
+        /// Gets a specific agreement for a specified clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the agreement specified by &#x60;agreementId&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <returns>Task of ApiResponse (UserAgreementResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserAgreementResponse>> GetAgreementAsyncWithHttpInfo(string accountId, string clickwrapId, string agreementId);
         /// <summary>
         /// Downloads a document at an order within the agreement.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Downloads a specific document from the agreement presented to the user.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.sign&#x60;
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="orderOrDisclosure"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="orderOrDisclosure">The order of the document or consumer_disclosure.</param>
         /// <returns>Task of Document</returns>
         System.Threading.Tasks.Task<Document> GetAgreementDocumentAsync(string accountId, string clickwrapId, string versionId, string orderOrDisclosure);
 
@@ -706,257 +756,257 @@ namespace DocuSign.Click.Api
         /// Downloads a document at an order within the agreement.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Downloads a specific document from the agreement presented to the user.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.sign&#x60;
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="orderOrDisclosure"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="orderOrDisclosure">The order of the document or consumer_disclosure.</param>
         /// <returns>Task of ApiResponse (Document)</returns>
         System.Threading.Tasks.Task<ApiResponse<Document>> GetAgreementDocumentAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId, string orderOrDisclosure);
         /// <summary>
-        /// Downloads the agreement PDF and optionally certificate of completion.
+        /// Gets the completed user agreement PDF.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of System.IO.Stream</returns>
         System.Threading.Tasks.Task<System.IO.Stream> GetAgreementPdfAsync(string accountId, string clickwrapId, string agreementId, AccountsApi.GetAgreementPdfOptions options = null);
 
         /// <summary>
-        /// Downloads the agreement PDF and optionally certificate of completion.
+        /// Gets the completed user agreement PDF.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
         System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> GetAgreementPdfAsyncWithHttpInfo(string accountId, string clickwrapId, string agreementId, AccountsApi.GetAgreementPdfOptions options = null);
         /// <summary>
-        /// Gets the clickwrap for an account specified by clickwrapId
+        /// Gets a  single clickwrap object.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the definition of the specified clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>Task of ClickwrapVersionResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionResponse> GetClickwrapAsync(string accountId, string clickwrapId);
 
         /// <summary>
-        /// Gets the clickwrap for an account specified by clickwrapId
+        /// Gets a  single clickwrap object.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the definition of the specified clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionResponse>> GetClickwrapAsyncWithHttpInfo(string accountId, string clickwrapId);
         /// <summary>
-        /// Gets the agreement responses for a clickwrap
+        /// Get user agreements
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapAgreementsResponse</returns>
         System.Threading.Tasks.Task<ClickwrapAgreementsResponse> GetClickwrapAgreementsAsync(string accountId, string clickwrapId, AccountsApi.GetClickwrapAgreementsOptions options = null);
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap
+        /// Get user agreements
         /// </summary>
         /// <remarks>
-        /// 
+        /// Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapAgreementsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapAgreementsResponse>> GetClickwrapAgreementsAsyncWithHttpInfo(string accountId, string clickwrapId, AccountsApi.GetClickwrapAgreementsOptions options = null);
         /// <summary>
-        /// Gets the Clickwrap version by clickwrapId and versionId for an account
+        /// Gets a specific version of a clickwrap by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the version specified by &#x60;versionId&#x60;  from the clickwrap &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>Task of ClickwrapVersionResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionResponse> GetClickwrapVersionAsync(string accountId, string clickwrapId, string versionId);
 
         /// <summary>
-        /// Gets the Clickwrap version by clickwrapId and versionId for an account
+        /// Gets a specific version of a clickwrap by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the version specified by &#x60;versionId&#x60;  from the clickwrap &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionResponse>> GetClickwrapVersionAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId);
         /// <summary>
-        /// Gets the agreement responses for a clickwrap version
+        /// Gets the agreement responses for a clickwrap version by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapAgreementsResponse</returns>
         System.Threading.Tasks.Task<ClickwrapAgreementsResponse> GetClickwrapVersionAgreementsAsync(string accountId, string clickwrapId, string versionId, AccountsApi.GetClickwrapVersionAgreementsOptions options = null);
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap version
+        /// Gets the agreement responses for a clickwrap version by version ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapAgreementsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapAgreementsResponse>> GetClickwrapVersionAgreementsAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId, AccountsApi.GetClickwrapVersionAgreementsOptions options = null);
         /// <summary>
-        /// Gets all the versions of a clickwrap for an account
+        /// Gets all the versions of a clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets all the versions of a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>Task of ClickwrapVersionsPagedResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionsPagedResponse> GetClickwrapVersionsAsync(string accountId, string clickwrapId);
 
         /// <summary>
-        /// Gets all the versions of a clickwrap for an account
+        /// Gets all the versions of a clickwrap.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets all the versions of a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionsPagedResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionsPagedResponse>> GetClickwrapVersionsAsyncWithHttpInfo(string accountId, string clickwrapId);
         /// <summary>
-        /// Gets the Clickwraps for an account
+        /// Gets all the clickwraps for a user.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapVersionsResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionsResponse> GetClickwrapsAsync(string accountId, AccountsApi.GetClickwrapsOptions options = null);
 
         /// <summary>
-        /// Gets the Clickwraps for an account
+        /// Gets all the clickwraps for a user.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionsResponse>> GetClickwrapsAsyncWithHttpInfo(string accountId, AccountsApi.GetClickwrapsOptions options = null);
         /// <summary>
-        /// Provides base service and version access information.
+        /// Gets the current version and other information about the Click API.
         /// </summary>
         /// <remarks>
-        /// 
+        /// The response includes information about the Click API, including the service version, build version, and linked sites.  This method does not require authentication.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ServiceInformation</returns>
         System.Threading.Tasks.Task<ServiceInformation> GetServiceInformationAsync();
 
         /// <summary>
-        /// Provides base service and version access information.
+        /// Gets the current version and other information about the Click API.
         /// </summary>
         /// <remarks>
-        /// 
+        /// The response includes information about the Click API, including the service version, build version, and linked sites.  This method does not require authentication.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (ServiceInformation)</returns>
         System.Threading.Tasks.Task<ApiResponse<ServiceInformation>> GetServiceInformationAsyncWithHttpInfo();
         /// <summary>
-        /// Updates the clickwrap specified by clickwrapId
+        /// Update a clickwrap by ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a subset of properties on the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapTransferRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapTransferRequest">Data used to transfer a clickwrap from one user to another. (optional)</param>
         /// <returns>Task of ClickwrapVersionSummaryResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionSummaryResponse> UpdateClickwrapAsync(string accountId, string clickwrapId, ClickwrapTransferRequest clickwrapTransferRequest = null);
 
         /// <summary>
-        /// Updates the clickwrap specified by clickwrapId
+        /// Update a clickwrap by ID.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a subset of properties on the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapTransferRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapTransferRequest">Data used to transfer a clickwrap from one user to another. (optional)</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionSummaryResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionSummaryResponse>> UpdateClickwrapAsyncWithHttpInfo(string accountId, string clickwrapId, ClickwrapTransferRequest clickwrapTransferRequest = null);
         /// <summary>
-        /// Updates the clickwrap version specified by versionId
+        /// Updates clickwrap version status and ownership.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates the clickwrap version status and ownership by transferring from previous user ID to new user ID.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ClickwrapVersionSummaryResponse</returns>
         System.Threading.Tasks.Task<ClickwrapVersionSummaryResponse> UpdateClickwrapVersionAsync(string accountId, string clickwrapId, string versionId, ClickwrapRequest clickwrapRequest = null);
 
         /// <summary>
-        /// Updates the clickwrap version specified by versionId
+        /// Updates clickwrap version status and ownership.
         /// </summary>
         /// <remarks>
-        /// 
+        /// Updates the clickwrap version status and ownership by transferring from previous user ID to new user ID.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </remarks>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionSummaryResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionSummaryResponse>> UpdateClickwrapVersionAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId, ClickwrapRequest clickwrapRequest = null);
         #endregion Asynchronous Operations
@@ -1016,32 +1066,65 @@ namespace DocuSign.Click.Api
 
 
         /// <summary>
-        /// Creates a Clickwrap for the specified accountId 
+        /// Starts an export of clickwrap agreements for a specified date range. Starts an asynchronus process to export clickwrap agreements for a specified date range. An email will be sent to the creator after it has been processed.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
-        /// <returns>ClickwrapVersionSummaryResponse</returns>
-        public ClickwrapVersionSummaryResponse CreateClickwrap(string accountId, ClickwrapRequest clickwrapRequest = null)
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="bulkClickwrapRequest">Data used to start a bulk agreements export. (optional)</param>
+        /// <returns></returns>
+        public void CreateBulkClickwrapAgreements(string accountId, string clickwrapId, BulkClickwrapRequest bulkClickwrapRequest = null)
         {
-             ApiResponse<ClickwrapVersionSummaryResponse> localVarResponse = CreateClickwrapWithHttpInfo(accountId, clickwrapRequest);
-             return localVarResponse.Data;
+             CreateBulkClickwrapAgreementsWithHttpInfo(accountId, clickwrapId, bulkClickwrapRequest);
         }
 
         /// <summary>
-        /// Creates a Clickwrap for the specified accountId 
+        /// Starts an export of clickwrap agreements for a specified date range. Starts an asynchronus process to export clickwrap agreements for a specified date range. An email will be sent to the creator after it has been processed.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
-        /// <returns>ApiResponse of ClickwrapVersionSummaryResponse</returns>
-        public ApiResponse<ClickwrapVersionSummaryResponse> CreateClickwrapWithHttpInfo(string accountId, ClickwrapRequest clickwrapRequest = null)
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="bulkClickwrapRequest">Data used to start a bulk agreements export. (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> CreateBulkClickwrapAgreementsWithHttpInfo(string accountId, string clickwrapId, BulkClickwrapRequest bulkClickwrapRequest = null)
+        {
+            return CreateBulkClickwrapAgreementsAsyncWithHttpInfo(accountId, clickwrapId, bulkClickwrapRequest)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Starts an export of clickwrap agreements for a specified date range. Starts an asynchronus process to export clickwrap agreements for a specified date range. An email will be sent to the creator after it has been processed.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;
+        /// </summary>
+        /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="bulkClickwrapRequest">Data used to start a bulk agreements export. (optional)</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task CreateBulkClickwrapAgreementsAsync(string accountId, string clickwrapId, BulkClickwrapRequest bulkClickwrapRequest = null)
+        {
+             await CreateBulkClickwrapAgreementsAsyncWithHttpInfo(accountId, clickwrapId, bulkClickwrapRequest);
+        }
+
+        /// <summary>
+        /// Starts an export of clickwrap agreements for a specified date range. Starts an asynchronus process to export clickwrap agreements for a specified date range. An email will be sent to the creator after it has been processed.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;
+        /// </summary>
+        /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="bulkClickwrapRequest">Data used to start a bulk agreements export. (optional)</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> CreateBulkClickwrapAgreementsAsyncWithHttpInfo(string accountId, string clickwrapId, BulkClickwrapRequest bulkClickwrapRequest = null)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->CreateClickwrap");
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->CreateBulkClickwrapAgreements");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->CreateBulkClickwrapAgreements");
 
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps";
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/bulk_agreements";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
             var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
@@ -1067,15 +1150,14 @@ namespace DocuSign.Click.Api
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
             if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-
-
-            if (clickwrapRequest != null && clickwrapRequest.GetType() != typeof(byte[]))
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (bulkClickwrapRequest != null && bulkClickwrapRequest.GetType() != typeof(byte[]))
             {
-                localVarPostBody = this.ApiClient.Serialize(clickwrapRequest); // http body (model) parameter
+                localVarPostBody = this.ApiClient.Serialize(bulkClickwrapRequest); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = clickwrapRequest; // byte array
+                localVarPostBody = bulkClickwrapRequest; // byte array
             }
 
             // authentication (docusignAccessCode) required
@@ -1087,35 +1169,58 @@ namespace DocuSign.Click.Api
 
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+            DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
 
             int localVarStatusCode = (int)localVarResponse.StatusCode;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("CreateClickwrap", localVarResponse);
+                Exception exception = ExceptionFactory("CreateBulkClickwrapAgreements", localVarResponse);
                 if (exception != null) throw exception;
             }
 
             
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionSummaryResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
-            }
-            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                null);
+        }
+
+
+
+        /// <summary>
+        /// Creates a clickwrap for an account. Creates a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
+        /// </summary>
+        /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
+        /// <returns>ClickwrapVersionSummaryResponse</returns>
+        public ClickwrapVersionSummaryResponse CreateClickwrap(string accountId, ClickwrapRequest clickwrapRequest = null)
+        {
+             ApiResponse<ClickwrapVersionSummaryResponse> localVarResponse = CreateClickwrapWithHttpInfo(accountId, clickwrapRequest);
+             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Creates a Clickwrap for the specified accountId 
+        /// Creates a clickwrap for an account. Creates a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
+        /// <returns>ApiResponse of ClickwrapVersionSummaryResponse</returns>
+        public ApiResponse<ClickwrapVersionSummaryResponse> CreateClickwrapWithHttpInfo(string accountId, ClickwrapRequest clickwrapRequest = null)
+        {
+            return CreateClickwrapAsyncWithHttpInfo(accountId, clickwrapRequest)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        /// <summary>
+        /// Creates a clickwrap for an account. Creates a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
+        /// </summary>
+        /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ClickwrapVersionSummaryResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionSummaryResponse> CreateClickwrapAsync(string accountId, ClickwrapRequest clickwrapRequest = null)
         {
@@ -1124,11 +1229,11 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Creates a Clickwrap for the specified accountId 
+        /// Creates a clickwrap for an account. Creates a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionSummaryResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionSummaryResponse>> CreateClickwrapAsyncWithHttpInfo(string accountId, ClickwrapRequest clickwrapRequest = null)
         {
@@ -1190,21 +1295,20 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
-            
         }
 
 
 
         /// <summary>
-        /// Creates the clickwrap version 
+        /// Creates a new clickwrap version. Creates a new version of an existing clickwrap. In a new version, you can replace the uploaded documents, change the display settings, and change the name of the clickwrap. The version number is automatically incremented based on the last version of the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>ClickwrapVersionSummaryResponse</returns>
         public ClickwrapVersionSummaryResponse CreateClickwrapVersion(string accountId, string clickwrapId, ClickwrapRequest clickwrapRequest = null)
         {
@@ -1213,99 +1317,28 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Creates the clickwrap version 
+        /// Creates a new clickwrap version. Creates a new version of an existing clickwrap. In a new version, you can replace the uploaded documents, change the display settings, and change the name of the clickwrap. The version number is automatically incremented based on the last version of the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>ApiResponse of ClickwrapVersionSummaryResponse</returns>
         public ApiResponse<ClickwrapVersionSummaryResponse> CreateClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, ClickwrapRequest clickwrapRequest = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->CreateClickwrapVersion");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->CreateClickwrapVersion");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-
-
-            if (clickwrapRequest != null && clickwrapRequest.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.ApiClient.Serialize(clickwrapRequest); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = clickwrapRequest; // byte array
-            }
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CreateClickwrapVersion", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionSummaryResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
-            }
-            
+            return CreateClickwrapVersionAsyncWithHttpInfo(accountId, clickwrapId, clickwrapRequest)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Creates the clickwrap version 
+        /// Creates a new clickwrap version. Creates a new version of an existing clickwrap. In a new version, you can replace the uploaded documents, change the display settings, and change the name of the clickwrap. The version number is automatically incremented based on the last version of the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ClickwrapVersionSummaryResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionSummaryResponse> CreateClickwrapVersionAsync(string accountId, string clickwrapId, ClickwrapRequest clickwrapRequest = null)
         {
@@ -1314,12 +1347,12 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Creates the clickwrap version 
+        /// Creates a new clickwrap version. Creates a new version of an existing clickwrap. In a new version, you can replace the uploaded documents, change the display settings, and change the name of the clickwrap. The version number is automatically incremented based on the last version of the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionSummaryResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionSummaryResponse>> CreateClickwrapVersionAsyncWithHttpInfo(string accountId, string clickwrapId, ClickwrapRequest clickwrapRequest = null)
         {
@@ -1385,21 +1418,20 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
-            
         }
 
 
 
         /// <summary>
-        /// Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement. 
+        /// Creates a unique URL for the agreement that you can embed in your application. Creates a unique URL for the agreement that you can embed in your application.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; and &#x60;click.send&#x60;.  The request must include at least the &#x60;clientUserId&#x60;. This is a value that you generate to identify the unique recipient of the agreement.  If you are using a [dynamic content][] document, you can supply the values in the documentData property of the request, like this:  &#x60;&#x60;&#x60;json {   \&quot;clientUserId\&quot;: \&quot;cl-bc7f-48a9\&quot;,   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  A response will look like this. The &#x60;agreementUrl&#x60; is unique to the user identified by the &#x60;clientUserId&#x60;. Your user can open the URL to approve the agreement. The &#x60;documentData&#x60; property appears only if you provided it in the request.  &#x60;&#x60;&#x60;json {   \&quot;accountId\&quot;: \&quot;624e3e00-xxxx-xxxx-xxxx-43918c520dab\&quot;,   \&quot;clickwrapId\&quot;: \&quot;0e64e4a7-xxxx-xxxx-xxxx-ce5a93b162af\&quot;,   \&quot;clientUserId\&quot;: \&quot;tcl-bc7f-48a9j\&quot;,   \&quot;agreementId\&quot;: \&quot;1f346c7d-xxxx-xxxx-xxxx-a5c968666785\&quot;,   \&quot;documents\&quot;: [ . . .],   \&quot;consumerDisclosureEnabled\&quot;: true,   \&quot;agreementUrl\&quot;: \&quot;https://demo.docusign.net/clickapi/v1/redeem?agreementToken&#x3D;AcTZT8g ... cxEqrUsA1lQ8DPPy05dE0\&quot;,   \&quot;createdOn\&quot;: \&quot;2022-10-20T16:27:25.1287685Z\&quot;,   \&quot;status\&quot;: \&quot;created\&quot;,   \&quot;versionId\&quot;: \&quot;5957716d-xxxx-xxxx-xxxx-e1594f00ff12\&quot;,   \&quot;versionNumber\&quot;: 1,   \&quot;settings\&quot;: {     \&quot;displayName\&quot;: \&quot;Agree with me\&quot;,     \&quot;hasDeclineButton\&quot;: true,     .  . .     \&quot;statementAlignment\&quot;: \&quot;bottom\&quot;   },   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  This method returns the following result codes and response bodies depending on whether the user has agreed.   | Agreed | Response code | Response body          | | :- -- -- | :- -- -- -- -- -- - | :- -- -- -- -- -- -- -- -- -- -- | | No     | 201           | Full response as above | | Yes    | 200           | No response (empty)    |   ### Related topics  - [Add dynamic content to your clickwrap][dynamic content] - [How to embed a clickwrap][embed-howto]   [dynamic content]:  /docs/click-api/click101/customize-clickwrap-fields/#add-dynamic-content-to-your-clickwrap [embedding]:        /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content [embed-howto]:      /docs/click-api/how-to/embed-clickwraps/ 
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="userAgreementRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="userAgreementRequest">Data used to create the agreement. (optional)</param>
         /// <returns>UserAgreementResponse</returns>
         public UserAgreementResponse CreateHasAgreed(string accountId, string clickwrapId, UserAgreementRequest userAgreementRequest = null)
         {
@@ -1408,99 +1440,28 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement. 
+        /// Creates a unique URL for the agreement that you can embed in your application. Creates a unique URL for the agreement that you can embed in your application.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; and &#x60;click.send&#x60;.  The request must include at least the &#x60;clientUserId&#x60;. This is a value that you generate to identify the unique recipient of the agreement.  If you are using a [dynamic content][] document, you can supply the values in the documentData property of the request, like this:  &#x60;&#x60;&#x60;json {   \&quot;clientUserId\&quot;: \&quot;cl-bc7f-48a9\&quot;,   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  A response will look like this. The &#x60;agreementUrl&#x60; is unique to the user identified by the &#x60;clientUserId&#x60;. Your user can open the URL to approve the agreement. The &#x60;documentData&#x60; property appears only if you provided it in the request.  &#x60;&#x60;&#x60;json {   \&quot;accountId\&quot;: \&quot;624e3e00-xxxx-xxxx-xxxx-43918c520dab\&quot;,   \&quot;clickwrapId\&quot;: \&quot;0e64e4a7-xxxx-xxxx-xxxx-ce5a93b162af\&quot;,   \&quot;clientUserId\&quot;: \&quot;tcl-bc7f-48a9j\&quot;,   \&quot;agreementId\&quot;: \&quot;1f346c7d-xxxx-xxxx-xxxx-a5c968666785\&quot;,   \&quot;documents\&quot;: [ . . .],   \&quot;consumerDisclosureEnabled\&quot;: true,   \&quot;agreementUrl\&quot;: \&quot;https://demo.docusign.net/clickapi/v1/redeem?agreementToken&#x3D;AcTZT8g ... cxEqrUsA1lQ8DPPy05dE0\&quot;,   \&quot;createdOn\&quot;: \&quot;2022-10-20T16:27:25.1287685Z\&quot;,   \&quot;status\&quot;: \&quot;created\&quot;,   \&quot;versionId\&quot;: \&quot;5957716d-xxxx-xxxx-xxxx-e1594f00ff12\&quot;,   \&quot;versionNumber\&quot;: 1,   \&quot;settings\&quot;: {     \&quot;displayName\&quot;: \&quot;Agree with me\&quot;,     \&quot;hasDeclineButton\&quot;: true,     .  . .     \&quot;statementAlignment\&quot;: \&quot;bottom\&quot;   },   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  This method returns the following result codes and response bodies depending on whether the user has agreed.   | Agreed | Response code | Response body          | | :- -- -- | :- -- -- -- -- -- - | :- -- -- -- -- -- -- -- -- -- -- | | No     | 201           | Full response as above | | Yes    | 200           | No response (empty)    |   ### Related topics  - [Add dynamic content to your clickwrap][dynamic content] - [How to embed a clickwrap][embed-howto]   [dynamic content]:  /docs/click-api/click101/customize-clickwrap-fields/#add-dynamic-content-to-your-clickwrap [embedding]:        /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content [embed-howto]:      /docs/click-api/how-to/embed-clickwraps/ 
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="userAgreementRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="userAgreementRequest">Data used to create the agreement. (optional)</param>
         /// <returns>ApiResponse of UserAgreementResponse</returns>
         public ApiResponse<UserAgreementResponse> CreateHasAgreedWithHttpInfo(string accountId, string clickwrapId, UserAgreementRequest userAgreementRequest = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->CreateHasAgreed");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->CreateHasAgreed");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/agreements";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-
-
-            if (userAgreementRequest != null && userAgreementRequest.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.ApiClient.Serialize(userAgreementRequest); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = userAgreementRequest; // byte array
-            }
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CreateHasAgreed", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<UserAgreementResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(UserAgreementResponse)));
-            }
-            else
-            {
-                return new ApiResponse<UserAgreementResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse, typeof(UserAgreementResponse)));
-            }
-            
+            return CreateHasAgreedAsyncWithHttpInfo(accountId, clickwrapId, userAgreementRequest)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement. 
+        /// Creates a unique URL for the agreement that you can embed in your application. Creates a unique URL for the agreement that you can embed in your application.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; and &#x60;click.send&#x60;.  The request must include at least the &#x60;clientUserId&#x60;. This is a value that you generate to identify the unique recipient of the agreement.  If you are using a [dynamic content][] document, you can supply the values in the documentData property of the request, like this:  &#x60;&#x60;&#x60;json {   \&quot;clientUserId\&quot;: \&quot;cl-bc7f-48a9\&quot;,   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  A response will look like this. The &#x60;agreementUrl&#x60; is unique to the user identified by the &#x60;clientUserId&#x60;. Your user can open the URL to approve the agreement. The &#x60;documentData&#x60; property appears only if you provided it in the request.  &#x60;&#x60;&#x60;json {   \&quot;accountId\&quot;: \&quot;624e3e00-xxxx-xxxx-xxxx-43918c520dab\&quot;,   \&quot;clickwrapId\&quot;: \&quot;0e64e4a7-xxxx-xxxx-xxxx-ce5a93b162af\&quot;,   \&quot;clientUserId\&quot;: \&quot;tcl-bc7f-48a9j\&quot;,   \&quot;agreementId\&quot;: \&quot;1f346c7d-xxxx-xxxx-xxxx-a5c968666785\&quot;,   \&quot;documents\&quot;: [ . . .],   \&quot;consumerDisclosureEnabled\&quot;: true,   \&quot;agreementUrl\&quot;: \&quot;https://demo.docusign.net/clickapi/v1/redeem?agreementToken&#x3D;AcTZT8g ... cxEqrUsA1lQ8DPPy05dE0\&quot;,   \&quot;createdOn\&quot;: \&quot;2022-10-20T16:27:25.1287685Z\&quot;,   \&quot;status\&quot;: \&quot;created\&quot;,   \&quot;versionId\&quot;: \&quot;5957716d-xxxx-xxxx-xxxx-e1594f00ff12\&quot;,   \&quot;versionNumber\&quot;: 1,   \&quot;settings\&quot;: {     \&quot;displayName\&quot;: \&quot;Agree with me\&quot;,     \&quot;hasDeclineButton\&quot;: true,     .  . .     \&quot;statementAlignment\&quot;: \&quot;bottom\&quot;   },   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  This method returns the following result codes and response bodies depending on whether the user has agreed.   | Agreed | Response code | Response body          | | :- -- -- | :- -- -- -- -- -- - | :- -- -- -- -- -- -- -- -- -- -- | | No     | 201           | Full response as above | | Yes    | 200           | No response (empty)    |   ### Related topics  - [Add dynamic content to your clickwrap][dynamic content] - [How to embed a clickwrap][embed-howto]   [dynamic content]:  /docs/click-api/click101/customize-clickwrap-fields/#add-dynamic-content-to-your-clickwrap [embedding]:        /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content [embed-howto]:      /docs/click-api/how-to/embed-clickwraps/ 
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="userAgreementRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="userAgreementRequest">Data used to create the agreement. (optional)</param>
         /// <returns>Task of UserAgreementResponse</returns>
         public async System.Threading.Tasks.Task<UserAgreementResponse> CreateHasAgreedAsync(string accountId, string clickwrapId, UserAgreementRequest userAgreementRequest = null)
         {
@@ -1509,12 +1470,12 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement. 
+        /// Creates a unique URL for the agreement that you can embed in your application. Creates a unique URL for the agreement that you can embed in your application.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; and &#x60;click.send&#x60;.  The request must include at least the &#x60;clientUserId&#x60;. This is a value that you generate to identify the unique recipient of the agreement.  If you are using a [dynamic content][] document, you can supply the values in the documentData property of the request, like this:  &#x60;&#x60;&#x60;json {   \&quot;clientUserId\&quot;: \&quot;cl-bc7f-48a9\&quot;,   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  A response will look like this. The &#x60;agreementUrl&#x60; is unique to the user identified by the &#x60;clientUserId&#x60;. Your user can open the URL to approve the agreement. The &#x60;documentData&#x60; property appears only if you provided it in the request.  &#x60;&#x60;&#x60;json {   \&quot;accountId\&quot;: \&quot;624e3e00-xxxx-xxxx-xxxx-43918c520dab\&quot;,   \&quot;clickwrapId\&quot;: \&quot;0e64e4a7-xxxx-xxxx-xxxx-ce5a93b162af\&quot;,   \&quot;clientUserId\&quot;: \&quot;tcl-bc7f-48a9j\&quot;,   \&quot;agreementId\&quot;: \&quot;1f346c7d-xxxx-xxxx-xxxx-a5c968666785\&quot;,   \&quot;documents\&quot;: [ . . .],   \&quot;consumerDisclosureEnabled\&quot;: true,   \&quot;agreementUrl\&quot;: \&quot;https://demo.docusign.net/clickapi/v1/redeem?agreementToken&#x3D;AcTZT8g ... cxEqrUsA1lQ8DPPy05dE0\&quot;,   \&quot;createdOn\&quot;: \&quot;2022-10-20T16:27:25.1287685Z\&quot;,   \&quot;status\&quot;: \&quot;created\&quot;,   \&quot;versionId\&quot;: \&quot;5957716d-xxxx-xxxx-xxxx-e1594f00ff12\&quot;,   \&quot;versionNumber\&quot;: 1,   \&quot;settings\&quot;: {     \&quot;displayName\&quot;: \&quot;Agree with me\&quot;,     \&quot;hasDeclineButton\&quot;: true,     .  . .     \&quot;statementAlignment\&quot;: \&quot;bottom\&quot;   },   \&quot;documentData\&quot;: {     \&quot;fullName\&quot;: \&quot;T. J. Fanning\&quot;,     \&quot;email\&quot;: \&quot;tj@example.com\&quot;,     \&quot;company\&quot;: \&quot;Fanning Indusdtries\&quot;,     \&quot;title\&quot;: \&quot;Cat wrangler\&quot;,     \&quot;date\&quot;: \&quot;2022-10-13T05:17:14-07:00\&quot;   } } &#x60;&#x60;&#x60;  This method returns the following result codes and response bodies depending on whether the user has agreed.   | Agreed | Response code | Response body          | | :- -- -- | :- -- -- -- -- -- - | :- -- -- -- -- -- -- -- -- -- -- | | No     | 201           | Full response as above | | Yes    | 200           | No response (empty)    |   ### Related topics  - [Add dynamic content to your clickwrap][dynamic content] - [How to embed a clickwrap][embed-howto]   [dynamic content]:  /docs/click-api/click101/customize-clickwrap-fields/#add-dynamic-content-to-your-clickwrap [embedding]:        /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content [embed-howto]:      /docs/click-api/how-to/embed-clickwraps/ 
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="userAgreementRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="userAgreementRequest">Data used to create the agreement. (optional)</param>
         /// <returns>Task of ApiResponse (UserAgreementResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<UserAgreementResponse>> CreateHasAgreedAsyncWithHttpInfo(string accountId, string clickwrapId, UserAgreementRequest userAgreementRequest = null)
         {
@@ -1580,28 +1541,27 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UserAgreementResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<UserAgreementResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse, typeof(UserAgreementResponse)));
-            
         }
 
 
         /// <summary>
-        /// Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted 
+        /// Deletes a clickwrap and all of its versions. Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         public class DeleteClickwrapOptions
         {
-            /// 
+            /// A comma-separated list of versions to delete. 
             public string versions {get; set;}
         }
 
         /// <summary>
-        /// Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted 
+        /// Deletes a clickwrap and all of its versions. Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ClickwrapVersionsDeleteResponse</returns>
         public ClickwrapVersionsDeleteResponse DeleteClickwrap(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapOptions options = null)
@@ -1611,94 +1571,27 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted 
+        /// Deletes a clickwrap and all of its versions. Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of ClickwrapVersionsDeleteResponse</returns>
         public ApiResponse<ClickwrapVersionsDeleteResponse> DeleteClickwrapWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapOptions options = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DeleteClickwrap");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->DeleteClickwrap");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-
-            if (options != null)
-            {
-                if (options.versions != null) localVarQueryParams.Add("versions", this.ApiClient.ParameterToString(options.versions)); // query parameter
-            }
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeleteClickwrap", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionsDeleteResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsDeleteResponse)));
-            }
-            
+            return DeleteClickwrapAsyncWithHttpInfo(accountId, clickwrapId, options)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted 
+        /// Deletes a clickwrap and all of its versions. Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapVersionsDeleteResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionsDeleteResponse> DeleteClickwrapAsync(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapOptions options = null)
@@ -1708,11 +1601,11 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted 
+        /// Deletes a clickwrap and all of its versions. Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionsDeleteResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionsDeleteResponse>> DeleteClickwrapAsyncWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapOptions options = null)
@@ -1775,21 +1668,20 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsDeleteResponse)));
-            
         }
 
 
 
         /// <summary>
-        /// Delete a Clickwrap version specified by versionId 
+        /// Deletes a clickwrap version by version ID. Deletes the clickwrap version specified by &#x60;versionId&#x60; of the clickwrap specified by &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>ClickwrapVersionDeleteResponse</returns>
         public ClickwrapVersionDeleteResponse DeleteClickwrapVersion(string accountId, string clickwrapId, string versionId)
         {
@@ -1798,95 +1690,28 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Delete a Clickwrap version specified by versionId 
+        /// Deletes a clickwrap version by version ID. Deletes the clickwrap version specified by &#x60;versionId&#x60; of the clickwrap specified by &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>ApiResponse of ClickwrapVersionDeleteResponse</returns>
         public ApiResponse<ClickwrapVersionDeleteResponse> DeleteClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, string versionId)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DeleteClickwrapVersion");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->DeleteClickwrapVersion");
-            // verify the required parameter 'versionId' is set
-            if (versionId == null)
-                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->DeleteClickwrapVersion");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
-
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeleteClickwrapVersion", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionDeleteResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionDeleteResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionDeleteResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionDeleteResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionDeleteResponse)));
-            }
-            
+            return DeleteClickwrapVersionAsyncWithHttpInfo(accountId, clickwrapId, versionId)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Delete a Clickwrap version specified by versionId 
+        /// Deletes a clickwrap version by version ID. Deletes the clickwrap version specified by &#x60;versionId&#x60; of the clickwrap specified by &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>Task of ClickwrapVersionDeleteResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionDeleteResponse> DeleteClickwrapVersionAsync(string accountId, string clickwrapId, string versionId)
         {
@@ -1895,12 +1720,12 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Delete a Clickwrap version specified by versionId 
+        /// Deletes a clickwrap version by version ID. Deletes the clickwrap version specified by &#x60;versionId&#x60; of the clickwrap specified by &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionDeleteResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionDeleteResponse>> DeleteClickwrapVersionAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId)
         {
@@ -1962,28 +1787,27 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionDeleteResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionDeleteResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionDeleteResponse)));
-            
         }
 
 
         /// <summary>
-        /// Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active. 
+        /// Deletes the versions of a clickwrap. Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         public class DeleteClickwrapVersionsOptions
         {
-            /// 
+            /// A comma-separated list of clickwrap version IDs to delete. 
             public string clickwrapVersionIds {get; set;}
         }
 
         /// <summary>
-        /// Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active. 
+        /// Deletes the versions of a clickwrap. Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ClickwrapVersionsDeleteResponse</returns>
         public ClickwrapVersionsDeleteResponse DeleteClickwrapVersions(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapVersionsOptions options = null)
@@ -1993,94 +1817,27 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active. 
+        /// Deletes the versions of a clickwrap. Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of ClickwrapVersionsDeleteResponse</returns>
         public ApiResponse<ClickwrapVersionsDeleteResponse> DeleteClickwrapVersionsWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapVersionsOptions options = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DeleteClickwrapVersions");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->DeleteClickwrapVersions");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-
-            if (options != null)
-            {
-                if (options.clickwrapVersionIds != null) localVarQueryParams.Add("clickwrapVersionIds", this.ApiClient.ParameterToString(options.clickwrapVersionIds)); // query parameter
-            }
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeleteClickwrapVersions", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionsDeleteResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsDeleteResponse)));
-            }
-            
+            return DeleteClickwrapVersionsAsyncWithHttpInfo(accountId, clickwrapId, options)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active. 
+        /// Deletes the versions of a clickwrap. Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapVersionsDeleteResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionsDeleteResponse> DeleteClickwrapVersionsAsync(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapVersionsOptions options = null)
@@ -2090,11 +1847,11 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active. 
+        /// Deletes the versions of a clickwrap. Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionsDeleteResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionsDeleteResponse>> DeleteClickwrapVersionsAsyncWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapVersionsOptions options = null)
@@ -2157,27 +1914,26 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsDeleteResponse)));
-            
         }
 
 
         /// <summary>
-        /// Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps. 
+        /// Deletes clickwraps for an account. Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         public class DeleteClickwrapsOptions
         {
-            /// 
+            /// A comma-separated list of clickwrap IDs to delete. 
             public string clickwrapIds {get; set;}
         }
 
         /// <summary>
-        /// Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps. 
+        /// Deletes clickwraps for an account. Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ClickwrapsDeleteResponse</returns>
         public ClickwrapsDeleteResponse DeleteClickwraps(string accountId, AccountsApi.DeleteClickwrapsOptions options = null)
@@ -2187,88 +1943,25 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps. 
+        /// Deletes clickwraps for an account. Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of ClickwrapsDeleteResponse</returns>
         public ApiResponse<ClickwrapsDeleteResponse> DeleteClickwrapsWithHttpInfo(string accountId, AccountsApi.DeleteClickwrapsOptions options = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DeleteClickwraps");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-
-            if (options != null)
-            {
-                if (options.clickwrapIds != null) localVarQueryParams.Add("clickwrapIds", this.ApiClient.ParameterToString(options.clickwrapIds)); // query parameter
-            }
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeleteClickwraps", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapsDeleteResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapsDeleteResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapsDeleteResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapsDeleteResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapsDeleteResponse)));
-            }
-            
+            return DeleteClickwrapsAsyncWithHttpInfo(accountId, options)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps. 
+        /// Deletes clickwraps for an account. Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapsDeleteResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapsDeleteResponse> DeleteClickwrapsAsync(string accountId, AccountsApi.DeleteClickwrapsOptions options = null)
@@ -2278,10 +1971,10 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps. 
+        /// Deletes clickwraps for an account. Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapsDeleteResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapsDeleteResponse>> DeleteClickwrapsAsyncWithHttpInfo(string accountId, AccountsApi.DeleteClickwrapsOptions options = null)
@@ -2340,21 +2033,20 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapsDeleteResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapsDeleteResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapsDeleteResponse)));
-            
         }
 
 
 
         /// <summary>
-        /// Gets the agreement by a provided agreement ID 
+        /// Gets a specific agreement for a specified clickwrap. Gets the agreement specified by &#x60;agreementId&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <returns>UserAgreementResponse</returns>
         public UserAgreementResponse GetAgreement(string accountId, string clickwrapId, string agreementId)
         {
@@ -2363,95 +2055,28 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the agreement by a provided agreement ID 
+        /// Gets a specific agreement for a specified clickwrap. Gets the agreement specified by &#x60;agreementId&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <returns>ApiResponse of UserAgreementResponse</returns>
         public ApiResponse<UserAgreementResponse> GetAgreementWithHttpInfo(string accountId, string clickwrapId, string agreementId)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetAgreement");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetAgreement");
-            // verify the required parameter 'agreementId' is set
-            if (agreementId == null)
-                throw new ApiException(400, "Missing required parameter 'agreementId' when calling AccountsApi->GetAgreement");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/agreements/{agreementId}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-            if (agreementId != null) localVarPathParams.Add("agreementId", this.ApiClient.ParameterToString(agreementId)); // path parameter
-
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAgreement", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<UserAgreementResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(UserAgreementResponse)));
-            }
-            else
-            {
-                return new ApiResponse<UserAgreementResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse, typeof(UserAgreementResponse)));
-            }
-            
+            return GetAgreementAsyncWithHttpInfo(accountId, clickwrapId, agreementId)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Gets the agreement by a provided agreement ID 
+        /// Gets a specific agreement for a specified clickwrap. Gets the agreement specified by &#x60;agreementId&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <returns>Task of UserAgreementResponse</returns>
         public async System.Threading.Tasks.Task<UserAgreementResponse> GetAgreementAsync(string accountId, string clickwrapId, string agreementId)
         {
@@ -2460,12 +2085,12 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the agreement by a provided agreement ID 
+        /// Gets a specific agreement for a specified clickwrap. Gets the agreement specified by &#x60;agreementId&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <returns>Task of ApiResponse (UserAgreementResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<UserAgreementResponse>> GetAgreementAsyncWithHttpInfo(string accountId, string clickwrapId, string agreementId)
         {
@@ -2527,22 +2152,21 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<UserAgreementResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<UserAgreementResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse, typeof(UserAgreementResponse)));
-            
         }
 
 
 
         /// <summary>
-        /// Downloads a document at an order within the agreement. 
+        /// Downloads a document at an order within the agreement. Downloads a specific document from the agreement presented to the user.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.sign&#x60;
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="orderOrDisclosure"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="orderOrDisclosure">The order of the document or consumer_disclosure.</param>
         /// <returns>Document</returns>
         public Document GetAgreementDocument(string accountId, string clickwrapId, string versionId, string orderOrDisclosure)
         {
@@ -2551,101 +2175,30 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Downloads a document at an order within the agreement. 
+        /// Downloads a document at an order within the agreement. Downloads a specific document from the agreement presented to the user.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.sign&#x60;
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="orderOrDisclosure"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="orderOrDisclosure">The order of the document or consumer_disclosure.</param>
         /// <returns>ApiResponse of Document</returns>
         public ApiResponse<Document> GetAgreementDocumentWithHttpInfo(string accountId, string clickwrapId, string versionId, string orderOrDisclosure)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetAgreementDocument");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetAgreementDocument");
-            // verify the required parameter 'versionId' is set
-            if (versionId == null)
-                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->GetAgreementDocument");
-            // verify the required parameter 'orderOrDisclosure' is set
-            if (orderOrDisclosure == null)
-                throw new ApiException(400, "Missing required parameter 'orderOrDisclosure' when calling AccountsApi->GetAgreementDocument");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}/documents/{orderOrDisclosure}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
-            if (orderOrDisclosure != null) localVarPathParams.Add("orderOrDisclosure", this.ApiClient.ParameterToString(orderOrDisclosure)); // path parameter
-
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAgreementDocument", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<Document>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (Document)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(Document)));
-            }
-            else
-            {
-                return new ApiResponse<Document>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (Document)this.ApiClient.Deserialize(localVarResponse, typeof(Document)));
-            }
-            
+            return GetAgreementDocumentAsyncWithHttpInfo(accountId, clickwrapId, versionId, orderOrDisclosure)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Downloads a document at an order within the agreement. 
+        /// Downloads a document at an order within the agreement. Downloads a specific document from the agreement presented to the user.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.sign&#x60;
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="orderOrDisclosure"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="orderOrDisclosure">The order of the document or consumer_disclosure.</param>
         /// <returns>Task of Document</returns>
         public async System.Threading.Tasks.Task<Document> GetAgreementDocumentAsync(string accountId, string clickwrapId, string versionId, string orderOrDisclosure)
         {
@@ -2654,13 +2207,13 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Downloads a document at an order within the agreement. 
+        /// Downloads a document at an order within the agreement. Downloads a specific document from the agreement presented to the user.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.sign&#x60;
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="orderOrDisclosure"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="orderOrDisclosure">The order of the document or consumer_disclosure.</param>
         /// <returns>Task of ApiResponse (Document)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Document>> GetAgreementDocumentAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId, string orderOrDisclosure)
         {
@@ -2726,29 +2279,28 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Document>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<Document>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (Document)this.ApiClient.Deserialize(localVarResponse, typeof(Document)));
-            
         }
 
 
         /// <summary>
-        /// Downloads the agreement PDF and optionally certificate of completion. 
+        /// Gets the completed user agreement PDF. Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </summary>
         public class GetAgreementPdfOptions
         {
-            /// 
+            /// When **true,** the Certificate of Completion will be appended to the PDF. The default value is **false.** 
             public string includeCoc {get; set;}
         }
 
         /// <summary>
-        /// Downloads the agreement PDF and optionally certificate of completion. 
+        /// Gets the completed user agreement PDF. Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream GetAgreementPdf(string accountId, string clickwrapId, string agreementId, AccountsApi.GetAgreementPdfOptions options = null)
@@ -2758,100 +2310,29 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Downloads the agreement PDF and optionally certificate of completion. 
+        /// Gets the completed user agreement PDF. Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         public ApiResponse<System.IO.Stream> GetAgreementPdfWithHttpInfo(string accountId, string clickwrapId, string agreementId, AccountsApi.GetAgreementPdfOptions options = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetAgreementPdf");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetAgreementPdf");
-            // verify the required parameter 'agreementId' is set
-            if (agreementId == null)
-                throw new ApiException(400, "Missing required parameter 'agreementId' when calling AccountsApi->GetAgreementPdf");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/agreements/{agreementId}/download";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/pdf"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-            if (agreementId != null) localVarPathParams.Add("agreementId", this.ApiClient.ParameterToString(agreementId)); // path parameter
-
-            if (options != null)
-            {
-                if (options.includeCoc != null) localVarQueryParams.Add("include_coc", this.ApiClient.ParameterToString(options.includeCoc)); // query parameter
-            }
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAgreementPdf", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<System.IO.Stream>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (System.IO.Stream)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(System.IO.Stream)));
-            }
-            else
-            {
-                return new ApiResponse<System.IO.Stream>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (System.IO.Stream)this.ApiClient.Deserialize(localVarResponse, typeof(System.IO.Stream)));
-            }
-            
+            return GetAgreementPdfAsyncWithHttpInfo(accountId, clickwrapId, agreementId, options)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Downloads the agreement PDF and optionally certificate of completion. 
+        /// Gets the completed user agreement PDF. Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of System.IO.Stream</returns>
         public async System.Threading.Tasks.Task<System.IO.Stream> GetAgreementPdfAsync(string accountId, string clickwrapId, string agreementId, AccountsApi.GetAgreementPdfOptions options = null)
@@ -2861,12 +2342,12 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Downloads the agreement PDF and optionally certificate of completion. 
+        /// Gets the completed user agreement PDF. Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="agreementId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="agreementId">The agreement ID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> GetAgreementPdfAsyncWithHttpInfo(string accountId, string clickwrapId, string agreementId, AccountsApi.GetAgreementPdfOptions options = null)
@@ -2933,20 +2414,19 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<System.IO.Stream>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<System.IO.Stream>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (System.IO.Stream)this.ApiClient.Deserialize(localVarResponse, typeof(System.IO.Stream)));
-            
         }
 
 
 
         /// <summary>
-        /// Gets the clickwrap for an account specified by clickwrapId 
+        /// Gets a  single clickwrap object. Retrieves the definition of the specified clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>ClickwrapVersionResponse</returns>
         public ClickwrapVersionResponse GetClickwrap(string accountId, string clickwrapId)
         {
@@ -2955,89 +2435,26 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the clickwrap for an account specified by clickwrapId 
+        /// Gets a  single clickwrap object. Retrieves the definition of the specified clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>ApiResponse of ClickwrapVersionResponse</returns>
         public ApiResponse<ClickwrapVersionResponse> GetClickwrapWithHttpInfo(string accountId, string clickwrapId)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrap");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrap");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetClickwrap", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionResponse)));
-            }
-            
+            return GetClickwrapAsyncWithHttpInfo(accountId, clickwrapId)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Gets the clickwrap for an account specified by clickwrapId 
+        /// Gets a  single clickwrap object. Retrieves the definition of the specified clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>Task of ClickwrapVersionResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionResponse> GetClickwrapAsync(string accountId, string clickwrapId)
         {
@@ -3046,11 +2463,11 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the clickwrap for an account specified by clickwrapId 
+        /// Gets a  single clickwrap object. Retrieves the definition of the specified clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionResponse>> GetClickwrapAsyncWithHttpInfo(string accountId, string clickwrapId)
         {
@@ -3108,36 +2525,35 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionResponse)));
-            
         }
 
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap 
+        /// Get user agreements Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         public class GetClickwrapAgreementsOptions
         {
-            /// 
+            /// The client user ID to filter to a single user&#39;s agreements. 
             public string clientUserId {get; set;}
-            /// 
+            /// The earliest date to return agreements from. 
             public string fromDate {get; set;}
-            /// 
+            /// The results for this endpoint are paginated. Use this parameter to indicate which page to return. The &#x60;minimumPagesRemaining&#x60; value in the response indicates whether to continue querying for additional pages.  For example, if the page size is 40: * If this property is set to 0 (the default), the endpoint returns results 1-40. * If this property is set to 1, the endpoint returns results 41-80.  The default value is 0.  
             public string pageNumber {get; set;}
-            /// 
+            /// User agreement status. One of:  - &#x60;created&#x60; - &#x60;agreed&#x60; - &#x60;declined&#x60; 
             public string status {get; set;}
-            /// 
+            /// The latest date to return agreements from. 
             public string toDate {get; set;}
         }
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap 
+        /// Get user agreements Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ClickwrapAgreementsResponse</returns>
         public ClickwrapAgreementsResponse GetClickwrapAgreements(string accountId, string clickwrapId, AccountsApi.GetClickwrapAgreementsOptions options = null)
@@ -3147,98 +2563,27 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap 
+        /// Get user agreements Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of ClickwrapAgreementsResponse</returns>
         public ApiResponse<ClickwrapAgreementsResponse> GetClickwrapAgreementsWithHttpInfo(string accountId, string clickwrapId, AccountsApi.GetClickwrapAgreementsOptions options = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrapAgreements");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapAgreements");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/users";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-
-            if (options != null)
-            {
-                if (options.clientUserId != null) localVarQueryParams.Add("client_user_id", this.ApiClient.ParameterToString(options.clientUserId)); // query parameter
-                if (options.fromDate != null) localVarQueryParams.Add("from_date", this.ApiClient.ParameterToString(options.fromDate)); // query parameter
-                if (options.pageNumber != null) localVarQueryParams.Add("page_number", this.ApiClient.ParameterToString(options.pageNumber)); // query parameter
-                if (options.status != null) localVarQueryParams.Add("status", this.ApiClient.ParameterToString(options.status)); // query parameter
-                if (options.toDate != null) localVarQueryParams.Add("to_date", this.ApiClient.ParameterToString(options.toDate)); // query parameter
-            }
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetClickwrapAgreements", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapAgreementsResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapAgreementsResponse)));
-            }
-            
+            return GetClickwrapAgreementsAsyncWithHttpInfo(accountId, clickwrapId, options)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap 
+        /// Get user agreements Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapAgreementsResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapAgreementsResponse> GetClickwrapAgreementsAsync(string accountId, string clickwrapId, AccountsApi.GetClickwrapAgreementsOptions options = null)
@@ -3248,11 +2593,11 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap 
+        /// Get user agreements Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapAgreementsResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapAgreementsResponse>> GetClickwrapAgreementsAsyncWithHttpInfo(string accountId, string clickwrapId, AccountsApi.GetClickwrapAgreementsOptions options = null)
@@ -3319,21 +2664,20 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapAgreementsResponse)));
-            
         }
 
 
 
         /// <summary>
-        /// Gets the Clickwrap version by clickwrapId and versionId for an account 
+        /// Gets a specific version of a clickwrap by version ID. Gets the version specified by &#x60;versionId&#x60;  from the clickwrap &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>ClickwrapVersionResponse</returns>
         public ClickwrapVersionResponse GetClickwrapVersion(string accountId, string clickwrapId, string versionId)
         {
@@ -3342,95 +2686,28 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the Clickwrap version by clickwrapId and versionId for an account 
+        /// Gets a specific version of a clickwrap by version ID. Gets the version specified by &#x60;versionId&#x60;  from the clickwrap &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>ApiResponse of ClickwrapVersionResponse</returns>
         public ApiResponse<ClickwrapVersionResponse> GetClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, string versionId)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrapVersion");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapVersion");
-            // verify the required parameter 'versionId' is set
-            if (versionId == null)
-                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->GetClickwrapVersion");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
-
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetClickwrapVersion", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionResponse)));
-            }
-            
+            return GetClickwrapVersionAsyncWithHttpInfo(accountId, clickwrapId, versionId)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Gets the Clickwrap version by clickwrapId and versionId for an account 
+        /// Gets a specific version of a clickwrap by version ID. Gets the version specified by &#x60;versionId&#x60;  from the clickwrap &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>Task of ClickwrapVersionResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionResponse> GetClickwrapVersionAsync(string accountId, string clickwrapId, string versionId)
         {
@@ -3439,12 +2716,12 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the Clickwrap version by clickwrapId and versionId for an account 
+        /// Gets a specific version of a clickwrap by version ID. Gets the version specified by &#x60;versionId&#x60;  from the clickwrap &#x60;clickwrapId&#x60;.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionResponse>> GetClickwrapVersionAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId)
         {
@@ -3506,37 +2783,36 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionResponse)));
-            
         }
 
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap version 
+        /// Gets the agreement responses for a clickwrap version by version ID. Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         public class GetClickwrapVersionAgreementsOptions
         {
-            /// 
+            /// The client user ID to filter to a single user&#39;s agreements. 
             public string clientUserId {get; set;}
-            /// 
+            /// The earliest date to return agreements from. 
             public string fromDate {get; set;}
-            /// 
+            /// The results for this endpoint are paginated. Use this parameter to indicate which page to return. The &#x60;minimumPagesRemaining&#x60; value in the response indicates whether to continue querying for additional pages.  For example, if the page size is 40: * If this property is set to 0 (the default), the endpoint returns results 1-40. * If this property is set to 1, the endpoint returns results 41-80.  The default value is 0.  
             public string pageNumber {get; set;}
-            /// 
+            /// User agreement status. One of:  - &#x60;created&#x60; - &#x60;agreed&#x60; - &#x60;declined&#x60; 
             public string status {get; set;}
-            /// 
+            /// The latest date to return agreements from. 
             public string toDate {get; set;}
         }
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap version 
+        /// Gets the agreement responses for a clickwrap version by version ID. Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ClickwrapAgreementsResponse</returns>
         public ClickwrapAgreementsResponse GetClickwrapVersionAgreements(string accountId, string clickwrapId, string versionId, AccountsApi.GetClickwrapVersionAgreementsOptions options = null)
@@ -3546,104 +2822,29 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap version 
+        /// Gets the agreement responses for a clickwrap version by version ID. Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of ClickwrapAgreementsResponse</returns>
         public ApiResponse<ClickwrapAgreementsResponse> GetClickwrapVersionAgreementsWithHttpInfo(string accountId, string clickwrapId, string versionId, AccountsApi.GetClickwrapVersionAgreementsOptions options = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrapVersionAgreements");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapVersionAgreements");
-            // verify the required parameter 'versionId' is set
-            if (versionId == null)
-                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->GetClickwrapVersionAgreements");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}/users";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
-
-            if (options != null)
-            {
-                if (options.clientUserId != null) localVarQueryParams.Add("client_user_id", this.ApiClient.ParameterToString(options.clientUserId)); // query parameter
-                if (options.fromDate != null) localVarQueryParams.Add("from_date", this.ApiClient.ParameterToString(options.fromDate)); // query parameter
-                if (options.pageNumber != null) localVarQueryParams.Add("page_number", this.ApiClient.ParameterToString(options.pageNumber)); // query parameter
-                if (options.status != null) localVarQueryParams.Add("status", this.ApiClient.ParameterToString(options.status)); // query parameter
-                if (options.toDate != null) localVarQueryParams.Add("to_date", this.ApiClient.ParameterToString(options.toDate)); // query parameter
-            }
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetClickwrapVersionAgreements", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapAgreementsResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapAgreementsResponse)));
-            }
-            
+            return GetClickwrapVersionAgreementsAsyncWithHttpInfo(accountId, clickwrapId, versionId, options)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap version 
+        /// Gets the agreement responses for a clickwrap version by version ID. Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapAgreementsResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapAgreementsResponse> GetClickwrapVersionAgreementsAsync(string accountId, string clickwrapId, string versionId, AccountsApi.GetClickwrapVersionAgreementsOptions options = null)
@@ -3653,12 +2854,12 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the agreement responses for a clickwrap version 
+        /// Gets the agreement responses for a clickwrap version by version ID. Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapAgreementsResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapAgreementsResponse>> GetClickwrapVersionAgreementsAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId, AccountsApi.GetClickwrapVersionAgreementsOptions options = null)
@@ -3729,20 +2930,19 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapAgreementsResponse)));
-            
         }
 
 
 
         /// <summary>
-        /// Gets all the versions of a clickwrap for an account 
+        /// Gets all the versions of a clickwrap. Gets all the versions of a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>ClickwrapVersionsPagedResponse</returns>
         public ClickwrapVersionsPagedResponse GetClickwrapVersions(string accountId, string clickwrapId)
         {
@@ -3751,89 +2951,26 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets all the versions of a clickwrap for an account 
+        /// Gets all the versions of a clickwrap. Gets all the versions of a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>ApiResponse of ClickwrapVersionsPagedResponse</returns>
         public ApiResponse<ClickwrapVersionsPagedResponse> GetClickwrapVersionsWithHttpInfo(string accountId, string clickwrapId)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrapVersions");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapVersions");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetClickwrapVersions", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionsPagedResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionsPagedResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionsPagedResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionsPagedResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionsPagedResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsPagedResponse)));
-            }
-            
+            return GetClickwrapVersionsAsyncWithHttpInfo(accountId, clickwrapId)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Gets all the versions of a clickwrap for an account 
+        /// Gets all the versions of a clickwrap. Gets all the versions of a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>Task of ClickwrapVersionsPagedResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionsPagedResponse> GetClickwrapVersionsAsync(string accountId, string clickwrapId)
         {
@@ -3842,11 +2979,11 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets all the versions of a clickwrap for an account 
+        /// Gets all the versions of a clickwrap. Gets all the versions of a clickwrap for an account.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionsPagedResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionsPagedResponse>> GetClickwrapVersionsAsyncWithHttpInfo(string accountId, string clickwrapId)
         {
@@ -3904,39 +3041,38 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionsPagedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionsPagedResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionsPagedResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsPagedResponse)));
-            
         }
 
 
         /// <summary>
-        /// Gets the Clickwraps for an account 
+        /// Gets all the clickwraps for a user. Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
         /// </summary>
         public class GetClickwrapsOptions
         {
-            /// 
+            /// Names of columns by which to filter and values to match on. 
             public string filter {get; set;}
-            /// 
+            /// The earliest date to return clickwraps from. 
             public string fromDate {get; set;}
-            /// 
+            /// The name of the clickwraps to return. 
             public string name {get; set;}
-            /// 
+            /// The user ID of the owner. 
             public string ownerUserId {get; set;}
-            /// 
+            /// The results for this endpoint are paginated. Use this parameter to indicate which page to return. The &#x60;minimumPagesRemaining&#x60; value in the response indicates whether to continue querying for additional pages.  For example, if the page size is 40: * If this property is set to 0 (the default), the endpoint returns results 1-40. * If this property is set to 1, the endpoint returns results 41-80.  The default value is 0.  
             public string pageNumber {get; set;}
-            /// 
+            /// The status of the clickwraps to filter by. One of:  - &#x60;active&#x60; - &#x60;inactive&#x60;   
             public string status {get; set;}
-            /// 
+            /// The latest date to return clickwraps from. 
             public string toDate {get; set;}
         }
 
         /// <summary>
-        /// Gets the Clickwraps for an account 
+        /// Gets all the clickwraps for a user. Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ClickwrapVersionsResponse</returns>
         public ClickwrapVersionsResponse GetClickwraps(string accountId, AccountsApi.GetClickwrapsOptions options = null)
@@ -3946,94 +3082,25 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the Clickwraps for an account 
+        /// Gets all the clickwraps for a user. Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>ApiResponse of ClickwrapVersionsResponse</returns>
         public ApiResponse<ClickwrapVersionsResponse> GetClickwrapsWithHttpInfo(string accountId, AccountsApi.GetClickwrapsOptions options = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwraps");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-
-            if (options != null)
-            {
-                if (options.filter != null) localVarQueryParams.Add("filter", this.ApiClient.ParameterToString(options.filter)); // query parameter
-                if (options.fromDate != null) localVarQueryParams.Add("from_date", this.ApiClient.ParameterToString(options.fromDate)); // query parameter
-                if (options.name != null) localVarQueryParams.Add("name", this.ApiClient.ParameterToString(options.name)); // query parameter
-                if (options.ownerUserId != null) localVarQueryParams.Add("ownerUserId", this.ApiClient.ParameterToString(options.ownerUserId)); // query parameter
-                if (options.pageNumber != null) localVarQueryParams.Add("page_number", this.ApiClient.ParameterToString(options.pageNumber)); // query parameter
-                if (options.status != null) localVarQueryParams.Add("status", this.ApiClient.ParameterToString(options.status)); // query parameter
-                if (options.toDate != null) localVarQueryParams.Add("to_date", this.ApiClient.ParameterToString(options.toDate)); // query parameter
-            }
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetClickwraps", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionsResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionsResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionsResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionsResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsResponse)));
-            }
-            
+            return GetClickwrapsAsyncWithHttpInfo(accountId, options)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Gets the Clickwraps for an account 
+        /// Gets all the clickwraps for a user. Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ClickwrapVersionsResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionsResponse> GetClickwrapsAsync(string accountId, AccountsApi.GetClickwrapsOptions options = null)
@@ -4043,10 +3110,10 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Gets the Clickwraps for an account 
+        /// Gets all the clickwraps for a user. Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
         /// <param name="options">Options for modifying the behavior of the function.</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionsResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionsResponse>> GetClickwrapsAsyncWithHttpInfo(string accountId, AccountsApi.GetClickwrapsOptions options = null)
@@ -4111,16 +3178,15 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionsResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionsResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsResponse)));
-            
         }
 
 
 
         /// <summary>
-        /// Provides base service and version access information. 
+        /// Gets the current version and other information about the Click API. The response includes information about the Click API, including the service version, build version, and linked sites.  This method does not require authentication.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ServiceInformation</returns>
@@ -4131,75 +3197,20 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Provides base service and version access information. 
+        /// Gets the current version and other information about the Click API. The response includes information about the Click API, including the service version, build version, and linked sites.  This method does not require authentication.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ServiceInformation</returns>
         public ApiResponse<ServiceInformation> GetServiceInformationWithHttpInfo()
         {
-
-            var localVarPath = "/service_information";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-
-
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetServiceInformation", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ServiceInformation>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ServiceInformation)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ServiceInformation)));
-            }
-            else
-            {
-                return new ApiResponse<ServiceInformation>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ServiceInformation)this.ApiClient.Deserialize(localVarResponse, typeof(ServiceInformation)));
-            }
-            
+            return GetServiceInformationAsyncWithHttpInfo()
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Provides base service and version access information. 
+        /// Gets the current version and other information about the Click API. The response includes information about the Click API, including the service version, build version, and linked sites.  This method does not require authentication.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ServiceInformation</returns>
@@ -4210,7 +3221,7 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Provides base service and version access information. 
+        /// Gets the current version and other information about the Click API. The response includes information about the Click API, including the service version, build version, and linked sites.  This method does not require authentication.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (ServiceInformation)</returns>
@@ -4262,21 +3273,20 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ServiceInformation>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ServiceInformation>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ServiceInformation)this.ApiClient.Deserialize(localVarResponse, typeof(ServiceInformation)));
-            
         }
 
 
 
         /// <summary>
-        /// Updates the clickwrap specified by clickwrapId 
+        /// Update a clickwrap by ID. Update a subset of properties on the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapTransferRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapTransferRequest">Data used to transfer a clickwrap from one user to another. (optional)</param>
         /// <returns>ClickwrapVersionSummaryResponse</returns>
         public ClickwrapVersionSummaryResponse UpdateClickwrap(string accountId, string clickwrapId, ClickwrapTransferRequest clickwrapTransferRequest = null)
         {
@@ -4285,99 +3295,28 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Updates the clickwrap specified by clickwrapId 
+        /// Update a clickwrap by ID. Update a subset of properties on the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapTransferRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapTransferRequest">Data used to transfer a clickwrap from one user to another. (optional)</param>
         /// <returns>ApiResponse of ClickwrapVersionSummaryResponse</returns>
         public ApiResponse<ClickwrapVersionSummaryResponse> UpdateClickwrapWithHttpInfo(string accountId, string clickwrapId, ClickwrapTransferRequest clickwrapTransferRequest = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->UpdateClickwrap");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->UpdateClickwrap");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-
-
-            if (clickwrapTransferRequest != null && clickwrapTransferRequest.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.ApiClient.Serialize(clickwrapTransferRequest); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = clickwrapTransferRequest; // byte array
-            }
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Put, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateClickwrap", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionSummaryResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
-            }
-            
+            return UpdateClickwrapAsyncWithHttpInfo(accountId, clickwrapId, clickwrapTransferRequest)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Updates the clickwrap specified by clickwrapId 
+        /// Update a clickwrap by ID. Update a subset of properties on the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapTransferRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapTransferRequest">Data used to transfer a clickwrap from one user to another. (optional)</param>
         /// <returns>Task of ClickwrapVersionSummaryResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionSummaryResponse> UpdateClickwrapAsync(string accountId, string clickwrapId, ClickwrapTransferRequest clickwrapTransferRequest = null)
         {
@@ -4386,12 +3325,12 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Updates the clickwrap specified by clickwrapId 
+        /// Update a clickwrap by ID. Update a subset of properties on the clickwrap.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="clickwrapTransferRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="clickwrapTransferRequest">Data used to transfer a clickwrap from one user to another. (optional)</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionSummaryResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionSummaryResponse>> UpdateClickwrapAsyncWithHttpInfo(string accountId, string clickwrapId, ClickwrapTransferRequest clickwrapTransferRequest = null)
         {
@@ -4457,22 +3396,21 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
-            
         }
 
 
 
         /// <summary>
-        /// Updates the clickwrap version specified by versionId 
+        /// Updates clickwrap version status and ownership. Updates the clickwrap version status and ownership by transferring from previous user ID to new user ID.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>ClickwrapVersionSummaryResponse</returns>
         public ClickwrapVersionSummaryResponse UpdateClickwrapVersion(string accountId, string clickwrapId, string versionId, ClickwrapRequest clickwrapRequest = null)
         {
@@ -4481,105 +3419,30 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Updates the clickwrap version specified by versionId 
+        /// Updates clickwrap version status and ownership. Updates the clickwrap version status and ownership by transferring from previous user ID to new user ID.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>ApiResponse of ClickwrapVersionSummaryResponse</returns>
         public ApiResponse<ClickwrapVersionSummaryResponse> UpdateClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, string versionId, ClickwrapRequest clickwrapRequest = null)
         {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->UpdateClickwrapVersion");
-            // verify the required parameter 'clickwrapId' is set
-            if (clickwrapId == null)
-                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->UpdateClickwrapVersion");
-            // verify the required parameter 'versionId' is set
-            if (versionId == null)
-                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->UpdateClickwrapVersion");
-
-            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new List<FileParameter>();
-            Object localVarPostBody = null;
-            String localVarHttpContentDisposition = string.Empty;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
-            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
-            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
-
-
-            if (clickwrapRequest != null && clickwrapRequest.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.ApiClient.Serialize(clickwrapRequest); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = clickwrapRequest; // byte array
-            }
-
-            // authentication (docusignAccessCode) required
-            // oauth required
-            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
-            {
-                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
-            }
-
-            // make the HTTP request
-            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Put, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
-            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateClickwrapVersion", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            
-            // DocuSign: Handle for PDF return types
-            if (localVarResponse.ContentType != null && !localVarResponse.ContentType.ToLower().Contains("json"))
-            {
-                return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse.RawBytes, typeof(ClickwrapVersionSummaryResponse)));
-            }
-            else
-            {
-                return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
-            }
-            
+            return UpdateClickwrapVersionAsyncWithHttpInfo(accountId, clickwrapId, versionId, clickwrapRequest)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
         }
 
         /// <summary>
-        /// Updates the clickwrap version specified by versionId 
+        /// Updates clickwrap version status and ownership. Updates the clickwrap version status and ownership by transferring from previous user ID to new user ID.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ClickwrapVersionSummaryResponse</returns>
         public async System.Threading.Tasks.Task<ClickwrapVersionSummaryResponse> UpdateClickwrapVersionAsync(string accountId, string clickwrapId, string versionId, ClickwrapRequest clickwrapRequest = null)
         {
@@ -4588,13 +3451,13 @@ namespace DocuSign.Click.Api
         }
 
         /// <summary>
-        /// Updates the clickwrap version specified by versionId 
+        /// Updates clickwrap version status and ownership. Updates the clickwrap version status and ownership by transferring from previous user ID to new user ID.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
         /// </summary>
         /// <exception cref="DocuSign.Click.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="clickwrapId"></param>
-        /// <param name="versionId"></param>
-        /// <param name="clickwrapRequest"> (optional)</param>
+        /// <param name="accountId">The external account number (int) or account ID GUID.</param>
+        /// <param name="clickwrapId">The ID of the clickwrap.</param>
+        /// <param name="versionId">The ID of the clickwrap version.</param>
+        /// <param name="clickwrapRequest">Request body for working with clickwrap. (optional)</param>
         /// <returns>Task of ApiResponse (ClickwrapVersionSummaryResponse)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<ClickwrapVersionSummaryResponse>> UpdateClickwrapVersionAsyncWithHttpInfo(string accountId, string clickwrapId, string versionId, ClickwrapRequest clickwrapRequest = null)
         {
@@ -4664,10 +3527,9 @@ namespace DocuSign.Click.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
-            
         }
 
     }

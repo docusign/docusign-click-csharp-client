@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -38,11 +38,11 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ClickwrapAgreementsResponse" /> class.
         /// </summary>
-        /// <param name="BeginCreatedOn">BeginCreatedOn.</param>
-        /// <param name="MinimumPagesRemaining">MinimumPagesRemaining.</param>
-        /// <param name="Page">Page.</param>
-        /// <param name="PageSize">PageSize.</param>
-        /// <param name="UserAgreements">UserAgreements.</param>
+        /// <param name="BeginCreatedOn">User agreements from this datetime..</param>
+        /// <param name="MinimumPagesRemaining">Number of pages remaining in the response..</param>
+        /// <param name="Page">The number of the current page..</param>
+        /// <param name="PageSize">The number of items per page..</param>
+        /// <param name="UserAgreements">An array of user agreements..</param>
         public ClickwrapAgreementsResponse(Object BeginCreatedOn = default(Object), int? MinimumPagesRemaining = default(int?), int? Page = default(int?), int? PageSize = default(int?), List<UserAgreementResponse> UserAgreements = default(List<UserAgreementResponse>))
         {
             this.BeginCreatedOn = BeginCreatedOn;
@@ -53,28 +53,33 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets BeginCreatedOn
+        /// User agreements from this datetime.
         /// </summary>
+        /// <value>User agreements from this datetime.</value>
         [DataMember(Name="beginCreatedOn", EmitDefaultValue=false)]
         public Object BeginCreatedOn { get; set; }
         /// <summary>
-        /// Gets or Sets MinimumPagesRemaining
+        /// Number of pages remaining in the response.
         /// </summary>
+        /// <value>Number of pages remaining in the response.</value>
         [DataMember(Name="minimumPagesRemaining", EmitDefaultValue=false)]
         public int? MinimumPagesRemaining { get; set; }
         /// <summary>
-        /// Gets or Sets Page
+        /// The number of the current page.
         /// </summary>
+        /// <value>The number of the current page.</value>
         [DataMember(Name="page", EmitDefaultValue=false)]
         public int? Page { get; set; }
         /// <summary>
-        /// Gets or Sets PageSize
+        /// The number of items per page.
         /// </summary>
+        /// <value>The number of items per page.</value>
         [DataMember(Name="pageSize", EmitDefaultValue=false)]
         public int? PageSize { get; set; }
         /// <summary>
-        /// Gets or Sets UserAgreements
+        /// An array of user agreements.
         /// </summary>
+        /// <value>An array of user agreements.</value>
         [DataMember(Name="userAgreements", EmitDefaultValue=false)]
         public List<UserAgreementResponse> UserAgreements { get; set; }
         /// <summary>

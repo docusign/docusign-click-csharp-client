@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -38,23 +38,23 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ClickwrapVersionResponse" /> class.
         /// </summary>
-        /// <param name="AccountId">AccountId.</param>
-        /// <param name="ClickwrapId">ClickwrapId.</param>
-        /// <param name="ClickwrapName">ClickwrapName.</param>
-        /// <param name="ClickwrapVersionId">ClickwrapVersionId.</param>
-        /// <param name="CreatedTime">CreatedTime.</param>
-        /// <param name="DataFields">DataFields.</param>
-        /// <param name="DisplaySettings">DisplaySettings.</param>
-        /// <param name="Documents">Documents.</param>
-        /// <param name="LastModified">LastModified.</param>
-        /// <param name="LastModifiedBy">LastModifiedBy.</param>
-        /// <param name="OwnerUserId">OwnerUserId.</param>
-        /// <param name="RequireReacceptance">RequireReacceptance.</param>
-        /// <param name="ScheduledDate">ScheduledDate.</param>
-        /// <param name="ScheduledReacceptance">ScheduledReacceptance.</param>
-        /// <param name="Status">Status.</param>
-        /// <param name="VersionId">VersionId.</param>
-        /// <param name="VersionNumber">VersionNumber.</param>
+        /// <param name="AccountId">The external account number (int) or account ID GUID..</param>
+        /// <param name="ClickwrapId">The ID of the clickwrap..</param>
+        /// <param name="ClickwrapName">The name of the clickwrap..</param>
+        /// <param name="ClickwrapVersionId">The unique version ID, a GUID, of this clickwrap version..</param>
+        /// <param name="CreatedTime">The time that the clickwrap was created..</param>
+        /// <param name="DataFields">The list of all the data fields available for the clickwrap (custom fields and standard fields)..</param>
+        /// <param name="DisplaySettings">Display settings for a clickwrap..</param>
+        /// <param name="Documents">An array of documents..</param>
+        /// <param name="LastModified">The time that the clickwrap was last modified..</param>
+        /// <param name="LastModifiedBy">The user ID of the last user who modified this clickwrap..</param>
+        /// <param name="OwnerUserId">The user ID of the owner of this clickwrap..</param>
+        /// <param name="RequireReacceptance">When **true,** requires signers who have previously agreed to this clickwrap to sign again. The version number is incremented..</param>
+        /// <param name="ScheduledDate">The time and date when this clickwrap is activated..</param>
+        /// <param name="ScheduledReacceptance">Specifies the interval between reacceptances in days, weeks, months, or years..</param>
+        /// <param name="Status">Clickwrap status. Possible values:  - &#x60;active&#x60; - &#x60;inactive&#x60; - &#x60;deleted&#x60;.</param>
+        /// <param name="VersionId">The ID of the version..</param>
+        /// <param name="VersionNumber">Version of the clickwrap..</param>
         public ClickwrapVersionResponse(string AccountId = default(string), string ClickwrapId = default(string), string ClickwrapName = default(string), string ClickwrapVersionId = default(string), Object CreatedTime = default(Object), List<DataField> DataFields = default(List<DataField>), DisplaySettings DisplaySettings = default(DisplaySettings), List<Document> Documents = default(List<Document>), Object LastModified = default(Object), string LastModifiedBy = default(string), string OwnerUserId = default(string), bool? RequireReacceptance = default(bool?), Object ScheduledDate = default(Object), ClickwrapScheduledReacceptance ScheduledReacceptance = default(ClickwrapScheduledReacceptance), string Status = default(string), string VersionId = default(string), string VersionNumber = default(string))
         {
             this.AccountId = AccountId;
@@ -77,88 +77,105 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets AccountId
+        /// The external account number (int) or account ID GUID.
         /// </summary>
+        /// <value>The external account number (int) or account ID GUID.</value>
         [DataMember(Name="accountId", EmitDefaultValue=false)]
         public string AccountId { get; set; }
         /// <summary>
-        /// Gets or Sets ClickwrapId
+        /// The ID of the clickwrap.
         /// </summary>
+        /// <value>The ID of the clickwrap.</value>
         [DataMember(Name="clickwrapId", EmitDefaultValue=false)]
         public string ClickwrapId { get; set; }
         /// <summary>
-        /// Gets or Sets ClickwrapName
+        /// The name of the clickwrap.
         /// </summary>
+        /// <value>The name of the clickwrap.</value>
         [DataMember(Name="clickwrapName", EmitDefaultValue=false)]
         public string ClickwrapName { get; set; }
         /// <summary>
-        /// Gets or Sets ClickwrapVersionId
+        /// The unique version ID, a GUID, of this clickwrap version.
         /// </summary>
+        /// <value>The unique version ID, a GUID, of this clickwrap version.</value>
         [DataMember(Name="clickwrapVersionId", EmitDefaultValue=false)]
         public string ClickwrapVersionId { get; set; }
         /// <summary>
-        /// Gets or Sets CreatedTime
+        /// The time that the clickwrap was created.
         /// </summary>
+        /// <value>The time that the clickwrap was created.</value>
         [DataMember(Name="createdTime", EmitDefaultValue=false)]
         public Object CreatedTime { get; set; }
         /// <summary>
-        /// Gets or Sets DataFields
+        /// The list of all the data fields available for the clickwrap (custom fields and standard fields).
         /// </summary>
+        /// <value>The list of all the data fields available for the clickwrap (custom fields and standard fields).</value>
         [DataMember(Name="dataFields", EmitDefaultValue=false)]
         public List<DataField> DataFields { get; set; }
         /// <summary>
-        /// Gets or Sets DisplaySettings
+        /// Display settings for a clickwrap.
         /// </summary>
+        /// <value>Display settings for a clickwrap.</value>
         [DataMember(Name="displaySettings", EmitDefaultValue=false)]
         public DisplaySettings DisplaySettings { get; set; }
         /// <summary>
-        /// Gets or Sets Documents
+        /// An array of documents.
         /// </summary>
+        /// <value>An array of documents.</value>
         [DataMember(Name="documents", EmitDefaultValue=false)]
         public List<Document> Documents { get; set; }
         /// <summary>
-        /// Gets or Sets LastModified
+        /// The time that the clickwrap was last modified.
         /// </summary>
+        /// <value>The time that the clickwrap was last modified.</value>
         [DataMember(Name="lastModified", EmitDefaultValue=false)]
         public Object LastModified { get; set; }
         /// <summary>
-        /// Gets or Sets LastModifiedBy
+        /// The user ID of the last user who modified this clickwrap.
         /// </summary>
+        /// <value>The user ID of the last user who modified this clickwrap.</value>
         [DataMember(Name="lastModifiedBy", EmitDefaultValue=false)]
         public string LastModifiedBy { get; set; }
         /// <summary>
-        /// Gets or Sets OwnerUserId
+        /// The user ID of the owner of this clickwrap.
         /// </summary>
+        /// <value>The user ID of the owner of this clickwrap.</value>
         [DataMember(Name="ownerUserId", EmitDefaultValue=false)]
         public string OwnerUserId { get; set; }
         /// <summary>
-        /// Gets or Sets RequireReacceptance
+        /// When **true,** requires signers who have previously agreed to this clickwrap to sign again. The version number is incremented.
         /// </summary>
+        /// <value>When **true,** requires signers who have previously agreed to this clickwrap to sign again. The version number is incremented.</value>
         [DataMember(Name="requireReacceptance", EmitDefaultValue=false)]
         public bool? RequireReacceptance { get; set; }
         /// <summary>
-        /// Gets or Sets ScheduledDate
+        /// The time and date when this clickwrap is activated.
         /// </summary>
+        /// <value>The time and date when this clickwrap is activated.</value>
         [DataMember(Name="scheduledDate", EmitDefaultValue=false)]
         public Object ScheduledDate { get; set; }
         /// <summary>
-        /// Gets or Sets ScheduledReacceptance
+        /// Specifies the interval between reacceptances in days, weeks, months, or years.
         /// </summary>
+        /// <value>Specifies the interval between reacceptances in days, weeks, months, or years.</value>
         [DataMember(Name="scheduledReacceptance", EmitDefaultValue=false)]
         public ClickwrapScheduledReacceptance ScheduledReacceptance { get; set; }
         /// <summary>
-        /// Gets or Sets Status
+        /// Clickwrap status. Possible values:  - &#x60;active&#x60; - &#x60;inactive&#x60; - &#x60;deleted&#x60;
         /// </summary>
+        /// <value>Clickwrap status. Possible values:  - &#x60;active&#x60; - &#x60;inactive&#x60; - &#x60;deleted&#x60;</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
         /// <summary>
-        /// Gets or Sets VersionId
+        /// The ID of the version.
         /// </summary>
+        /// <value>The ID of the version.</value>
         [DataMember(Name="versionId", EmitDefaultValue=false)]
         public string VersionId { get; set; }
         /// <summary>
-        /// Gets or Sets VersionNumber
+        /// Version of the clickwrap.
         /// </summary>
+        /// <value>Version of the clickwrap.</value>
         [DataMember(Name="versionNumber", EmitDefaultValue=false)]
         public string VersionNumber { get; set; }
         /// <summary>

@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -25,7 +25,7 @@ using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 namespace DocuSign.Click.Model
 {
     /// <summary>
-    /// ClickwrapDeleteResponse
+    /// The result of a clickwrap deletion request.
     /// </summary>
     [DataContract]
     public partial class ClickwrapDeleteResponse :  IEquatable<ClickwrapDeleteResponse>, IValidatableObject
@@ -38,11 +38,11 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ClickwrapDeleteResponse" /> class.
         /// </summary>
-        /// <param name="ClickwrapId">ClickwrapId.</param>
-        /// <param name="ClickwrapName">ClickwrapName.</param>
-        /// <param name="DeletionMessage">DeletionMessage.</param>
-        /// <param name="DeletionSuccess">DeletionSuccess.</param>
-        /// <param name="Status">Status.</param>
+        /// <param name="ClickwrapId">The ID of the clickwrap..</param>
+        /// <param name="ClickwrapName">The name of the clickwrap..</param>
+        /// <param name="DeletionMessage">A message describing the result of deletion request. One of:  - &#x60;alreadyDeleted&#x60;: Clickwrap is already deleted. - &#x60;deletionSuccess&#x60;: Successfully deleted the clickwrap. - &#x60;deletionFailure&#x60;: Failed to delete the clickwrap. - &#x60;cannotDelete&#x60;: Active clickwrap version cannot be deleted..</param>
+        /// <param name="DeletionSuccess">**True** if the clickwrap was deleted successfully. **False** otherwise..</param>
+        /// <param name="Status">Clickwrap status. Possible values:  - &#x60;active&#x60; - &#x60;inactive&#x60; - &#x60;deleted&#x60;.</param>
         public ClickwrapDeleteResponse(string ClickwrapId = default(string), string ClickwrapName = default(string), string DeletionMessage = default(string), bool? DeletionSuccess = default(bool?), string Status = default(string))
         {
             this.ClickwrapId = ClickwrapId;
@@ -53,28 +53,33 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets ClickwrapId
+        /// The ID of the clickwrap.
         /// </summary>
+        /// <value>The ID of the clickwrap.</value>
         [DataMember(Name="clickwrapId", EmitDefaultValue=false)]
         public string ClickwrapId { get; set; }
         /// <summary>
-        /// Gets or Sets ClickwrapName
+        /// The name of the clickwrap.
         /// </summary>
+        /// <value>The name of the clickwrap.</value>
         [DataMember(Name="clickwrapName", EmitDefaultValue=false)]
         public string ClickwrapName { get; set; }
         /// <summary>
-        /// Gets or Sets DeletionMessage
+        /// A message describing the result of deletion request. One of:  - &#x60;alreadyDeleted&#x60;: Clickwrap is already deleted. - &#x60;deletionSuccess&#x60;: Successfully deleted the clickwrap. - &#x60;deletionFailure&#x60;: Failed to delete the clickwrap. - &#x60;cannotDelete&#x60;: Active clickwrap version cannot be deleted.
         /// </summary>
+        /// <value>A message describing the result of deletion request. One of:  - &#x60;alreadyDeleted&#x60;: Clickwrap is already deleted. - &#x60;deletionSuccess&#x60;: Successfully deleted the clickwrap. - &#x60;deletionFailure&#x60;: Failed to delete the clickwrap. - &#x60;cannotDelete&#x60;: Active clickwrap version cannot be deleted.</value>
         [DataMember(Name="deletionMessage", EmitDefaultValue=false)]
         public string DeletionMessage { get; set; }
         /// <summary>
-        /// Gets or Sets DeletionSuccess
+        /// **True** if the clickwrap was deleted successfully. **False** otherwise.
         /// </summary>
+        /// <value>**True** if the clickwrap was deleted successfully. **False** otherwise.</value>
         [DataMember(Name="deletionSuccess", EmitDefaultValue=false)]
         public bool? DeletionSuccess { get; set; }
         /// <summary>
-        /// Gets or Sets Status
+        /// Clickwrap status. Possible values:  - &#x60;active&#x60; - &#x60;inactive&#x60; - &#x60;deleted&#x60;
         /// </summary>
+        /// <value>Clickwrap status. Possible values:  - &#x60;active&#x60; - &#x60;inactive&#x60; - &#x60;deleted&#x60;</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
         /// <summary>

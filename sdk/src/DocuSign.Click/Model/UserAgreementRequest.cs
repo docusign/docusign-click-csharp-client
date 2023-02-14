@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -25,7 +25,7 @@ using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 namespace DocuSign.Click.Model
 {
     /// <summary>
-    /// UserAgreementRequest
+    /// Data used to create the agreement.
     /// </summary>
     [DataContract]
     public partial class UserAgreementRequest :  IEquatable<UserAgreementRequest>, IValidatableObject
@@ -38,31 +38,42 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserAgreementRequest" /> class.
         /// </summary>
-        /// <param name="ClientUserId">ClientUserId.</param>
-        /// <param name="DocumentData">DocumentData.</param>
-        /// <param name="Metadata">Metadata.</param>
-        public UserAgreementRequest(string ClientUserId = default(string), Dictionary<string, string> DocumentData = default(Dictionary<string, string>), string Metadata = default(string))
+        /// <param name="ClientUserId">A unique value that identifies a user. You can use anything that your system uses to identify unique users, such as employee IDs, email addresses, and surrogate keys as the value of &#x60;clientUserId&#x60;.  A clickwrap with a specific &#x60;clientUserId&#x60; will not appear again once it has been accepted. .</param>
+        /// <param name="DocumentData">This property specifies the data used to create a clickwrap with [dynamic content][].    [dynamic content]: /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content .</param>
+        /// <param name="Metadata">A customer-defined string you can use in requests. This string will appear in the corresponding response..</param>
+        /// <param name="ReturnUrl">The URL to redirect to after the agreement is complete when the agreement is not rendered in an iframe..</param>
+        public UserAgreementRequest(string ClientUserId = default(string), Dictionary<string, string> DocumentData = default(Dictionary<string, string>), string Metadata = default(string), string ReturnUrl = default(string))
         {
             this.ClientUserId = ClientUserId;
             this.DocumentData = DocumentData;
             this.Metadata = Metadata;
+            this.ReturnUrl = ReturnUrl;
         }
         
         /// <summary>
-        /// Gets or Sets ClientUserId
+        /// A unique value that identifies a user. You can use anything that your system uses to identify unique users, such as employee IDs, email addresses, and surrogate keys as the value of &#x60;clientUserId&#x60;.  A clickwrap with a specific &#x60;clientUserId&#x60; will not appear again once it has been accepted. 
         /// </summary>
+        /// <value>A unique value that identifies a user. You can use anything that your system uses to identify unique users, such as employee IDs, email addresses, and surrogate keys as the value of &#x60;clientUserId&#x60;.  A clickwrap with a specific &#x60;clientUserId&#x60; will not appear again once it has been accepted. </value>
         [DataMember(Name="clientUserId", EmitDefaultValue=false)]
         public string ClientUserId { get; set; }
         /// <summary>
-        /// Gets or Sets DocumentData
+        /// This property specifies the data used to create a clickwrap with [dynamic content][].    [dynamic content]: /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content 
         /// </summary>
+        /// <value>This property specifies the data used to create a clickwrap with [dynamic content][].    [dynamic content]: /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content </value>
         [DataMember(Name="documentData", EmitDefaultValue=false)]
         public Dictionary<string, string> DocumentData { get; set; }
         /// <summary>
-        /// Gets or Sets Metadata
+        /// A customer-defined string you can use in requests. This string will appear in the corresponding response.
         /// </summary>
+        /// <value>A customer-defined string you can use in requests. This string will appear in the corresponding response.</value>
         [DataMember(Name="metadata", EmitDefaultValue=false)]
         public string Metadata { get; set; }
+        /// <summary>
+        /// The URL to redirect to after the agreement is complete when the agreement is not rendered in an iframe.
+        /// </summary>
+        /// <value>The URL to redirect to after the agreement is complete when the agreement is not rendered in an iframe.</value>
+        [DataMember(Name="returnUrl", EmitDefaultValue=false)]
+        public string ReturnUrl { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -74,6 +85,7 @@ namespace DocuSign.Click.Model
             sb.Append("  ClientUserId: ").Append(ClientUserId).Append("\n");
             sb.Append("  DocumentData: ").Append(DocumentData).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -124,6 +136,11 @@ namespace DocuSign.Click.Model
                     this.Metadata == other.Metadata ||
                     this.Metadata != null &&
                     this.Metadata.Equals(other.Metadata)
+                ) && 
+                (
+                    this.ReturnUrl == other.ReturnUrl ||
+                    this.ReturnUrl != null &&
+                    this.ReturnUrl.Equals(other.ReturnUrl)
                 );
         }
 
@@ -144,6 +161,8 @@ namespace DocuSign.Click.Model
                     hash = hash * 59 + this.DocumentData.GetHashCode();
                 if (this.Metadata != null)
                     hash = hash * 59 + this.Metadata.GetHashCode();
+                if (this.ReturnUrl != null)
+                    hash = hash * 59 + this.ReturnUrl.GetHashCode();
                 return hash;
             }
         }

@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -38,9 +38,9 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ClickwrapScheduledReacceptance" /> class.
         /// </summary>
-        /// <param name="RecurrenceInterval">RecurrenceInterval.</param>
-        /// <param name="RecurrenceIntervalType">RecurrenceIntervalType.</param>
-        /// <param name="StartDateTime">StartDateTime.</param>
+        /// <param name="RecurrenceInterval">The time between recurrences specified in &#x60;recurrenceIntervalType&#x60; units.  The minimum and maximum values depend on &#x60;recurrenceIntervalType&#x60;:  - &#x60;days&#x60;: 1 - 365 - &#x60;weeks&#x60;: 1 - 52 - &#x60;months&#x60;: 1 - 12 - &#x60;years&#x60;: 1.</param>
+        /// <param name="RecurrenceIntervalType">The units of the &#x60;recurrenceInterval&#x60;. Must be one of:  - &#x60;days&#x60; - &#x60;weeks&#x60; - &#x60;month&#x60; - &#x60;years&#x60; .</param>
+        /// <param name="StartDateTime">The date when the recurrence interval starts..</param>
         public ClickwrapScheduledReacceptance(int? RecurrenceInterval = default(int?), string RecurrenceIntervalType = default(string), Object StartDateTime = default(Object))
         {
             this.RecurrenceInterval = RecurrenceInterval;
@@ -49,18 +49,21 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets RecurrenceInterval
+        /// The time between recurrences specified in &#x60;recurrenceIntervalType&#x60; units.  The minimum and maximum values depend on &#x60;recurrenceIntervalType&#x60;:  - &#x60;days&#x60;: 1 - 365 - &#x60;weeks&#x60;: 1 - 52 - &#x60;months&#x60;: 1 - 12 - &#x60;years&#x60;: 1
         /// </summary>
+        /// <value>The time between recurrences specified in &#x60;recurrenceIntervalType&#x60; units.  The minimum and maximum values depend on &#x60;recurrenceIntervalType&#x60;:  - &#x60;days&#x60;: 1 - 365 - &#x60;weeks&#x60;: 1 - 52 - &#x60;months&#x60;: 1 - 12 - &#x60;years&#x60;: 1</value>
         [DataMember(Name="recurrenceInterval", EmitDefaultValue=false)]
         public int? RecurrenceInterval { get; set; }
         /// <summary>
-        /// Gets or Sets RecurrenceIntervalType
+        /// The units of the &#x60;recurrenceInterval&#x60;. Must be one of:  - &#x60;days&#x60; - &#x60;weeks&#x60; - &#x60;month&#x60; - &#x60;years&#x60; 
         /// </summary>
+        /// <value>The units of the &#x60;recurrenceInterval&#x60;. Must be one of:  - &#x60;days&#x60; - &#x60;weeks&#x60; - &#x60;month&#x60; - &#x60;years&#x60; </value>
         [DataMember(Name="recurrenceIntervalType", EmitDefaultValue=false)]
         public string RecurrenceIntervalType { get; set; }
         /// <summary>
-        /// Gets or Sets StartDateTime
+        /// The date when the recurrence interval starts.
         /// </summary>
+        /// <value>The date when the recurrence interval starts.</value>
         [DataMember(Name="startDateTime", EmitDefaultValue=false)]
         public Object StartDateTime { get; set; }
         /// <summary>
