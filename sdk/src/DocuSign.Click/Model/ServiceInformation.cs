@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -38,12 +38,12 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceInformation" /> class.
         /// </summary>
-        /// <param name="BuildBranch">BuildBranch.</param>
-        /// <param name="BuildBranchDeployedDateTime">BuildBranchDeployedDateTime.</param>
-        /// <param name="BuildSHA">BuildSHA.</param>
-        /// <param name="BuildVersion">BuildVersion.</param>
-        /// <param name="LinkedSites">LinkedSites.</param>
-        /// <param name="ServiceVersions">ServiceVersions.</param>
+        /// <param name="BuildBranch">The internal source control branch..</param>
+        /// <param name="BuildBranchDeployedDateTime">The date-time this branch was deployed..</param>
+        /// <param name="BuildSHA">The internal source control SHA..</param>
+        /// <param name="BuildVersion">The internal build version information..</param>
+        /// <param name="LinkedSites">An array of URLs (strings) of related sites..</param>
+        /// <param name="ServiceVersions">An array of &#x60;serviceVersion&#x60; objects..</param>
         public ServiceInformation(string BuildBranch = default(string), string BuildBranchDeployedDateTime = default(string), string BuildSHA = default(string), string BuildVersion = default(string), List<string> LinkedSites = default(List<string>), List<ServiceVersion> ServiceVersions = default(List<ServiceVersion>))
         {
             this.BuildBranch = BuildBranch;
@@ -55,33 +55,39 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets BuildBranch
+        /// The internal source control branch.
         /// </summary>
+        /// <value>The internal source control branch.</value>
         [DataMember(Name="buildBranch", EmitDefaultValue=false)]
         public string BuildBranch { get; set; }
         /// <summary>
-        /// Gets or Sets BuildBranchDeployedDateTime
+        /// The date-time this branch was deployed.
         /// </summary>
+        /// <value>The date-time this branch was deployed.</value>
         [DataMember(Name="buildBranchDeployedDateTime", EmitDefaultValue=false)]
         public string BuildBranchDeployedDateTime { get; set; }
         /// <summary>
-        /// Gets or Sets BuildSHA
+        /// The internal source control SHA.
         /// </summary>
+        /// <value>The internal source control SHA.</value>
         [DataMember(Name="buildSHA", EmitDefaultValue=false)]
         public string BuildSHA { get; set; }
         /// <summary>
-        /// Gets or Sets BuildVersion
+        /// The internal build version information.
         /// </summary>
+        /// <value>The internal build version information.</value>
         [DataMember(Name="buildVersion", EmitDefaultValue=false)]
         public string BuildVersion { get; set; }
         /// <summary>
-        /// Gets or Sets LinkedSites
+        /// An array of URLs (strings) of related sites.
         /// </summary>
+        /// <value>An array of URLs (strings) of related sites.</value>
         [DataMember(Name="linkedSites", EmitDefaultValue=false)]
         public List<string> LinkedSites { get; set; }
         /// <summary>
-        /// Gets or Sets ServiceVersions
+        /// An array of &#x60;serviceVersion&#x60; objects.
         /// </summary>
+        /// <value>An array of &#x60;serviceVersion&#x60; objects.</value>
         [DataMember(Name="serviceVersions", EmitDefaultValue=false)]
         public List<ServiceVersion> ServiceVersions { get; set; }
         /// <summary>

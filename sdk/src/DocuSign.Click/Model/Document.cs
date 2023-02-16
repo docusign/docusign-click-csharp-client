@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -25,7 +25,7 @@ using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 namespace DocuSign.Click.Model
 {
     /// <summary>
-    /// Document
+    /// Information about a document.
     /// </summary>
     [DataContract]
     public partial class Document :  IEquatable<Document>, IValidatableObject
@@ -38,14 +38,14 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Document" /> class.
         /// </summary>
-        /// <param name="DocumentBase64">DocumentBase64.</param>
-        /// <param name="DocumentDisplay">DocumentDisplay.</param>
-        /// <param name="DocumentHtml">DocumentHtml.</param>
-        /// <param name="DocumentName">DocumentName.</param>
-        /// <param name="FileExtension">FileExtension.</param>
-        /// <param name="MustRead">MustRead.</param>
-        /// <param name="MustView">MustView.</param>
-        /// <param name="Order">Order.</param>
+        /// <param name="DocumentBase64">The base64-encoded contents of the document..</param>
+        /// <param name="DocumentDisplay">Display type: link, document or pdf.</param>
+        /// <param name="DocumentHtml">The HTML representation of the document..</param>
+        /// <param name="DocumentName">The name of the document..</param>
+        /// <param name="FileExtension">The file extension of the document..</param>
+        /// <param name="MustRead">**True** if the user needs to scroll to the end of the document..</param>
+        /// <param name="MustView">**True** if the user must view the document..</param>
+        /// <param name="Order">The order of document layout..</param>
         public Document(string DocumentBase64 = default(string), string DocumentDisplay = default(string), string DocumentHtml = default(string), string DocumentName = default(string), string FileExtension = default(string), bool? MustRead = default(bool?), bool? MustView = default(bool?), int? Order = default(int?))
         {
             this.DocumentBase64 = DocumentBase64;
@@ -59,43 +59,51 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets DocumentBase64
+        /// The base64-encoded contents of the document.
         /// </summary>
+        /// <value>The base64-encoded contents of the document.</value>
         [DataMember(Name="documentBase64", EmitDefaultValue=false)]
         public string DocumentBase64 { get; set; }
         /// <summary>
-        /// Gets or Sets DocumentDisplay
+        /// Display type: link, document or pdf
         /// </summary>
+        /// <value>Display type: link, document or pdf</value>
         [DataMember(Name="documentDisplay", EmitDefaultValue=false)]
         public string DocumentDisplay { get; set; }
         /// <summary>
-        /// Gets or Sets DocumentHtml
+        /// The HTML representation of the document.
         /// </summary>
+        /// <value>The HTML representation of the document.</value>
         [DataMember(Name="documentHtml", EmitDefaultValue=false)]
         public string DocumentHtml { get; set; }
         /// <summary>
-        /// Gets or Sets DocumentName
+        /// The name of the document.
         /// </summary>
+        /// <value>The name of the document.</value>
         [DataMember(Name="documentName", EmitDefaultValue=false)]
         public string DocumentName { get; set; }
         /// <summary>
-        /// Gets or Sets FileExtension
+        /// The file extension of the document.
         /// </summary>
+        /// <value>The file extension of the document.</value>
         [DataMember(Name="fileExtension", EmitDefaultValue=false)]
         public string FileExtension { get; set; }
         /// <summary>
-        /// Gets or Sets MustRead
+        /// **True** if the user needs to scroll to the end of the document.
         /// </summary>
+        /// <value>**True** if the user needs to scroll to the end of the document.</value>
         [DataMember(Name="mustRead", EmitDefaultValue=false)]
         public bool? MustRead { get; set; }
         /// <summary>
-        /// Gets or Sets MustView
+        /// **True** if the user must view the document.
         /// </summary>
+        /// <value>**True** if the user must view the document.</value>
         [DataMember(Name="mustView", EmitDefaultValue=false)]
         public bool? MustView { get; set; }
         /// <summary>
-        /// Gets or Sets Order
+        /// The order of document layout.
         /// </summary>
+        /// <value>The order of document layout.</value>
         [DataMember(Name="order", EmitDefaultValue=false)]
         public int? Order { get; set; }
         /// <summary>

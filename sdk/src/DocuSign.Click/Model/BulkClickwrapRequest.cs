@@ -25,39 +25,47 @@ using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 namespace DocuSign.Click.Model
 {
     /// <summary>
-    /// Data used to transfer a clickwrap from one user to another.
+    /// Data used to start a bulk agreements export.
     /// </summary>
     [DataContract]
-    public partial class ClickwrapTransferRequest :  IEquatable<ClickwrapTransferRequest>, IValidatableObject
+    public partial class BulkClickwrapRequest :  IEquatable<BulkClickwrapRequest>, IValidatableObject
     {
-        public ClickwrapTransferRequest()
+        public BulkClickwrapRequest()
         {
             // Empty Constructor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClickwrapTransferRequest" /> class.
+        /// Initializes a new instance of the <see cref="BulkClickwrapRequest" /> class.
         /// </summary>
-        /// <param name="TransferFromUserId">ID of the user to transfer from. This property is required..</param>
-        /// <param name="TransferToUserId">ID of the user to transfer to. This property is required..</param>
-        public ClickwrapTransferRequest(string TransferFromUserId = default(string), string TransferToUserId = default(string))
+        /// <param name="FromDate">The earliest date to return agreements from..</param>
+        /// <param name="Status">User agreement status. One of:  - &#x60;agreed&#x60; - &#x60;declined&#x60;.</param>
+        /// <param name="ToDate">The latest date to return agreements from..</param>
+        public BulkClickwrapRequest(Object FromDate = default(Object), string Status = default(string), Object ToDate = default(Object))
         {
-            this.TransferFromUserId = TransferFromUserId;
-            this.TransferToUserId = TransferToUserId;
+            this.FromDate = FromDate;
+            this.Status = Status;
+            this.ToDate = ToDate;
         }
         
         /// <summary>
-        /// ID of the user to transfer from. This property is required.
+        /// The earliest date to return agreements from.
         /// </summary>
-        /// <value>ID of the user to transfer from. This property is required.</value>
-        [DataMember(Name="transferFromUserId", EmitDefaultValue=false)]
-        public string TransferFromUserId { get; set; }
+        /// <value>The earliest date to return agreements from.</value>
+        [DataMember(Name="fromDate", EmitDefaultValue=false)]
+        public Object FromDate { get; set; }
         /// <summary>
-        /// ID of the user to transfer to. This property is required.
+        /// User agreement status. One of:  - &#x60;agreed&#x60; - &#x60;declined&#x60;
         /// </summary>
-        /// <value>ID of the user to transfer to. This property is required.</value>
-        [DataMember(Name="transferToUserId", EmitDefaultValue=false)]
-        public string TransferToUserId { get; set; }
+        /// <value>User agreement status. One of:  - &#x60;agreed&#x60; - &#x60;declined&#x60;</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public string Status { get; set; }
+        /// <summary>
+        /// The latest date to return agreements from.
+        /// </summary>
+        /// <value>The latest date to return agreements from.</value>
+        [DataMember(Name="toDate", EmitDefaultValue=false)]
+        public Object ToDate { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -65,9 +73,10 @@ namespace DocuSign.Click.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ClickwrapTransferRequest {\n");
-            sb.Append("  TransferFromUserId: ").Append(TransferFromUserId).Append("\n");
-            sb.Append("  TransferToUserId: ").Append(TransferToUserId).Append("\n");
+            sb.Append("class BulkClickwrapRequest {\n");
+            sb.Append("  FromDate: ").Append(FromDate).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  ToDate: ").Append(ToDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,15 +98,15 @@ namespace DocuSign.Click.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as ClickwrapTransferRequest);
+            return this.Equals(obj as BulkClickwrapRequest);
         }
 
         /// <summary>
-        /// Returns true if ClickwrapTransferRequest instances are equal
+        /// Returns true if BulkClickwrapRequest instances are equal
         /// </summary>
-        /// <param name="other">Instance of ClickwrapTransferRequest to be compared</param>
+        /// <param name="other">Instance of BulkClickwrapRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ClickwrapTransferRequest other)
+        public bool Equals(BulkClickwrapRequest other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -105,14 +114,19 @@ namespace DocuSign.Click.Model
 
             return 
                 (
-                    this.TransferFromUserId == other.TransferFromUserId ||
-                    this.TransferFromUserId != null &&
-                    this.TransferFromUserId.Equals(other.TransferFromUserId)
+                    this.FromDate == other.FromDate ||
+                    this.FromDate != null &&
+                    this.FromDate.Equals(other.FromDate)
                 ) && 
                 (
-                    this.TransferToUserId == other.TransferToUserId ||
-                    this.TransferToUserId != null &&
-                    this.TransferToUserId.Equals(other.TransferToUserId)
+                    this.Status == other.Status ||
+                    this.Status != null &&
+                    this.Status.Equals(other.Status)
+                ) && 
+                (
+                    this.ToDate == other.ToDate ||
+                    this.ToDate != null &&
+                    this.ToDate.Equals(other.ToDate)
                 );
         }
 
@@ -127,10 +141,12 @@ namespace DocuSign.Click.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.TransferFromUserId != null)
-                    hash = hash * 59 + this.TransferFromUserId.GetHashCode();
-                if (this.TransferToUserId != null)
-                    hash = hash * 59 + this.TransferToUserId.GetHashCode();
+                if (this.FromDate != null)
+                    hash = hash * 59 + this.FromDate.GetHashCode();
+                if (this.Status != null)
+                    hash = hash * 59 + this.Status.GetHashCode();
+                if (this.ToDate != null)
+                    hash = hash * 59 + this.ToDate.GetHashCode();
                 return hash;
             }
         }

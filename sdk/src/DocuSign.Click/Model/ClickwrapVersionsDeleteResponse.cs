@@ -1,7 +1,7 @@
 /* 
  * DocuSign Click API
  *
- * DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.
+ * Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.
  *
  * OpenAPI spec version: v1
  * Contact: devcenter@docusign.com
@@ -38,9 +38,9 @@ namespace DocuSign.Click.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ClickwrapVersionsDeleteResponse" /> class.
         /// </summary>
-        /// <param name="ClickwrapId">ClickwrapId.</param>
-        /// <param name="ClickwrapName">ClickwrapName.</param>
-        /// <param name="Versions">Versions.</param>
+        /// <param name="ClickwrapId">The ID of the clickwrap..</param>
+        /// <param name="ClickwrapName">The name of the clickwrap..</param>
+        /// <param name="Versions">An array of delete responses..</param>
         public ClickwrapVersionsDeleteResponse(string ClickwrapId = default(string), string ClickwrapName = default(string), List<ClickwrapVersionDeleteResponse> Versions = default(List<ClickwrapVersionDeleteResponse>))
         {
             this.ClickwrapId = ClickwrapId;
@@ -49,18 +49,21 @@ namespace DocuSign.Click.Model
         }
         
         /// <summary>
-        /// Gets or Sets ClickwrapId
+        /// The ID of the clickwrap.
         /// </summary>
+        /// <value>The ID of the clickwrap.</value>
         [DataMember(Name="clickwrapId", EmitDefaultValue=false)]
         public string ClickwrapId { get; set; }
         /// <summary>
-        /// Gets or Sets ClickwrapName
+        /// The name of the clickwrap.
         /// </summary>
+        /// <value>The name of the clickwrap.</value>
         [DataMember(Name="clickwrapName", EmitDefaultValue=false)]
         public string ClickwrapName { get; set; }
         /// <summary>
-        /// Gets or Sets Versions
+        /// An array of delete responses.
         /// </summary>
+        /// <value>An array of delete responses.</value>
         [DataMember(Name="versions", EmitDefaultValue=false)]
         public List<ClickwrapVersionDeleteResponse> Versions { get; set; }
         /// <summary>
