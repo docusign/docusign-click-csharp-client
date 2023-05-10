@@ -1064,7 +1064,6 @@ namespace DocuSign.Click.Api
         }
 
 
-
         /// <summary>
         /// Starts an export of clickwrap agreements for a specified date range. Starts an asynchronus process to export clickwrap agreements for a specified date range. An email will be sent to the creator after it has been processed.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;
         /// </summary>
@@ -1088,10 +1087,73 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of Object(void)</returns>
         public ApiResponse<Object> CreateBulkClickwrapAgreementsWithHttpInfo(string accountId, string clickwrapId, BulkClickwrapRequest bulkClickwrapRequest = null)
         {
-            return CreateBulkClickwrapAgreementsAsyncWithHttpInfo(accountId, clickwrapId, bulkClickwrapRequest)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->CreateBulkClickwrapAgreements");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->CreateBulkClickwrapAgreements");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/bulk_agreements";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (bulkClickwrapRequest != null && bulkClickwrapRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.ApiClient.Serialize(bulkClickwrapRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = bulkClickwrapRequest; // byte array
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateBulkClickwrapAgreements", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -1167,6 +1229,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -1184,7 +1247,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
                 null);
         }
-
 
 
         /// <summary>
@@ -1209,10 +1271,68 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionSummaryResponse</returns>
         public ApiResponse<ClickwrapVersionSummaryResponse> CreateClickwrapWithHttpInfo(string accountId, ClickwrapRequest clickwrapRequest = null)
         {
-            return CreateClickwrapAsyncWithHttpInfo(accountId, clickwrapRequest)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->CreateClickwrap");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapRequest != null && clickwrapRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.ApiClient.Serialize(clickwrapRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = clickwrapRequest; // byte array
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateClickwrap", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
         }
 
         /// <summary>
@@ -1283,6 +1403,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -1299,7 +1420,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
         }
-
 
 
         /// <summary>
@@ -1326,10 +1446,72 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionSummaryResponse</returns>
         public ApiResponse<ClickwrapVersionSummaryResponse> CreateClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, ClickwrapRequest clickwrapRequest = null)
         {
-            return CreateClickwrapVersionAsyncWithHttpInfo(accountId, clickwrapId, clickwrapRequest)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->CreateClickwrapVersion");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->CreateClickwrapVersion");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (clickwrapRequest != null && clickwrapRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.ApiClient.Serialize(clickwrapRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = clickwrapRequest; // byte array
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateClickwrapVersion", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
         }
 
         /// <summary>
@@ -1406,6 +1588,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -1422,7 +1605,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
         }
-
 
 
         /// <summary>
@@ -1449,10 +1631,72 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of UserAgreementResponse</returns>
         public ApiResponse<UserAgreementResponse> CreateHasAgreedWithHttpInfo(string accountId, string clickwrapId, UserAgreementRequest userAgreementRequest = null)
         {
-            return CreateHasAgreedAsyncWithHttpInfo(accountId, clickwrapId, userAgreementRequest)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->CreateHasAgreed");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->CreateHasAgreed");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/agreements";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (userAgreementRequest != null && userAgreementRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.ApiClient.Serialize(userAgreementRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = userAgreementRequest; // byte array
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateHasAgreed", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserAgreementResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse, typeof(UserAgreementResponse)));
         }
 
         /// <summary>
@@ -1529,6 +1773,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Post, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -1545,7 +1790,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse, typeof(UserAgreementResponse)));
         }
-
 
         /// <summary>
         /// Deletes a clickwrap and all of its versions. Deletes the clickwrap specified by &#x60;clickwrapId&#x60; and all of its versions. Active clickwraps are not deleted  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
@@ -1580,10 +1824,68 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionsDeleteResponse</returns>
         public ApiResponse<ClickwrapVersionsDeleteResponse> DeleteClickwrapWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapOptions options = null)
         {
-            return DeleteClickwrapAsyncWithHttpInfo(accountId, clickwrapId, options)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DeleteClickwrap");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->DeleteClickwrap");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (options != null)
+            {
+                if (options.versions != null) localVarQueryParams.Add("versions", this.ApiClient.ParameterToString(options.versions)); // query parameter
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteClickwrap", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsDeleteResponse)));
         }
 
         /// <summary>
@@ -1656,6 +1958,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -1672,7 +1975,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsDeleteResponse)));
         }
-
 
 
         /// <summary>
@@ -1699,10 +2001,68 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionDeleteResponse</returns>
         public ApiResponse<ClickwrapVersionDeleteResponse> DeleteClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, string versionId)
         {
-            return DeleteClickwrapVersionAsyncWithHttpInfo(accountId, clickwrapId, versionId)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DeleteClickwrapVersion");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->DeleteClickwrapVersion");
+            // verify the required parameter 'versionId' is set
+            if (versionId == null)
+                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->DeleteClickwrapVersion");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteClickwrapVersion", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionDeleteResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionDeleteResponse)));
         }
 
         /// <summary>
@@ -1775,6 +2135,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -1791,7 +2152,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionDeleteResponse)));
         }
-
 
         /// <summary>
         /// Deletes the versions of a clickwrap. Deletes all versions of a clickwrap, or only the ones specified in the &#x60;clickwrapVersionIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
@@ -1826,10 +2186,68 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionsDeleteResponse</returns>
         public ApiResponse<ClickwrapVersionsDeleteResponse> DeleteClickwrapVersionsWithHttpInfo(string accountId, string clickwrapId, AccountsApi.DeleteClickwrapVersionsOptions options = null)
         {
-            return DeleteClickwrapVersionsAsyncWithHttpInfo(accountId, clickwrapId, options)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DeleteClickwrapVersions");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->DeleteClickwrapVersions");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (options != null)
+            {
+                if (options.clickwrapVersionIds != null) localVarQueryParams.Add("clickwrapVersionIds", this.ApiClient.ParameterToString(options.clickwrapVersionIds)); // query parameter
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteClickwrapVersions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionsDeleteResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsDeleteResponse)));
         }
 
         /// <summary>
@@ -1902,6 +2320,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -1918,7 +2337,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsDeleteResponse)));
         }
-
 
         /// <summary>
         /// Deletes clickwraps for an account. Deletes all clickwraps for an account or only the ones specified in the &#x60;clickwrapIds&#x60; query parameter.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
@@ -1951,10 +2369,64 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapsDeleteResponse</returns>
         public ApiResponse<ClickwrapsDeleteResponse> DeleteClickwrapsWithHttpInfo(string accountId, AccountsApi.DeleteClickwrapsOptions options = null)
         {
-            return DeleteClickwrapsAsyncWithHttpInfo(accountId, options)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DeleteClickwraps");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (options != null)
+            {
+                if (options.clickwrapIds != null) localVarQueryParams.Add("clickwrapIds", this.ApiClient.ParameterToString(options.clickwrapIds)); // query parameter
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteClickwraps", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapsDeleteResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapsDeleteResponse)));
         }
 
         /// <summary>
@@ -2021,6 +2493,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Delete, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -2037,7 +2510,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapsDeleteResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapsDeleteResponse)));
         }
-
 
 
         /// <summary>
@@ -2064,10 +2536,68 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of UserAgreementResponse</returns>
         public ApiResponse<UserAgreementResponse> GetAgreementWithHttpInfo(string accountId, string clickwrapId, string agreementId)
         {
-            return GetAgreementAsyncWithHttpInfo(accountId, clickwrapId, agreementId)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetAgreement");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetAgreement");
+            // verify the required parameter 'agreementId' is set
+            if (agreementId == null)
+                throw new ApiException(400, "Missing required parameter 'agreementId' when calling AccountsApi->GetAgreement");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/agreements/{agreementId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (agreementId != null) localVarPathParams.Add("agreementId", this.ApiClient.ParameterToString(agreementId)); // path parameter
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAgreement", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserAgreementResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse, typeof(UserAgreementResponse)));
         }
 
         /// <summary>
@@ -2140,6 +2670,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -2156,7 +2687,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (UserAgreementResponse)this.ApiClient.Deserialize(localVarResponse, typeof(UserAgreementResponse)));
         }
-
 
 
         /// <summary>
@@ -2185,10 +2715,72 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of Document</returns>
         public ApiResponse<Document> GetAgreementDocumentWithHttpInfo(string accountId, string clickwrapId, string versionId, string orderOrDisclosure)
         {
-            return GetAgreementDocumentAsyncWithHttpInfo(accountId, clickwrapId, versionId, orderOrDisclosure)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetAgreementDocument");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetAgreementDocument");
+            // verify the required parameter 'versionId' is set
+            if (versionId == null)
+                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->GetAgreementDocument");
+            // verify the required parameter 'orderOrDisclosure' is set
+            if (orderOrDisclosure == null)
+                throw new ApiException(400, "Missing required parameter 'orderOrDisclosure' when calling AccountsApi->GetAgreementDocument");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}/documents/{orderOrDisclosure}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
+            if (orderOrDisclosure != null) localVarPathParams.Add("orderOrDisclosure", this.ApiClient.ParameterToString(orderOrDisclosure)); // path parameter
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAgreementDocument", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Document>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (Document)this.ApiClient.Deserialize(localVarResponse, typeof(Document)));
         }
 
         /// <summary>
@@ -2267,6 +2859,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -2283,7 +2876,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (Document)this.ApiClient.Deserialize(localVarResponse, typeof(Document)));
         }
-
 
         /// <summary>
         /// Gets the completed user agreement PDF. Gets the PDF of  &#x60;agreementId&#x60; for the clickwrap specified by &#x60;clickwrapId&#x60;.  The response to this method is the bytes of the PDF file. The response includes the HTTP header &#x60;application/pdf&#x60;.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60; or &#x60;click.send&#x60;.
@@ -2320,10 +2912,72 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of System.IO.Stream</returns>
         public ApiResponse<System.IO.Stream> GetAgreementPdfWithHttpInfo(string accountId, string clickwrapId, string agreementId, AccountsApi.GetAgreementPdfOptions options = null)
         {
-            return GetAgreementPdfAsyncWithHttpInfo(accountId, clickwrapId, agreementId, options)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetAgreementPdf");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetAgreementPdf");
+            // verify the required parameter 'agreementId' is set
+            if (agreementId == null)
+                throw new ApiException(400, "Missing required parameter 'agreementId' when calling AccountsApi->GetAgreementPdf");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/agreements/{agreementId}/download";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/pdf"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (agreementId != null) localVarPathParams.Add("agreementId", this.ApiClient.ParameterToString(agreementId)); // path parameter
+            if (options != null)
+            {
+                if (options.includeCoc != null) localVarQueryParams.Add("include_coc", this.ApiClient.ParameterToString(options.includeCoc)); // query parameter
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAgreementPdf", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<System.IO.Stream>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (System.IO.Stream)this.ApiClient.Deserialize(localVarResponse, typeof(System.IO.Stream)));
         }
 
         /// <summary>
@@ -2402,6 +3056,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -2418,7 +3073,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (System.IO.Stream)this.ApiClient.Deserialize(localVarResponse, typeof(System.IO.Stream)));
         }
-
 
 
         /// <summary>
@@ -2443,10 +3097,64 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionResponse</returns>
         public ApiResponse<ClickwrapVersionResponse> GetClickwrapWithHttpInfo(string accountId, string clickwrapId)
         {
-            return GetClickwrapAsyncWithHttpInfo(accountId, clickwrapId)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrap");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrap");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetClickwrap", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionResponse)));
         }
 
         /// <summary>
@@ -2513,6 +3221,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -2529,7 +3238,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionResponse)));
         }
-
 
         /// <summary>
         /// Get user agreements Retrieves the user agreements for a specified clickwrap. Each &#x60;userAgreementResponse&#x60; object describes a single user&#39;s response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
@@ -2572,10 +3280,72 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapAgreementsResponse</returns>
         public ApiResponse<ClickwrapAgreementsResponse> GetClickwrapAgreementsWithHttpInfo(string accountId, string clickwrapId, AccountsApi.GetClickwrapAgreementsOptions options = null)
         {
-            return GetClickwrapAgreementsAsyncWithHttpInfo(accountId, clickwrapId, options)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrapAgreements");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapAgreements");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/users";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (options != null)
+            {
+                if (options.clientUserId != null) localVarQueryParams.Add("client_user_id", this.ApiClient.ParameterToString(options.clientUserId)); // query parameter
+                if (options.fromDate != null) localVarQueryParams.Add("from_date", this.ApiClient.ParameterToString(options.fromDate)); // query parameter
+                if (options.pageNumber != null) localVarQueryParams.Add("page_number", this.ApiClient.ParameterToString(options.pageNumber)); // query parameter
+                if (options.status != null) localVarQueryParams.Add("status", this.ApiClient.ParameterToString(options.status)); // query parameter
+                if (options.toDate != null) localVarQueryParams.Add("to_date", this.ApiClient.ParameterToString(options.toDate)); // query parameter
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetClickwrapAgreements", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapAgreementsResponse)));
         }
 
         /// <summary>
@@ -2652,6 +3422,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -2668,7 +3439,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapAgreementsResponse)));
         }
-
 
 
         /// <summary>
@@ -2695,10 +3465,68 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionResponse</returns>
         public ApiResponse<ClickwrapVersionResponse> GetClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, string versionId)
         {
-            return GetClickwrapVersionAsyncWithHttpInfo(accountId, clickwrapId, versionId)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrapVersion");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapVersion");
+            // verify the required parameter 'versionId' is set
+            if (versionId == null)
+                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->GetClickwrapVersion");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetClickwrapVersion", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionResponse)));
         }
 
         /// <summary>
@@ -2771,6 +3599,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -2787,7 +3616,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionResponse)));
         }
-
 
         /// <summary>
         /// Gets the agreement responses for a clickwrap version by version ID. Gets the agreement responses for a specific version.  **Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;.
@@ -2832,10 +3660,76 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapAgreementsResponse</returns>
         public ApiResponse<ClickwrapAgreementsResponse> GetClickwrapVersionAgreementsWithHttpInfo(string accountId, string clickwrapId, string versionId, AccountsApi.GetClickwrapVersionAgreementsOptions options = null)
         {
-            return GetClickwrapVersionAgreementsAsyncWithHttpInfo(accountId, clickwrapId, versionId, options)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrapVersionAgreements");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapVersionAgreements");
+            // verify the required parameter 'versionId' is set
+            if (versionId == null)
+                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->GetClickwrapVersionAgreements");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}/users";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
+            if (options != null)
+            {
+                if (options.clientUserId != null) localVarQueryParams.Add("client_user_id", this.ApiClient.ParameterToString(options.clientUserId)); // query parameter
+                if (options.fromDate != null) localVarQueryParams.Add("from_date", this.ApiClient.ParameterToString(options.fromDate)); // query parameter
+                if (options.pageNumber != null) localVarQueryParams.Add("page_number", this.ApiClient.ParameterToString(options.pageNumber)); // query parameter
+                if (options.status != null) localVarQueryParams.Add("status", this.ApiClient.ParameterToString(options.status)); // query parameter
+                if (options.toDate != null) localVarQueryParams.Add("to_date", this.ApiClient.ParameterToString(options.toDate)); // query parameter
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetClickwrapVersionAgreements", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapAgreementsResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapAgreementsResponse)));
         }
 
         /// <summary>
@@ -2918,6 +3812,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -2934,7 +3829,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapAgreementsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapAgreementsResponse)));
         }
-
 
 
         /// <summary>
@@ -2959,10 +3853,64 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionsPagedResponse</returns>
         public ApiResponse<ClickwrapVersionsPagedResponse> GetClickwrapVersionsWithHttpInfo(string accountId, string clickwrapId)
         {
-            return GetClickwrapVersionsAsyncWithHttpInfo(accountId, clickwrapId)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwrapVersions");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->GetClickwrapVersions");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetClickwrapVersions", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionsPagedResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionsPagedResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsPagedResponse)));
         }
 
         /// <summary>
@@ -3029,6 +3977,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -3045,7 +3994,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionsPagedResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsPagedResponse)));
         }
-
 
         /// <summary>
         /// Gets all the clickwraps for a user. Gets all the clickwraps for a user.   **Note:** This endpoint returns a list of &#x60;clickwrapVersionSummaryResponse&#x60; objects. Each version of each clickwrap is returned as a separate entry in the list.  [Required authentication scopes](/docs/click-api/click101/auth/): &#x60;click.manage&#x60;. 
@@ -3090,10 +4038,70 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionsResponse</returns>
         public ApiResponse<ClickwrapVersionsResponse> GetClickwrapsWithHttpInfo(string accountId, AccountsApi.GetClickwrapsOptions options = null)
         {
-            return GetClickwrapsAsyncWithHttpInfo(accountId, options)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetClickwraps");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (options != null)
+            {
+                if (options.filter != null) localVarQueryParams.Add("filter", this.ApiClient.ParameterToString(options.filter)); // query parameter
+                if (options.fromDate != null) localVarQueryParams.Add("from_date", this.ApiClient.ParameterToString(options.fromDate)); // query parameter
+                if (options.name != null) localVarQueryParams.Add("name", this.ApiClient.ParameterToString(options.name)); // query parameter
+                if (options.ownerUserId != null) localVarQueryParams.Add("ownerUserId", this.ApiClient.ParameterToString(options.ownerUserId)); // query parameter
+                if (options.pageNumber != null) localVarQueryParams.Add("page_number", this.ApiClient.ParameterToString(options.pageNumber)); // query parameter
+                if (options.status != null) localVarQueryParams.Add("status", this.ApiClient.ParameterToString(options.status)); // query parameter
+                if (options.toDate != null) localVarQueryParams.Add("to_date", this.ApiClient.ParameterToString(options.toDate)); // query parameter
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetClickwraps", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionsResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsResponse)));
         }
 
         /// <summary>
@@ -3166,6 +4174,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -3182,7 +4191,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionsResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionsResponse)));
         }
-
 
 
         /// <summary>
@@ -3203,10 +4211,56 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ServiceInformation</returns>
         public ApiResponse<ServiceInformation> GetServiceInformationWithHttpInfo()
         {
-            return GetServiceInformationAsyncWithHttpInfo()
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+
+            var localVarPath = "/service_information";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetServiceInformation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ServiceInformation>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ServiceInformation)this.ApiClient.Deserialize(localVarResponse, typeof(ServiceInformation)));
         }
 
         /// <summary>
@@ -3261,6 +4315,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Get, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -3277,7 +4332,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ServiceInformation)this.ApiClient.Deserialize(localVarResponse, typeof(ServiceInformation)));
         }
-
 
 
         /// <summary>
@@ -3304,10 +4358,72 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionSummaryResponse</returns>
         public ApiResponse<ClickwrapVersionSummaryResponse> UpdateClickwrapWithHttpInfo(string accountId, string clickwrapId, ClickwrapTransferRequest clickwrapTransferRequest = null)
         {
-            return UpdateClickwrapAsyncWithHttpInfo(accountId, clickwrapId, clickwrapTransferRequest)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->UpdateClickwrap");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->UpdateClickwrap");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (clickwrapTransferRequest != null && clickwrapTransferRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.ApiClient.Serialize(clickwrapTransferRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = clickwrapTransferRequest; // byte array
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Put, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateClickwrap", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
         }
 
         /// <summary>
@@ -3384,6 +4500,7 @@ namespace DocuSign.Click.Api
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
 
+
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Put, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
             DocuSignResponse localVarResponse = await this.ApiClient.CallApiAsync(localVarRequest);
@@ -3400,7 +4517,6 @@ namespace DocuSign.Click.Api
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
                 (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
         }
-
 
 
         /// <summary>
@@ -3429,10 +4545,76 @@ namespace DocuSign.Click.Api
         /// <returns>ApiResponse of ClickwrapVersionSummaryResponse</returns>
         public ApiResponse<ClickwrapVersionSummaryResponse> UpdateClickwrapVersionWithHttpInfo(string accountId, string clickwrapId, string versionId, ClickwrapRequest clickwrapRequest = null)
         {
-            return UpdateClickwrapVersionAsyncWithHttpInfo(accountId, clickwrapId, versionId, clickwrapRequest)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->UpdateClickwrapVersion");
+            // verify the required parameter 'clickwrapId' is set
+            if (clickwrapId == null)
+                throw new ApiException(400, "Missing required parameter 'clickwrapId' when calling AccountsApi->UpdateClickwrapVersion");
+            // verify the required parameter 'versionId' is set
+            if (versionId == null)
+                throw new ApiException(400, "Missing required parameter 'versionId' when calling AccountsApi->UpdateClickwrapVersion");
+
+            var localVarPath = "/v1/accounts/{accountId}/clickwraps/{clickwrapId}/versions/{versionId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.ApiClient.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new List<FileParameter>();
+            Object localVarPostBody = null;
+            String localVarHttpContentDisposition = string.Empty;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (accountId != null) localVarPathParams.Add("accountId", this.ApiClient.ParameterToString(accountId)); // path parameter
+            if (clickwrapId != null) localVarPathParams.Add("clickwrapId", this.ApiClient.ParameterToString(clickwrapId)); // path parameter
+            if (versionId != null) localVarPathParams.Add("versionId", this.ApiClient.ParameterToString(versionId)); // path parameter
+            if (clickwrapRequest != null && clickwrapRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.ApiClient.Serialize(clickwrapRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = clickwrapRequest; // byte array
+            }
+
+            // authentication (docusignAccessCode) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.ApiClient.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
+            }
+
+
+            // make the HTTP request
+            DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Put, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
+            DocuSignResponse localVarResponse = this.ApiClient.CallApi(localVarRequest);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("UpdateClickwrapVersion", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ClickwrapVersionSummaryResponse>(localVarStatusCode, 
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()), 
+                (ClickwrapVersionSummaryResponse)this.ApiClient.Deserialize(localVarResponse, typeof(ClickwrapVersionSummaryResponse)));
         }
 
         /// <summary>
@@ -3514,6 +4696,7 @@ namespace DocuSign.Click.Api
             {
                 localVarHeaderParams["Authorization"] = "Bearer " + this.ApiClient.Configuration.AccessToken;
             }
+
 
             // make the HTTP request
             DocuSignRequest localVarRequest = this.ApiClient.PrepareRequest(localVarPath, HttpMethod.Put, localVarQueryParams.ToList(), localVarPostBody, localVarHeaderParams.ToList(), localVarFormParams.ToList(), localVarPathParams.ToList(), localVarFileParams, localVarHttpContentType, localVarHttpContentDisposition);
