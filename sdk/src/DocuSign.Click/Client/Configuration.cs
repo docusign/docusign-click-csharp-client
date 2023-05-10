@@ -26,7 +26,7 @@ namespace DocuSign.Click.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "1.3.0";
+        public const string Version = "1.3.1";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -350,7 +350,7 @@ namespace DocuSign.Click.Client
         /// <returns></returns>
         string _getFrameworkVersion()
         {
-#if NET452
+#if NET462
             return ".NET Framework";
 #else
             return _trimVersionDescription(System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription);
