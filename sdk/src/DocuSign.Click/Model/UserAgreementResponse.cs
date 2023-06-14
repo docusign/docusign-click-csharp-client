@@ -55,11 +55,11 @@ namespace DocuSign.Click.Model
         /// <param name="ReturnUrl">The URL redirected to after the agreement was completed..</param>
         /// <param name="Settings">The display settings for this agreement..</param>
         /// <param name="Status">User agreement status. One of:  - &#x60;created&#x60; - &#x60;agreed&#x60; - &#x60;declined&#x60;.</param>
-        /// <param name="Style">This property specifies the custom style provided when the agreement was created by [customizing the template appearance][].    [customizing the template appearance]: /docs/click-api/click101/customize-elastic-template-appearance/ .</param>
+        /// <param name="Style">Style.</param>
         /// <param name="Version">The human-readable semver version string..</param>
         /// <param name="VersionId">The ID of the version..</param>
         /// <param name="VersionNumber">Version of the clickwrap..</param>
-        public UserAgreementResponse(string AccountId = default(string), Object AgreedOn = default(Object), string AgreementId = default(string), string AgreementUrl = default(string), string ClickwrapId = default(string), string ClientUserId = default(string), bool? ConsumerDisclosureEnabled = default(bool?), string ConsumerDisclosureHtml = default(string), Object CreatedOn = default(Object), List<DataField> DataFields = default(List<DataField>), Object DeclinedOn = default(Object), Dictionary<string, string> DocumentData = default(Dictionary<string, string>), List<Document> Documents = default(List<Document>), string Metadata = default(string), string ReturnUrl = default(string), DisplaySettings Settings = default(DisplaySettings), string Status = default(string), Dictionary<string, string> Style = default(Dictionary<string, string>), string Version = default(string), string VersionId = default(string), int? VersionNumber = default(int?))
+        public UserAgreementResponse(string AccountId = default(string), Object AgreedOn = default(Object), string AgreementId = default(string), string AgreementUrl = default(string), string ClickwrapId = default(string), string ClientUserId = default(string), bool? ConsumerDisclosureEnabled = default(bool?), string ConsumerDisclosureHtml = default(string), Object CreatedOn = default(Object), List<DataField> DataFields = default(List<DataField>), Object DeclinedOn = default(Object), Dictionary<string, string> DocumentData = default(Dictionary<string, string>), List<Document> Documents = default(List<Document>), string Metadata = default(string), string ReturnUrl = default(string), DisplaySettings Settings = default(DisplaySettings), string Status = default(string), UserAgreementResponseStyle Style = default(UserAgreementResponseStyle), string Version = default(string), string VersionId = default(string), int? VersionNumber = default(int?))
         {
             this.AccountId = AccountId;
             this.AgreedOn = AgreedOn;
@@ -187,11 +187,10 @@ namespace DocuSign.Click.Model
         [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
         /// <summary>
-        /// This property specifies the custom style provided when the agreement was created by [customizing the template appearance][].    [customizing the template appearance]: /docs/click-api/click101/customize-elastic-template-appearance/ 
+        /// Gets or Sets Style
         /// </summary>
-        /// <value>This property specifies the custom style provided when the agreement was created by [customizing the template appearance][].    [customizing the template appearance]: /docs/click-api/click101/customize-elastic-template-appearance/ </value>
         [DataMember(Name="style", EmitDefaultValue=false)]
-        public Dictionary<string, string> Style { get; set; }
+        public UserAgreementResponseStyle Style { get; set; }
         /// <summary>
         /// The human-readable semver version string.
         /// </summary>
@@ -363,7 +362,7 @@ namespace DocuSign.Click.Model
                 (
                     this.Style == other.Style ||
                     this.Style != null &&
-                    this.Style.SequenceEqual(other.Style)
+                    this.Style.Equals(other.Style)
                 ) && 
                 (
                     this.Version == other.Version ||
