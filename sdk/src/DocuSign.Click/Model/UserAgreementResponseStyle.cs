@@ -9,18 +9,15 @@
  */
 
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
-using SwaggerDateConverter = DocuSign.Click.Client.SwaggerDateConverter;
 
 namespace DocuSign.Click.Model
 {
@@ -35,7 +32,7 @@ namespace DocuSign.Click.Model
             // Empty Constructor
         }
 
-        /// <summary>
+                /// <summary>
         /// Control the scrolling of the document either by browser or by a scrollbar in the clickwrap shell. Can only be applied if the clickwrap &#x60;format&#x60; is &#x60;inline&#x60;.
         /// </summary>
         /// <value>Control the scrolling of the document either by browser or by a scrollbar in the clickwrap shell. Can only be applied if the clickwrap &#x60;format&#x60; is &#x60;inline&#x60;.</value>

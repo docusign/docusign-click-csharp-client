@@ -46,15 +46,15 @@ namespace DocuSign.Click.Client
         // Stage base path
         public const string Stage_REST_BasePath = "https://stage.docusign.net/restapi";
 
-        protected string basePath = Production_REST_BasePath;
+        protected string basePath = Demo_REST_BasePath;
 
-        protected Uri baseUri => Uri.TryCreate(basePath, UriKind.Absolute, out Uri uri) ? uri : new Uri(Production_REST_BasePath);
+        protected Uri baseUri => Uri.TryCreate(basePath, UriKind.Absolute, out Uri uri) ? uri : new Uri(Demo_REST_BasePath);
 
-        protected string oAuthBasePath = OAuth.Production_OAuth_BasePath;
+        protected string oAuthBasePath = OAuth.Demo_OAuth_BasePath;
 
         protected string oAuthBasePathWithScheme => $"https://{oAuthBasePath}/";
 
-        protected Uri oAuthBaseUri => Uri.TryCreate(oAuthBasePathWithScheme, UriKind.Absolute, out Uri uri) ? uri : new Uri(OAuth.Production_OAuth_BasePath);
+        protected Uri oAuthBaseUri => Uri.TryCreate(oAuthBasePathWithScheme, UriKind.Absolute, out Uri uri) ? uri : new Uri(OAuth.Demo_OAuth_BasePath);
 
         protected JsonSerializerSettings serializerSettings = new JsonSerializerSettings
         {
@@ -82,13 +82,13 @@ namespace DocuSign.Click.Client
 
         /// <summary>
         /// Initializes a new instance of <see cref="DocuSignClient"/> with default
-        /// with default base path (https://www.docusign.net/clickapi).
+        /// with default base path (https://demo.docusign.net/restapi).
         /// </summary>
         public DocuSignClient()
         {
             Configuration = new Configuration();
 
-            SetBasePath(Production_REST_BasePath);
+            SetBasePath(Demo_REST_BasePath);
             RestClient = buildDefaultHttpClient();
 
             SetOAuthBasePath();
@@ -98,14 +98,14 @@ namespace DocuSign.Click.Client
 
         /// <summary>
         /// Initializes a new instance of <see cref="DocuSignClient"/> using
-        /// the provided configuration with the default base path (https://www.docusign.net/clickapi).
+        /// the provided configuration with the default base path (https://demo.docusign.net/restapi).
         /// </summary>
         /// <param name="configuration">Provided pre-populated <see cref="Configuration"/> object</param>
         public DocuSignClient(Configuration configuration)
         {
             Configuration = configuration ?? new Configuration();
 
-            SetBasePath(string.IsNullOrEmpty(configuration.BasePath) ? Production_REST_BasePath : configuration.BasePath);
+            SetBasePath(string.IsNullOrEmpty(configuration.BasePath) ? Demo_REST_BasePath : configuration.BasePath);
             RestClient = buildDefaultHttpClient(configuration?.Timeout ?? Configuration.DefaultTimeoutValue);
 
             SetOAuthBasePath();
@@ -181,7 +181,7 @@ namespace DocuSign.Click.Client
         /// <param name="client"></param>
         public DocuSignClient(string apiBase, IHttpClient client)
         {
-            string baseUrl = string.IsNullOrEmpty(apiBase) ? Production_REST_BasePath : apiBase;
+            string baseUrl = string.IsNullOrEmpty(apiBase) ? Demo_REST_BasePath : apiBase;
             Configuration = new Configuration(baseUrl);
 
             SetBasePath(baseUrl);
@@ -235,24 +235,24 @@ namespace DocuSign.Click.Client
         public DocuSignRequest PrepareRequest(string path, HttpMethod method, List<KeyValuePair<string, string>> queryParams = null, object postBody = null, List<KeyValuePair<string, string>> headerParams = null,
                                                 List<KeyValuePair<string, string>> formParams = null, List<KeyValuePair<string, string>> pathParams = null, List<FileParameter> fileParams = null, string contentType = null, string contentDisposition = null)
         {
-             string url = $"{basePath}{path}";
+            string url = $"{basePath}{path}";
             return new DocuSignRequest(method, url, queryParams, postBody, headerParams, formParams, pathParams, fileParams, contentType, contentDisposition);
         }
 
         public DocuSignResponse CallApi(DocuSignRequest request)
         {
-            //InterceptRequest(request);
+            InterceptRequest(request);
             var response = RestClient.SendRequest(request);
-            //InterceptResponse(request, response);
+            InterceptResponse(request, response);
             return response;
         }
 
         public async Task<DocuSignResponse> CallApiAsync(DocuSignRequest request)
         {
-            //InterceptRequest(request);
+            InterceptRequest(request);
             CancellationTokenSource cts = new CancellationTokenSource();
             var response = await RestClient.SendRequestAsync(request, cts.Token);
-            //InterceptResponse(request, response);
+            InterceptResponse(request, response);
 
             return response;
         }
@@ -720,11 +720,11 @@ namespace DocuSign.Click.Client
             //Derive OAuth Base Path if not given.
             if (Uri.TryCreate(this.basePath, UriKind.Absolute, out Uri baseUri))
             {
-                if (Uri.TryCreate(Demo_REST_BasePath, UriKind.Absolute, out Uri demoBaseUri) && (Uri.Compare(baseUri, demoBaseUri, UriComponents.Host, UriFormat.Unescaped, StringComparison.InvariantCultureIgnoreCase) == 0))
+                if (baseUri.Host.StartsWith("apps-d") || baseUri.Host.StartsWith("demo"))
                 {
                     this.oAuthBasePath = OAuth.Demo_OAuth_BasePath;
                 }
-                else if (Uri.TryCreate(Stage_REST_BasePath, UriKind.Absolute, out Uri stageBaseUri) && (Uri.Compare(baseUri, stageBaseUri, UriComponents.Host, UriFormat.Unescaped, StringComparison.InvariantCultureIgnoreCase) == 0))
+                else if (baseUri.Host.StartsWith("apps-s") || baseUri.Host.StartsWith("stage"))
                 {
                     this.oAuthBasePath = OAuth.Stage_OAuth_BasePath;
                 }
@@ -735,7 +735,7 @@ namespace DocuSign.Click.Client
             }
             else
             {
-                this.oAuthBasePath = OAuth.Production_OAuth_BasePath;
+                this.oAuthBasePath = OAuth.Demo_OAuth_BasePath;
             }
         }
 
