@@ -76,7 +76,7 @@ namespace DocuSign.Click.Client
         public DocuSignRequest(HttpMethod method, string path, string contentType) : this(method, path, null, null, null, null, null, null, contentType, null) { }
 
         public DocuSignRequest(HttpMethod method, string path, List<KeyValuePair<string, string>> queryParams = null, Object bodyContent = null,
-            List<KeyValuePair<string, string>> headerParams = null, List<KeyValuePair<string, string>> postParams = null, List<KeyValuePair<string,string>> pathParams = null,
+            List<KeyValuePair<string, string>> headerParams = null, List<KeyValuePair<string, string>> postParams = null, List<KeyValuePair<string, string>> pathParams = null,
             List<FileParameter> fileParams = null, string contentType = null, string contentDisposition = null)
         {
             Method = method;
