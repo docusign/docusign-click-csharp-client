@@ -1,6 +1,9 @@
 # DocuSign Click C# Client Changelog
 See [DocuSign Support Center](https://support.docusign.com/en/releasenotes/) for Product Release Notes.
 
+## [v2.0.0-rc2] - Click API v1-22.4.02.00 - 2024-04-29
+### Breaking Changes
+- Updated from System.IdentityModel.Tokens.Jwt to Microsoft.IdentityModel.JsonWebTokens for token handling.
 ## [v2.0.0-rc1] - Click API v1-22.4.02.00 - 2024-04-05
 ### Breaking Changes
 - Updated C# SDK dependencies.
