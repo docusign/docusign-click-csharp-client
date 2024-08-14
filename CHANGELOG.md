@@ -1,6 +1,11 @@
 # DocuSign Click C# Client Changelog
 See [DocuSign Support Center](https://support.docusign.com/en/releasenotes/) for Product Release Notes.
 
+## [v2.0.0] - Click API v1-22.4.02.00 - 2024-07-30
+### Changed
+- Added support for version v1-22.4.02.00 of the DocuSign Click API.
+- Updated the SDK release version.
+
 ## [v2.0.0-rc3] - Click API v1-22.4.02.00 - 2024-05-20
 ### Changed
 - Updated C# SDK dependencies.
