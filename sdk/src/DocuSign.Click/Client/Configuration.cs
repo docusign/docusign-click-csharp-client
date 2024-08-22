@@ -26,7 +26,7 @@ namespace DocuSign.Click.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "2.0.0-rc3";
+        public const string Version = "2.0.0";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -50,8 +50,21 @@ namespace DocuSign.Click.Client
         public static readonly ExceptionFactory DefaultExceptionFactory = (methodName, response) =>
         {
             int status = (int)response.StatusCode;
-            if (status >= 400) return new ApiException(status, String.Format("Error calling {0}: {1}", methodName, response.Content), response.Content, response);
-            if (status == 0) return new ApiException(status, String.Format("Error calling {0}: {1}", methodName, response.ErrorMessage), response.ErrorMessage, response);
+
+            if (status >= 400)
+            {
+                var hasContent = !string.IsNullOrWhiteSpace(response.Content);
+                return new ApiException((int)response.StatusCode,
+                            string.Format("Error calling {0}: {1}", methodName, hasContent ? response.Content : response.ErrorMessage),
+                            hasContent ? (dynamic)response.Content : response.Exception,
+                            response);
+            }
+
+            if (status == 0)
+            {
+                return new ApiException(status, String.Format("Error calling {0}: {1}", methodName, response.ErrorMessage), response.ErrorMessage, response);
+            }
+
             return null;
         };
 

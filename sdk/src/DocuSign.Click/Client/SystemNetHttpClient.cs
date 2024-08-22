@@ -69,9 +69,9 @@ namespace DocuSign.Click.Client
                     await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false),
                     response.Content.Headers?.ContentType?.MediaType);
             }
-            catch
+            catch (Exception e)
             {
-                return new DocuSignResponse(System.Net.HttpStatusCode.InternalServerError, null, null, string.Empty);
+                return new DocuSignResponse(e);
             }
         }
 

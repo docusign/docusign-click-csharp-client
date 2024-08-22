@@ -67,7 +67,7 @@ namespace DocuSign.Click.Client
         /// <param name="message">Error message.</param>
         /// <param name="errorContent">Error content.</param>
         /// <param name="response">DocuSignResponse object.</param>
-        public ApiException(int errorCode, string message, dynamic errorContent = null, DocuSignResponse response = null) : base(message)
+        public ApiException(int errorCode, string message, dynamic errorContent = null, DocuSignResponse response = null) : base(response.Exception?.Message ?? message, response.Exception?.InnerException)
         {
             this.ErrorCode = errorCode;
             this.ErrorContent = errorContent;
