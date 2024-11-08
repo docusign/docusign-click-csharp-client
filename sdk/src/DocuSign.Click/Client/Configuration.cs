@@ -26,7 +26,7 @@ namespace DocuSign.Click.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "2.0.0";
+        public const string Version = "2.0.1";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
